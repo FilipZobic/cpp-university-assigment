@@ -31,8 +31,8 @@ int main() {
     WorkerService workerService;
     workerService.ParseWorker(toSend,person1);
 
-    string toRecive = person1->Serialize();
-    cout << toRecive << endl;
+    string toReceive = person1->Serialize();
+    cout << toReceive << endl;
 
     cout << to_string(date.getSumOfDays()) << endl;
 

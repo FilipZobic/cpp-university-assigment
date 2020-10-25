@@ -32,8 +32,8 @@ void AnnualLeave::setCurrentDays(int currentDays) {
 }
 
 void AnnualLeave::setCurrentDays(Date &start, Date &end) {
-    long daysStart = start.getSumOfDays();
-    long daysEnd = end.getSumOfDays();
+    long daysStart = start.getSumOfDays(start.getYear());
+    long daysEnd = end.getSumOfDays(start.getYear());
 
     int subtraction = daysEnd - daysStart;
 
