@@ -25,7 +25,7 @@ public:
 
     void Parse(string &dateString) override;
 
-    int getSumOfDays();
+    int getSumOfDays(int const start = minYear);
 protected:
     bool isInputValid(const int &day, const int &month, const int &year);
 

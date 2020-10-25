@@ -38,6 +38,8 @@ public:
     string Serialize() override /*pure virtual*/;
 
     void Parse(vector<string> *parameters) override /*pure virtual*/;
+
+    void checkSalary() const;
 };
 
 

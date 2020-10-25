@@ -1,20 +1,16 @@
-//
-// Created by filipz on 10/24/20.
-//
-
 #include "Worker.h"
-
+#include <stdexcept>
 
 Worker::Worker(const long &id, const string &name, const string &surname, const Date &birthday, const string &type,
                double salary, const string &mobileNumber) : Person(id, name, surname, birthday), type(type),
-                                                            salary(salary), mobileNumber(mobileNumber) {}
+                                                            salary(salary), mobileNumber(mobileNumber) {checkSalary();}
 
 const string &Worker::getType() const {
     return type;
 }
 
 void Worker::setType(const string &type) {
-    Worker::type = type;
+    this->type = type;
 }
 
 double Worker::getSalary() const {
@@ -22,7 +18,8 @@ double Worker::getSalary() const {
 }
 
 void Worker::setSalary(double salary) {
-    Worker::salary = salary;
+    this->salary = salary;
+    checkSalary();
 }
 
 const string &Worker::getMobileNumber() const {
@@ -41,9 +38,13 @@ void Worker::Parse(vector<string> *parameters) {
     Person::Parse(parameters);
     this->type = parameters->at(0);
     this->salary = stod(parameters->at(1));
+    checkSalary();
     this->mobileNumber = parameters->at(2);
     parameters->erase(parameters->begin(),parameters->cbegin()+3);
 };
 
+void Worker::checkSalary() const{
+    if (this->salary<0) throw std::invalid_argument("Salary can't be lower then 0");
+}
 
 Worker::Worker():Person() {}

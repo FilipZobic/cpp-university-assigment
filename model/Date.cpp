@@ -98,7 +98,7 @@ bool Date::isInputValid(const int &day, const int &month, const int &year) {
     return true; // maybe remove errors and just return true or false
 }
 
-int Date::getSumOfDays() {
+int Date::getSumOfDays(int const start) {
     int daysInMonth[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
 
     long daysSum = -1;  //Its -1 because we start date can't be 0
@@ -107,7 +107,7 @@ int Date::getSumOfDays() {
     long daysInYear = 365;
     long daysInLeapYear = 366;
 
-    for (int i = minYear; i < this->year; ++i) {
+    for (int i = start; i < this->year; ++i) {
         if(isLeapYear(i)){
             daysSum += daysInLeapYear;
         }else{
