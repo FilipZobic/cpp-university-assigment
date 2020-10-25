@@ -15,23 +15,16 @@ void AnnualLeave::Parse(string &dateString) {
     cuaUtil::parseStringIntoVector(dateString,params,"|");
 
     int currentDays = stoi(params[0]);
-    Date startDate;
-    Date endDate;
     if (currentDays != 0) {
+        Date startDate;
+        Date endDate;
         startDate.Parse(params[1]);
         endDate.Parse(params[2]);
 
-        //check if valid here
-
-        if(true){
-            this->currentDays = currentDays;
-            this->start = startDate;
-            this->end = endDate;
-        }
+        setCurrentDays(startDate,endDate);
     } else {
-        this->currentDays = currentDays;
+        setCurrentDays(currentDays);
     }
-    // If No Errors are thrown set values
 }
 
 void AnnualLeave::setCurrentDays(int currentDays) {
@@ -45,7 +38,7 @@ void AnnualLeave::setCurrentDays(Date &start, Date &end) {
     int subtraction = daysEnd - daysStart;
 
     if (subtraction <= 0) throw std::invalid_argument("Annual leave can't be less or equal to 0");
-    if (subtraction > maxPossible) throw std::invalid_argument("Annual leave can't be more then " + to_string(maxPossible));
+    if (subtraction > maxPossible) throw std::invalid_argument("Annual leave can't be more then " + to_string(maxPossible) + " days.");
 
     this->start = start;
     this->end = end;

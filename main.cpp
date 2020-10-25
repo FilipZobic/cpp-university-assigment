@@ -19,7 +19,7 @@ int main() {
     Worker *person = new Worker(1,"Petar","Markovic",date,"Magacioner",2000.00,"064553910");
 
     Date dateA(20,2,2010);
-    Date dateB(1,3,2010);
+    Date dateB(14,3,2010);
 
     cout << dateA.getSumOfDays() << " " << dateB.getSumOfDays() << " " << (dateB.getSumOfDays()-dateA.getSumOfDays()) << endl;
     person->addOrReplaceAnnualLeave(dateA,dateB);
