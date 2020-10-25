@@ -1,9 +1,8 @@
 #ifndef CPP_UNIVERSITY_ASSIGMENT_Date_H
 #define CPP_UNIVERSITY_ASSIGMENT_Date_H
-
 #include <string>
 #include "../service/CsvFormatter.h"
-class Date : public CsvFormatter<string*>{
+class Date : public CsvFormatter<string&>{
     private:
         int static const days31 = 31;
         int static const days30 = 30;
@@ -12,7 +11,7 @@ class Date : public CsvFormatter<string*>{
         int year;
     public:
         Date();
-        Date(int const day,int const month,int const year); //throw error if any number =< 0
+        Date(int const day,int const month,int const year);
         ~Date();
 
         int getDay() const;
@@ -23,9 +22,14 @@ class Date : public CsvFormatter<string*>{
 
         std::string toString() const;
 
-    string Serialize() override;
+        string Serialize() override;
 
-    void Parse(string* dateString) override;
+protected:
+    bool isInputValid(const int &day, const int &month, const int &year);
+
+    int getSumOfDays();
+
+    void Parse(string &dateString) override;
 };
 
 #endif
