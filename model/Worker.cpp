@@ -1,7 +1,7 @@
 #include "Worker.h"
 #include <stdexcept>
 
-Worker::Worker(const long &id, const string &name, const string &surname, const Date &birthday, const string &type,
+Worker::Worker(const long &id, const string &name, const string &surname, const Date &birthday, const string type,
                double salary, const string &mobileNumber) : Person(id, name, surname, birthday), type(type),
                                                             salary(salary), mobileNumber(mobileNumber)
                                                             {
@@ -48,7 +48,7 @@ void Worker::Parse(vector<string> *parameters) {
     this->salary = stod(parameters->at(1));
     checkSalary();
     this->mobileNumber = parameters->at(2);
-    this->annualLeave = new AnnualLeave();
+    this->annualLeave = new AnnualLeave(); //we should delete old one before we create a new one or replace it
     annualLeave->Parse(parameters->at(3));
     // set annualLeave here
     parameters->erase(parameters->begin(),parameters->cbegin()+4);
@@ -60,7 +60,7 @@ void Worker::checkSalary() const{
 
 Worker::Worker():Person() {}
 
-void Worker::addOrReplaceAnnualLeave(Date &dateStart,Date &dateEnd) {
+void Worker::addOrReplaceAnnualLeave(Date &dateStart,Date &dateEnd) const {
     this->annualLeave->setCurrentDays(dateStart,dateEnd);
 };
 

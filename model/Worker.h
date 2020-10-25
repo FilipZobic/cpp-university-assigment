@@ -22,12 +22,10 @@ private:
 public:
     Worker();
 
-    Worker(const long &id, const string &name, const string &surname, const Date &birthday, const string &type,
+    Worker(const long &id, const string &name, const string &surname, const Date &birthday, const string type,
            double salary, const string &mobileNumber);
 
     virtual ~Worker();
-
-    void addOrReplaceAnnualLeave(Date &dateStart,Date &dateEnd);
 
     const string &getType() const;
 
@@ -41,11 +39,13 @@ public:
 
     void setMobileNumber(const string &mobileNumber);
 
-    string Serialize() override /*pure virtual*/;
+    virtual string Serialize() override = 0 /*pure virtual*/;
 
-    void Parse(vector<string> *parameters) override /*pure virtual*/;
+    virtual void Parse(vector<string> *parameters) override = 0/*pure virtual*/;
 
     void checkSalary() const;
+
+    void addOrReplaceAnnualLeave(Date &dateStart,Date &dateEnd) const;
 };
 
 
