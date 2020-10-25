@@ -1,0 +1,14 @@
+//
+// Created by filipz on 10/24/20.
+//
+
+#ifndef CPP_UNIVERSITY_ASSIGMENT_ANNUALLEAVE_H
+#define CPP_UNIVERSITY_ASSIGMENT_ANNUALLEAVE_H
+
+
+class AnnualLeave {
+
+};
+
+
+#endif //CPP_UNIVERSITY_ASSIGMENT_ANNUALLEAVE_H
