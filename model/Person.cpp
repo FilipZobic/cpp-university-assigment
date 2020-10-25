@@ -44,7 +44,7 @@ string Person::toString() const {
 }
 
 string Person::Serialize() {
-    return to_string(id) + sep + name + sep + surname + sep + birthday.toString();
+    return to_string(id) + sep + name + sep + surname + sep + birthday.Serialize();
 }
 
 void Person::Parse(vector<string> *parameters) {
@@ -52,7 +52,7 @@ void Person::Parse(vector<string> *parameters) {
     this->id = stol(parameters->at(0));
     this->name = parameters->at(1);
     this->surname = parameters->at(2);
-//    this->birthday = birthday.Parse(parameters->at(3))
+    /*this->birthday =*/ birthday.Parse(&parameters->at(3));
     parameters->erase(parameters->begin(),parameters->cbegin()+4);
 }
 

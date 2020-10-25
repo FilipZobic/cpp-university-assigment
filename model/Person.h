@@ -7,7 +7,7 @@ using namespace std;
 
 #include "../service/CsvFormatter.h"
 
-class Person : public CsvFormatter {
+class Person : public CsvFormatter<vector<string>*> {
 private:
     long id;
     string name;

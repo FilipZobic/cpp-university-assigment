@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class Worker : public Person,public CsvFormatter {
+class Worker : public Person,public CsvFormatter<vector<string>*> {
 private:
     string type;
     double salary;

@@ -12,4 +12,4 @@ include_directories(.)
 
 add_executable(cpp_university_assigment
 #        main.cpp
-        main.cpp model/Date.cpp model/Date.h model/Person.cpp model/Person.h model/Worker.cpp model/Worker.h model/AnnualLeave.cpp model/AnnualLeave.h service/WorkerService.cpp service/WorkerService.h service/CsvFormatter.cpp service/CsvFormatter.h)
+        main.cpp model/Date.cpp model/Date.h model/Person.cpp model/Person.h model/Worker.cpp model/Worker.h model/AnnualLeave.cpp model/AnnualLeave.h service/WorkerService.cpp service/WorkerService.h service/CsvFormatter.cpp service/CsvFormatter.h service/CsvFormatterUtil.h service/CsvFormatterUtil.cpp)

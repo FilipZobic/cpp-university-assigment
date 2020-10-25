@@ -8,12 +8,15 @@
 #include <string>
 #include <vector>
 
+#include "CsvFormatterUtil.h"
+
 using namespace std;
-class CsvFormatter {
+template <typename T>
+class CsvFormatter : public CsvFormatterUtil {
 public:
-    const static string sep;
+
     virtual string Serialize() = 0;
-    virtual void Parse(vector<string>* parameters) = 0;
+    virtual void Parse(T parameters) = 0;
 };
 
 

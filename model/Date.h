@@ -2,8 +2,8 @@
 #define CPP_UNIVERSITY_ASSIGMENT_Date_H
 
 #include <string>
-
-class Date {
+#include "../service/CsvFormatter.h"
+class Date : public CsvFormatter<string*>{
     private:
         int static const days31 = 31;
         int static const days30 = 30;
@@ -22,6 +22,10 @@ class Date {
         int getYear() const;
 
         std::string toString() const;
+
+    string Serialize() override;
+
+    void Parse(string* dateString) override;
 };
 
 #endif

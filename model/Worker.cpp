@@ -43,6 +43,7 @@ void Worker::Parse(vector<string> *parameters) {
     this->salary = stod(parameters->at(1));
     this->mobileNumber = parameters->at(2);
     parameters->erase(parameters->begin(),parameters->cbegin()+3);
-}
+};
+
 
 Worker::Worker():Person() {}

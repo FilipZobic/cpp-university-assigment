@@ -54,3 +54,11 @@ std::string Date::toString() const {
     std::string toReturn = std::to_string(day) + "/" + std::to_string(month) + "/" + std::to_string(year);
     return toReturn;
 }
+
+string Date::Serialize() {
+    return toString();
+}
+
+void Date::Parse(string* dateString) {
+    
+}
