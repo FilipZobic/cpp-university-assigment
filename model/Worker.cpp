@@ -3,7 +3,15 @@
 
 Worker::Worker(const long &id, const string &name, const string &surname, const Date &birthday, const string &type,
                double salary, const string &mobileNumber) : Person(id, name, surname, birthday), type(type),
-                                                            salary(salary), mobileNumber(mobileNumber) {checkSalary();}
+                                                            salary(salary), mobileNumber(mobileNumber)
+                                                            {
+                                                                checkSalary();
+                                                                this->annualLeave = new AnnualLeave();
+                                                                this->annualLeave->setCurrentDays(0); //add one more setter that recives to dates
+                                                            };
+Worker::~Worker() {
+    delete[] annualLeave;
+}
 
 const string &Worker::getType() const {
     return type;
@@ -31,7 +39,7 @@ void Worker::setMobileNumber(const string &mobileNumber) {
 }
 
 string Worker::Serialize() {
-    return Person::Serialize() + sep + type + sep + to_string(salary) + sep + mobileNumber;
+    return Person::Serialize() + sep + type + sep + to_string(salary) + sep + mobileNumber + sep + annualLeave->Serialize();
 }
 
 void Worker::Parse(vector<string> *parameters) {
@@ -40,7 +48,10 @@ void Worker::Parse(vector<string> *parameters) {
     this->salary = stod(parameters->at(1));
     checkSalary();
     this->mobileNumber = parameters->at(2);
-    parameters->erase(parameters->begin(),parameters->cbegin()+3);
+    this->annualLeave = new AnnualLeave();
+    annualLeave->Parse(parameters->at(3));
+    // set annualLeave here
+    parameters->erase(parameters->begin(),parameters->cbegin()+4);
 };
 
 void Worker::checkSalary() const{
@@ -48,3 +59,9 @@ void Worker::checkSalary() const{
 }
 
 Worker::Worker():Person() {}
+
+void Worker::addOrReplaceAnnualLeave(Date &dateStart,Date &dateEnd) {
+    this->annualLeave->setCurrentDays(dateStart,dateEnd);
+};
+
+

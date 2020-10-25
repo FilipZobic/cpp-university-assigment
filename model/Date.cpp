@@ -98,10 +98,10 @@ bool Date::isInputValid(const int &day, const int &month, const int &year) {
     return true; // maybe remove errors and just return true or false
 }
 
-int Date::getSumOfDays(int const start) {
+long Date::getSumOfDays(int const start) {
     int daysInMonth[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
 
-    long daysSum = -1;  //Its -1 because we start date can't be 0
+    long daysSum = this->day -1;  //Its -1 because we start date can't be 0
                         //Used this for testing https://calendarhome.com/calculate/days-between-2-dates
 
     long daysInYear = 365;
@@ -120,7 +120,7 @@ int Date::getSumOfDays(int const start) {
     }
 
     size_t currentMonth = this->getMonth();
-    for (size_t i = 0; i < currentMonth; ++i) {
+    for (size_t i = 0; i < currentMonth-1; ++i) {
         daysSum += daysInMonth[i];
     }
 

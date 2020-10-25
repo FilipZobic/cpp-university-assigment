@@ -1,13 +1,53 @@
-//
-// Created by filipz on 10/24/20.
-//
-
 #include "AnnualLeave.h"
+#include "../util/Util.h"
+#include <stdexcept>
 
 string AnnualLeave::Serialize() {
-    return std::string();
+    string toReturn = to_string(currentDays);
+    if (currentDays != 0){
+        toReturn+= "|" + start.Serialize() + "|" + end.Serialize();
+    }
+    return toReturn;
+}/*we set currentDays to 0 on construction we use setter to setter that recives 2 dates then we get calculation in parser the last value we set is days*/
+
+void AnnualLeave::Parse(string &dateString) {
+    vector<string> params;
+    cuaUtil::parseStringIntoVector(dateString,params,"|");
+
+    int currentDays = stoi(params[0]);
+    Date startDate;
+    Date endDate;
+    if (currentDays != 0) {
+        startDate.Parse(params[1]);
+        endDate.Parse(params[2]);
+
+        //check if valid here
+
+        if(true){
+            this->currentDays = currentDays;
+            this->start = startDate;
+            this->end = endDate;
+        }
+    } else {
+        this->currentDays = currentDays;
+    }
+    // If No Errors are thrown set values
 }
 
-void AnnualLeave::Parse(string &parameters) {
+void AnnualLeave::setCurrentDays(int currentDays) {
+    this->currentDays = currentDays;
+}
 
+void AnnualLeave::setCurrentDays(Date &start, Date &end) {
+    long daysStart = start.getSumOfDays();
+    long daysEnd = end.getSumOfDays();
+
+    int subtraction = daysEnd - daysStart;
+
+    if (subtraction <= 0) throw std::invalid_argument("Annual leave can't be less or equal to 0");
+    if (subtraction > maxPossible) throw std::invalid_argument("Annual leave can't be more then " + to_string(maxPossible));
+
+    this->start = start;
+    this->end = end;
+    this->currentDays = subtraction;
 }

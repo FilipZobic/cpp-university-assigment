@@ -9,6 +9,7 @@
 
 #include <string>
 #include <vector>
+#include "AnnualLeave.h"
 
 using namespace std;
 
@@ -17,11 +18,16 @@ private:
     string type;
     double salary;
     string mobileNumber;
+    AnnualLeave *annualLeave;
 public:
     Worker();
 
     Worker(const long &id, const string &name, const string &surname, const Date &birthday, const string &type,
            double salary, const string &mobileNumber);
+
+    virtual ~Worker();
+
+    void addOrReplaceAnnualLeave(Date &dateStart,Date &dateEnd);
 
     const string &getType() const;
 
