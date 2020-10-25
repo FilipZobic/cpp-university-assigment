@@ -52,7 +52,7 @@ void Person::Parse(vector<string> *parameters) {
     this->id = stol(parameters->at(0));
     this->name = parameters->at(1);
     this->surname = parameters->at(2);
-    /*this->birthday =*/ birthday.Parse(parameters->at(3));
+    this->birthday.Parse(parameters->at(3));
     parameters->erase(parameters->begin(),parameters->cbegin()+4);
 }
 
