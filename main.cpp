@@ -12,7 +12,7 @@ using namespace std;
 
 int main() {
 
-    Date date(29,2,2000);
+    Date date(28,2,2010);
 
     cout << date.toString() << endl;
 
@@ -26,6 +26,8 @@ int main() {
 
     string toRecive = person1->Serialize();
     cout << toRecive << endl;
+
+    cout << to_string(date.getSumOfDays()) << endl;
 
     return 0;
 }

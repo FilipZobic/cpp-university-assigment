@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <vector>
 #include "../util/Util.h"
+
 Date::Date(){};
 Date::Date(int const day,int const month,int const year){
 
@@ -51,26 +52,39 @@ void Date::Parse(string &dateString) {
     this->year = year;
 }
 
-bool Date::isInputValid(const int &day, const int &month, const int &year) {
-    int daysInMonth[] = {days31,28,days31,days30,days31,days30,days31,days31,days30,days31,days30,days31};
-
+bool Date::isLeapYear(const int &year){
+    bool toReturn = false;
     if (year%4 == 0)
     {
         if (year%100 == 0)
         {
             if (year%400 == 0)
             {
-                daysInMonth[1]++;
+                toReturn = true;
             }
 
         } else {
-            daysInMonth[1]++;
+            toReturn = true;
         }
     }
+    return toReturn;
+}
+
+bool Date::isInputValid(const int &day, const int &month, const int &year) {
+    int daysInMonth[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
+
+    if (isLeapYear(year)){
+        daysInMonth[1] = 29;
+    }
+
 
     if (day<=0||month<=0||year<=0)
     {
         throw std::invalid_argument("Values can't be =< 0");
+    }
+
+    if (year < minYear) {
+        throw std::invalid_argument("Year can't be lower then 2010");
     }
 
     if (month>12) {
@@ -85,10 +99,30 @@ bool Date::isInputValid(const int &day, const int &month, const int &year) {
 }
 
 int Date::getSumOfDays() {
-//    neki brojac do 12 ili nesto slicno
-    int daysSum = this->day;
-    int monthsSum = this->month + (this->year * 12);
-    int currentMonth = this->getMonth();
+    int daysInMonth[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
 
-    // we use current month to get days of month current month increases after each iteration but can't excede 12 || 11
+    long daysSum = -1;  //Its -1 because we start date can't be 0
+                        //Used this for testing https://calendarhome.com/calculate/days-between-2-dates
+
+    long daysInYear = 365;
+    long daysInLeapYear = 366;
+
+    for (int i = minYear; i < this->year; ++i) {
+        if(isLeapYear(i)){
+            daysSum += daysInLeapYear;
+        }else{
+            daysSum += daysInYear;
+        }
+    }
+
+    if (isLeapYear(this->year)){
+        daysInMonth[1] = 29;
+    }
+
+    size_t currentMonth = this->getMonth();
+    for (size_t i = 0; i < currentMonth; ++i) {
+        daysSum += daysInMonth[i];
+    }
+
+    return daysSum;
 };

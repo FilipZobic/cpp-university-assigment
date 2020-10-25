@@ -4,32 +4,33 @@
 #include "../service/CsvFormatter.h"
 class Date : public CsvFormatter<string&>{
     private:
-        int static const days31 = 31;
-        int static const days30 = 30;
+        static const int minYear = 1900;
         int day;
         int month;
         int year;
-    public:
-        Date();
-        Date(int const day,int const month,int const year);
-        ~Date();
+public:
+    Date();
+    Date(int const day,int const month,int const year);
+    ~Date();
 
-        int getDay() const;
+    int getDay() const;
 
-        int getMonth() const; 
+    int getMonth() const;
 
-        int getYear() const;
+    int getYear() const;
 
-        std::string toString() const;
+    std::string toString() const;
 
-        string Serialize() override;
+    string Serialize() override;
 
+    void Parse(string &dateString) override;
+
+    int getSumOfDays();
 protected:
     bool isInputValid(const int &day, const int &month, const int &year);
 
-    int getSumOfDays();
+    bool isLeapYear(const int &year);
 
-    void Parse(string &dateString) override;
 };
 
 #endif
