@@ -51,7 +51,7 @@ void Service<T>::openFile(Y &file){
 // funkcija koja ucitava ta dva parametra
 //vrati vector stringova linije
 
-template <typename T>
+template <typename T> // protected mozda
 vector<string> Service<T>::readFromFile(){ // path to file change
 
     //Opening

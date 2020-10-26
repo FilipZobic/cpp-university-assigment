@@ -11,7 +11,7 @@ CRUD<T>::CRUD(Service<T> *service) : service(service) {}
 
 template <typename T>
 
-void CRUD<T>::addEntity(T entity) const {
+void CRUD<T>::addEntity(const T entity) const {
     vector<T> *entities = service->getEntities();
     entities->push_back(entity);
     service->setAmountOfItems(service->getAmountOfItems()+1); //id setujemo na object creation ovde ga povecaamo znaci ovde stoji sledeci koji ce se iskoristiti
@@ -20,7 +20,7 @@ void CRUD<T>::addEntity(T entity) const {
 };
 
 template <typename T>
-void CRUD<T>::deleteEntity(long index) const { // we send id to parent class that will overwrite this method then we send index of the element
+void CRUD<T>::deleteEntity(const long index) const { // we send id to parent class that will overwrite this method then we send index of the element
 
 
     vector<T> *entities = service->getEntities();
@@ -38,6 +38,20 @@ void CRUD<T>::deleteEntity(long index) const { // we send id to parent class tha
 }
 
 
+//template <typename T>
+//void CRUD<T>::replaceEntity(const  vector<string> &newParams,int index) {
+//    service->writeToFile();
+//}
+
+template <typename T>
+void CRUD<T>::readEntities(){
+    vector<T> *entities = service->getEntities();
+    for (T entity : (*entities)) {
+        delete entity;
+    }
+    entities->erase(entities->begin(),entities->end());
+    service->parseAllEntities();
+}
 
 
 template class CRUD<Worker*>;

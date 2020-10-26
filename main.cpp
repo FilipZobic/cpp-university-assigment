@@ -80,7 +80,7 @@ int main() {
     service.printArr();
 
 
-    crud.deleteEntity(4);
+    crud.deleteEntity(3);
 
     //Testing storage
     cout << "Array Main DELETION======" << endl;
@@ -88,6 +88,15 @@ int main() {
         cout << i->Serialize() << endl;
     }
     cout << "Array Service DELETION======" << endl;
+    service.printArr();
+
+    crud.readEntities();
+
+    cout << "Array Main READING======" << endl;
+    for (Worker* i : WORKER_STORAGE_VECTOR) {
+        cout << i->Serialize() << endl;
+    }
+    cout << "Array Service READING======" << endl;
     service.printArr();
 
 

@@ -5,11 +5,12 @@
 #ifndef CPP_UNIVERSITY_ASSIGMENT_CRUDWORKER_H
 #define CPP_UNIVERSITY_ASSIGMENT_CRUDWORKER_H
 #include "string"
+#include "CRUD.h"
 
 using namespace std;
 
 
-class CRUDWorker {
+class CRUDWorker /*: public CRUD<Worker*> */{
 private:
 public:
 //    void createNewObject(); //creates and saves the object amountOfItems++ lastUsedId++

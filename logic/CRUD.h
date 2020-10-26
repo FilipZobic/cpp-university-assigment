@@ -14,12 +14,15 @@ protected:
 public:
     CRUD<T>(Service<T> *service);
 
-    void addEntity(T entity) const; //calls writeToFile after push_back array and ++numOfLements as well lastUsedId maybe add star //this entities shared vector of
-    void deleteEntity(long index) const; //calls writeToFile after deleting vector element and erasing array position and --numberOfElementsinService
-//    void replaceEntity(long id); ovo ce morati biti virtual funckija ili nesto kao delete da uradim //calls writeToFile after modifying the vector element attributes
-//    void readEntities();//calls service parseAllEntities for same array
-//
-//    virtual void createEntity(vector<string>params) = 0; // after redifiniton in their crud service calls add entity
+//    /*1*/virtual void createEntity(const vector<string> &params) = 0;
+//    /*2*/virtual void replaceEntity(const vector<string> &newParams,int id) = 0;
+//    /*3*/virtual void removeEntity(const long id) = 0;
+//    /*2*//*3*/virtual long findIndex(long id) = 0; //replace and delete use this function
+protected:
+public: // temporarliy
+    /*3*/void deleteEntity(const long index) const; //calls writeToFile after deleting vector element and erasing array position and --numberOfElementsinService
+    /*1*/void addEntity(const T entity) const; //calls writeToFile after push_back array and ++numOfLements as well lastUsedId maybe add star //this entities shared vector of
+    void readEntities();
 };
 
 /*
