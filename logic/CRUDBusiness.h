@@ -1,0 +1,14 @@
+//
+// Created by filipz on 10/25/20.
+//
+
+#ifndef CPP_UNIVERSITY_ASSIGMENT_CRUDBUSINESS_H
+#define CPP_UNIVERSITY_ASSIGMENT_CRUDBUSINESS_H
+
+
+class CRUDBusiness {
+
+};
+
+
+#endif //CPP_UNIVERSITY_ASSIGMENT_CRUDBUSINESS_H

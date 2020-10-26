@@ -39,6 +39,7 @@ public:
     virtual string Serialize() override = 0;
 
     virtual void Parse(vector<string> *parameters) override = 0;
+
 };
 
 

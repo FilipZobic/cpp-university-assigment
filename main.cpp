@@ -9,6 +9,7 @@
 #include "./model/Warehouseman.h"
 #include "./model/Clerk.h"
 #include "./model/Driver.h"
+#include "./service/Service.h"
 
 // clear array at service that is vector
 using namespace std;
@@ -58,6 +59,21 @@ int main() {
     Worker *driver1 = new Driver();
     workerService.ParseWorker(toSendDriver,driver1);
     cout << driver1->Serialize() << endl;
+
+    vector<Worker*> original;
+    string filename = "Workers.csv";
+    typedef Service<Worker*> helloWorld;
+    helloWorld service(filename,&original);
+
+    original.push_back(driver);
+//    helloWorld
+    cout << "Array Original ======" << endl;
+    for (Worker* i : original) {
+        cout << i->Serialize() << endl;
+    }
+cout << "Array ======" << endl;
+    service.printArr();
+    service.writeToFile();
 
     return 0;
 }

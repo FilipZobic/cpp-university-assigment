@@ -16,6 +16,9 @@
 using namespace std;
 
 class WorkerService {
+private:
+    int amountOfItems;
+    long lastUsedId;
 public:
     void ParseWorker(string workerString,Worker *worker);
     void ParseVectorWorkers(vector<Worker*> *workersVector);
