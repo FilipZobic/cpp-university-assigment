@@ -7,7 +7,7 @@ Worker::Worker(const long &id, const string &name, const string &surname, const 
                                                             {
                                                                 checkSalary();
                                                                 this->annualLeave = new AnnualLeave();
-                                                                this->annualLeave->setCurrentDays(0); //add one more setter that recives to dates
+                                                                this->annualLeave->setCurrentDays(0);
                                                             };
 Worker::~Worker() {
     delete[] annualLeave;

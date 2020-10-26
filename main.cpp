@@ -9,70 +9,57 @@
 #include "./model/Warehouseman.h"
 #include "./model/Clerk.h"
 #include "./model/Driver.h"
-#include "./service/Service.h"
+#include "./service/WorkerService.h"
 
 // clear array at service that is vector
 using namespace std;
 
 int main() {
 
-    Date date(28,2,2010);
+    //Creating dates
+    Date annualLeaveStart(20,2,2010);
+    Date annualLeaveEnd(14,3,2010);
 
-    cout << date.toString() << endl;
+    Date annualLeaveStart1(1,5,2010);
+    Date annualLeaveEnd1(25,5,2010);
 
-    Worker *person = new Warehouseman(1,"Petar","Markovic",date,2000.00,"064553910");
+    Date birthDay(15,5,2000);
 
-    Date dateA(20,2,2010);
-    Date dateB(14,3,2010);
+    Date birthDay2(15,5,2001);
 
-    cout << dateA.getSumOfDays() << " " << dateB.getSumOfDays() << " " << (dateB.getSumOfDays()-dateA.getSumOfDays()) << endl;
-    person->addOrReplaceAnnualLeave(dateA,dateB);
+    Date birthDay3(1,1,1999);
 
-    string toSend = person->Serialize();
-    cout << toSend << endl;
+    //Creating 3 types of workers
+        //Warehouseman
+            Worker *warehouseman = new Warehouseman(1,"Petar","Markovic",birthDay,2000.00,"064553910");
+            warehouseman->addOrReplaceAnnualLeave(annualLeaveStart,annualLeaveEnd);
+        //Clerk
+            Worker *clerk = new Clerk(2,"Zoran","Petrovic",birthDay2,2660.00,"0645213910","Register number 5, 55$ inside");
+        //Driver
+            vector<string> adc;
+            vector<string> abc = {"B","C"};
+            Worker *driver = new Driver(3,"Nikola","Vlasic",birthDay3,6000.00,"0652133910",2,abc);
+            driver->addOrReplaceAnnualLeave(annualLeaveStart1,annualLeaveEnd1);
 
-    Worker *person1 = new Warehouseman();
-    WorkerService workerService;
-    workerService.ParseWorker(toSend,person1);
-
-    string toReceive = person1->Serialize();
-    cout << toReceive << endl;
-
-    cout << to_string(date.getSumOfDays()) << endl;
-
-    Worker *clerk = new Clerk(2,"Zoran","Petrovic",date,2660.00,"0645213910","Register number 5, 55$ inside");
-    string toSendClerk = clerk->Serialize();
-    cout << toSendClerk << endl;
-    Worker *clerk2 = new Clerk();
-    workerService.ParseWorker(toSendClerk,clerk2);
-    string toReciveClerk = clerk2->Serialize();
-    cout << toReciveClerk << endl;
-//drivers
-    vector<string> adc;
-    vector<string> abc = {"B","C"};
-    Worker *driver = new Driver(3,"Nikola","Vlasic",date,6000.00,"0652133910",2,abc);
-    Date dateC(1,5,2010);
-    Date dateD(25,5,2010);
-    driver->addOrReplaceAnnualLeave(dateC,dateD);
-    string toSendDriver = driver->Serialize();
-    cout << toSendDriver << endl;
-    Worker *driver1 = new Driver();
-    workerService.ParseWorker(toSendDriver,driver1);
-    cout << driver1->Serialize() << endl;
-
-    vector<Worker*> original;
+    //Creating service and reading data
+    vector<Worker*> WORKER_STORAGE_VECTOR; // njega menjam sa CRUD tj posaljem ga u CRUD pa pozovemo servis samo da snimi samog sebe
     string filename = "Workers.csv";
-    typedef Service<Worker*> helloWorld;
-    helloWorld service(filename,&original);
+    WorkerService service(filename,&WORKER_STORAGE_VECTOR);
 
-    original.push_back(driver);
-//    helloWorld
-    cout << "Array Original ======" << endl;
-    for (Worker* i : original) {
+    //Adding workers to storage
+//    WORKER_STORAGE_VECTOR.push_back(driver);
+//    WORKER_STORAGE_VECTOR.push_back(clerk);
+//    WORKER_STORAGE_VECTOR.push_back(warehouseman);
+
+    //Testing storage
+    cout << "Array Main ======" << endl;
+    for (Worker* i : WORKER_STORAGE_VECTOR) {
         cout << i->Serialize() << endl;
     }
-cout << "Array ======" << endl;
+    cout << "Array Service ======" << endl;
     service.printArr();
+
+    //Service Saving
     service.writeToFile();
 
     return 0;

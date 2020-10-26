@@ -13,16 +13,21 @@
 
 #include "../model/Worker.h"
 
+#include "./Service.h"
+#include "../model/Driver.h"
+#include "../model/Warehouseman.h"
+#include "../model/Clerk.h"
+
 using namespace std;
 
-class WorkerService {
-private:
-    int amountOfItems;
-    long lastUsedId;
+class WorkerService : public Service<Worker*> {
 public:
-    void ParseWorker(string workerString,Worker *worker);
-    void ParseVectorWorkers(vector<Worker*> *workersVector);
+    WorkerService(const string &filename, vector<Worker*> *entities);
 
+    void parseAllEntities() override;
+
+    void parseEntity(Worker **entity, vector<string> &paramsForObject) override;
+private:
 
 };
 

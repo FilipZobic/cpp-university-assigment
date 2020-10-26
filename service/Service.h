@@ -14,7 +14,7 @@ using namespace std;
 
 template <typename T>
 class Service {
-private:
+protected:
     string filename;
     int amountOfItems;
     long lastUsedId;
@@ -22,9 +22,10 @@ private:
 public:
     Service(const string &filename,vector<T>* entities);
     ifstream& readFirstLine(ifstream& stream);
-    void readFromFile() /*= 0*/; //reads all entities to vector calls parseEntity() and sets amountOfItems and lastUsedIde creates entities here
-    void writeToFile()  /*= 0*/; //calls serilizatin and replaces everything in file each line with vector and amount and last usedid
-    void parseEntity(T entity,string &entityString) /*= 0*/;
+    vector<string> readFromFile(); //reads all entities to vector calls parseEntity() and sets amountOfItems and lastUsedIde creates entities here
+    void writeToFile(); //calls serilizatin and replaces everything in file each line with vector and amount and last usedid
+    virtual void parseAllEntities() = 0;
+    virtual void parseEntity(T *entity,vector<string> &paramsForObject) = 0;
 
     template<typename Y>
     void openFile(Y &file);

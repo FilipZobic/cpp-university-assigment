@@ -46,6 +46,7 @@ public:
     void checkSalary() const;
 
     void addOrReplaceAnnualLeave(Date &dateStart,Date &dateEnd) const;
+
 };
 
 

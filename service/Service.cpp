@@ -7,26 +7,23 @@
 #include "CsvFormatter.h"
 
 template <typename T>
-Service<T>::Service(const string &filename,vector<T>* entities) : filename(filename),entities(entities) {
-    amountOfItems = 0;
-    lastUsedId = 0;
-    readFromFile();
+Service<T>::Service(const string &filename,vector<T>* entities) : filename(filename),entities(entities),lastUsedId(0),amountOfItems(0) {
 }
 
 template <typename T>
 ifstream& Service<T>::readFirstLine(ifstream& file){
     string line;
-    getline(file,line); // napravi funkciju koja cita ova 2 parametra i vraca file file posle moramo zatvoriti
+    getline(file,line);
 
-    vector<string> lines; // moramo deletovati u funkcji gde zovemo
+    vector<string> lines;
 
     cuaUtil::parseStringIntoVector(line, lines, "|*|");
 
     this->amountOfItems = stol(lines.at(0));
     this->lastUsedId = stol(lines.at(1));
 
-    lines.erase(lines.begin(), lines.end()); // this can be safely removed
-    return file; // we can turn function into void
+    lines.erase(lines.begin(), lines.end());
+    return file;
 };
 
 template <typename T>
@@ -53,8 +50,9 @@ void Service<T>::openFile(Y &file){
 
 // funkcija koja ucitava ta dva parametra
 //vrati vector stringova linije
+
 template <typename T>
-void Service<T>::readFromFile(){ // path to file change
+vector<string> Service<T>::readFromFile(){ // path to file change
 
     //Opening
     ifstream file;
@@ -67,10 +65,7 @@ void Service<T>::readFromFile(){ // path to file change
 
     //Closing
     file.close();
-
-    //Parsing those vectors
-    //parseentity ce biti pure virtual metoda na pocetku cemo definisiati kao za workere pa cemo je prebaciti posle
-
+    return lines;
 }
 
 template <typename T>
@@ -95,3 +90,6 @@ void Service<T>::writeToFile() {
 }
 
 template class Service<Worker*>;
+
+//parse enttiy make it harcoded for worker first then require redefenition we call parse entetiy for every vector string
+
