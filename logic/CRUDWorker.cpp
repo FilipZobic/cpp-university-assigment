@@ -5,10 +5,15 @@
 #include "CRUDWorker.h"
 #include "stdexcept"
 void CRUDWorker::createEntity(vector<string> &params){
-    Worker* newWorker;
-    params[0] = to_string(service->getLastUsedId());
-    service->parseEntity(&newWorker,params);
-    CRUD::addEntity(newWorker); //ovde mozda trebam adresu pointera da saljem ==========================================
+    const long index = findIndex(stol(params.at(0)));
+    if (index==-1){
+        Worker* newWorker;
+        params[0] = to_string(service->getLastUsedId());
+        service->parseEntity(&newWorker,params);
+        CRUD::addEntity(newWorker); //ovde mozda trebam adresu pointera da saljem ==========================================
+    } else{
+        cout << "That ID is already taken" << endl;
+    }
 }
 
 CRUDWorker::CRUDWorker(Service<Worker *> *service) : CRUD(service) {}

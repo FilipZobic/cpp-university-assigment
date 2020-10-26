@@ -84,7 +84,7 @@ bool Date::isInputValid(const int &day, const int &month, const int &year) {
     }
 
     if (year < minYear) {
-        throw std::invalid_argument("Year can't be lower then 2010");
+        throw std::invalid_argument("Year can't be lower then 1900");
     }
 
     if (month>12) {

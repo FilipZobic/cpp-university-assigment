@@ -51,6 +51,7 @@ int main() {
     vector<Worker*> WORKER_STORAGE_VECTOR; // njega menjam sa CRUD tj posaljem ga u CRUD pa pozovemo servis samo da snimi samog sebe
     string filename = "Workers.csv";
     WorkerService service(filename,&WORKER_STORAGE_VECTOR);
+    CRUDWorker crud(&service);
 
     //Adding workers to storage
 //    WORKER_STORAGE_VECTOR.push_back(driver);
@@ -69,7 +70,6 @@ int main() {
     //Service Saving
 //    service.writeToFile();
 
-    CRUDWorker crud(&service);
 //    crud.addEntity(driver);
 //
 //    //Testing storage
@@ -120,6 +120,9 @@ int main() {
 //    }
 //    cout << "Array Service DELETE ENTITY======" << endl;
 //    service.printArr();
+
+    vector<string> paramaters1 = {"36","Mihajlo","Zdravkovi","1/1/1998","Driver","6000.000000","0652133910","0","B,C","2"};
+    crud.createEntity(paramaters1);
 
     vector<string> paramaters = {"36","Marko","Zdravkovi","1/1/1998","Driver","6000.000000","0652133910","0","B,C","2"};
     crud.replaceEntity(paramaters,stol(paramaters.at(0)));
