@@ -57,11 +57,11 @@ int main() {
 //    WORKER_STORAGE_VECTOR.push_back(warehouseman);
 
 //Testing storage
-    cout << "Array Main ======" << endl;
+    cout << "Array Main DATA LOADING======" << endl;
     for (Worker* i : WORKER_STORAGE_VECTOR) {
         cout << i->Serialize() << endl;
     }
-    cout << "Array Service ======" << endl;
+    cout << "Array Service DATA LOADING======" << endl;
     service.printArr();
 
 
@@ -72,13 +72,23 @@ int main() {
     crud.addEntity(driver);
 
     //Testing storage
-    cout << "Array Main ======" << endl;
+    cout << "Array Main ADDITION======" << endl;
     for (Worker* i : WORKER_STORAGE_VECTOR) {
         cout << i->Serialize() << endl;
     }
-    cout << "Array Service ======" << endl;
+    cout << "Array Service ADDITION======" << endl;
     service.printArr();
 
+
+    crud.deleteEntity(4);
+
+    //Testing storage
+    cout << "Array Main DELETION======" << endl;
+    for (Worker* i : WORKER_STORAGE_VECTOR) {
+        cout << i->Serialize() << endl;
+    }
+    cout << "Array Service DELETION======" << endl;
+    service.printArr();
 
 
     return 0;

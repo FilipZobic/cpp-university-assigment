@@ -12,11 +12,11 @@ class CRUD {
 protected:
     Service<T>* service; //saljemo worker service ovde
 public:
-    void addEntity(T entity); //calls writeToFile after push_back array and ++numOfLements as well lastUsedId maybe add star //this entities shared vector of
     CRUD<T>(Service<T> *service);
 
-//    void deleteEntity(long id); //calls writeToFile after deleting vector element and erasing array position and --numberOfElementsinService
-//    void replaceEntity(long id); //calls writeToFile after modifying the vector element attributes
+    void addEntity(T entity) const; //calls writeToFile after push_back array and ++numOfLements as well lastUsedId maybe add star //this entities shared vector of
+    void deleteEntity(long index) const; //calls writeToFile after deleting vector element and erasing array position and --numberOfElementsinService
+//    void replaceEntity(long id); ovo ce morati biti virtual funckija ili nesto kao delete da uradim //calls writeToFile after modifying the vector element attributes
 //    void readEntities();//calls service parseAllEntities for same array
 //
 //    virtual void createEntity(vector<string>params) = 0; // after redifiniton in their crud service calls add entity

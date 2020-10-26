@@ -10,7 +10,7 @@ Worker::Worker(const long &id, const string &name, const string &surname, const 
                                                                 this->annualLeave->setCurrentDays(0);
                                                             };
 Worker::~Worker() {
-    delete[] annualLeave;
+    delete annualLeave;
 }
 
 const string &Worker::getType() const {
