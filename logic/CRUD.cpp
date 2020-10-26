@@ -1,10 +1,5 @@
-//
-// Created by filipz on 10/25/20.
-//
-
 #include "CRUD.h"
 #include <stdexcept>
-#include "../model/Worker.h"
 
 template <typename T>
 CRUD<T>::CRUD(Service<T> *service) : service(service) {}
@@ -36,12 +31,6 @@ void CRUD<T>::deleteEntity(const long index) const { // we send id to parent cla
 
     service->writeToFile();
 }
-
-
-//template <typename T>
-//void CRUD<T>::replaceEntity(const  vector<string> &newParams,int index) {
-//    service->writeToFile();
-//}
 
 template <typename T>
 void CRUD<T>::readEntities(){

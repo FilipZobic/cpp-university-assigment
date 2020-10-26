@@ -1,10 +1,7 @@
 #include "Service.h"
-//#include <istream>
-//#include <ostream>
 #include <fstream>
 #include <stdexcept>
 #include "../util/Util.h"
-#include "CsvFormatter.h"
 
 template <typename T>
 Service<T>::Service(const string &filename,vector<T>* entities) : filename(filename),entities(entities),lastUsedId(0),amountOfItems(0) {
@@ -90,6 +87,4 @@ void Service<T>::writeToFile() {
 }
 
 template class Service<Worker*>;
-
-//parse enttiy make it harcoded for worker first then require redefenition we call parse entetiy for every vector string
 

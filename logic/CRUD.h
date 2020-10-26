@@ -1,7 +1,3 @@
-//
-// Created by filipz on 10/25/20.
-//
-
 #ifndef CPP_UNIVERSITY_ASSIGMENT_CRUD_H
 #define CPP_UNIVERSITY_ASSIGMENT_CRUD_H
 
@@ -11,17 +7,15 @@ template <typename T>
 class CRUD {
 protected:
     Service<T>* service; //saljemo worker service ovde
+    void addEntity(const T entity) const;/*1*/
+    void deleteEntity(const long index) const;/*3*/
 public:
     CRUD<T>(Service<T> *service);
 
-//    /*1*/virtual void createEntity(const vector<string> &params) = 0;
-//    /*2*/virtual void replaceEntity(const vector<string> &newParams,int id) = 0;
-//    /*3*/virtual void removeEntity(const long id) = 0;
-//    /*2*//*3*/virtual long findIndex(long id) = 0; //replace and delete use this function
-protected:
-public: // temporarliy
-    /*3*/void deleteEntity(const long index) const; //calls writeToFile after deleting vector element and erasing array position and --numberOfElementsinService
-    /*1*/void addEntity(const T entity) const; //calls writeToFile after push_back array and ++numOfLements as well lastUsedId maybe add star //this entities shared vector of
+    virtual void createEntity(vector<string> &params) = 0;/*1*/
+    virtual void replaceEntity(vector<string> &newParams,int id) = 0;/*2*/
+    virtual void removeEntity(const long id) = 0;/*3*/
+    virtual long findIndex(const long &id) = 0;/*2*//*3*/
     void readEntities();
 };
 

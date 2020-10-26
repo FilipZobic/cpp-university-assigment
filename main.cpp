@@ -11,6 +11,7 @@
 #include "./model/Clerk.h"
 #include "./model/Driver.h"
 #include "./service/WorkerService.h"
+#include "./logic/CRUDWorker.h"
 
 // clear array at service that is vector
 using namespace std;
@@ -68,37 +69,67 @@ int main() {
     //Service Saving
 //    service.writeToFile();
 
-    CRUD<Worker*> crud(&service);
-    crud.addEntity(driver);
+    CRUDWorker crud(&service);
+//    crud.addEntity(driver);
+//
+//    //Testing storage
+//    cout << "Array Main ADDITION======" << endl;
+//    for (Worker* i : WORKER_STORAGE_VECTOR) {
+//        cout << i->Serialize() << endl;
+//    }
+//    cout << "Array Service ADDITION======" << endl;
+//    service.printArr();
 
-    //Testing storage
-    cout << "Array Main ADDITION======" << endl;
+
+//    crud.deleteEntity(3);
+//
+//    //Testing storage
+//    cout << "Array Main DELETION======" << endl;
+//    for (Worker* i : WORKER_STORAGE_VECTOR) {
+//        cout << i->Serialize() << endl;
+//    }
+//    cout << "Array Service DELETION======" << endl;
+//    service.printArr();
+
+//    crud.readEntities();
+//
+//    cout << "Array Main READING======" << endl;
+//    for (Worker* i : WORKER_STORAGE_VECTOR) {
+//        cout << i->Serialize() << endl;
+//    }
+//    cout << "Array Service READING======" << endl;
+//    service.printArr();
+
+//    vector<string> paramaters = {"8","Mihajlo","Zdravkovi","1/1/1998","Driver","6000.000000","0652133910","0","B,C","2"};
+//    crud.createEntity(paramaters);
+//
+//    cout << "Array Main CREATE ENTITY======" << endl;
+//    for (Worker* i : WORKER_STORAGE_VECTOR) {
+//        cout << i->Serialize() << endl;
+//    }
+//    cout << "Array Service CREATE ENTITY======" << endl;
+//    service.printArr();
+
+//    crud.removeEntity(47);
+//    crud.removeEntity(48);
+//    crud.removeEntity(49);
+//
+//    cout << "Array Main DELETE ENTITY======" << endl;
+//    for (Worker* i : WORKER_STORAGE_VECTOR) {
+//        cout << i->Serialize() << endl;
+//    }
+//    cout << "Array Service DELETE ENTITY======" << endl;
+//    service.printArr();
+
+    vector<string> paramaters = {"36","Marko","Zdravkovi","1/1/1998","Driver","6000.000000","0652133910","0","B,C","2"};
+    crud.replaceEntity(paramaters,stol(paramaters.at(0)));
+
+    cout << "Array Main REPLACE ENTITY======" << endl;
     for (Worker* i : WORKER_STORAGE_VECTOR) {
         cout << i->Serialize() << endl;
     }
-    cout << "Array Service ADDITION======" << endl;
+    cout << "Array Service REPLACE ENTITY======" << endl;
     service.printArr();
-
-
-    crud.deleteEntity(3);
-
-    //Testing storage
-    cout << "Array Main DELETION======" << endl;
-    for (Worker* i : WORKER_STORAGE_VECTOR) {
-        cout << i->Serialize() << endl;
-    }
-    cout << "Array Service DELETION======" << endl;
-    service.printArr();
-
-    crud.readEntities();
-
-    cout << "Array Main READING======" << endl;
-    for (Worker* i : WORKER_STORAGE_VECTOR) {
-        cout << i->Serialize() << endl;
-    }
-    cout << "Array Service READING======" << endl;
-    service.printArr();
-
 
     return 0;
 }
