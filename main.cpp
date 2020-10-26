@@ -6,6 +6,7 @@
 #include "./model/Person.h"
 #include "./model/Worker.h"
 #include "./service/WorkerService.h"
+#include "./logic/CRUD.h"
 #include "./model/Warehouseman.h"
 #include "./model/Clerk.h"
 #include "./model/Driver.h"
@@ -13,6 +14,10 @@
 
 // clear array at service that is vector
 using namespace std;
+
+//CRUD
+
+
 
 int main() {
 
@@ -51,6 +56,21 @@ int main() {
 //    WORKER_STORAGE_VECTOR.push_back(clerk);
 //    WORKER_STORAGE_VECTOR.push_back(warehouseman);
 
+//Testing storage
+    cout << "Array Main ======" << endl;
+    for (Worker* i : WORKER_STORAGE_VECTOR) {
+        cout << i->Serialize() << endl;
+    }
+    cout << "Array Service ======" << endl;
+    service.printArr();
+
+
+    //Service Saving
+//    service.writeToFile();
+
+    CRUD<Worker*> crud(&service);
+    crud.addEntity(driver);
+
     //Testing storage
     cout << "Array Main ======" << endl;
     for (Worker* i : WORKER_STORAGE_VECTOR) {
@@ -59,8 +79,7 @@ int main() {
     cout << "Array Service ======" << endl;
     service.printArr();
 
-    //Service Saving
-    service.writeToFile();
+
 
     return 0;
 }

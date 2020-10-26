@@ -36,6 +36,26 @@ public:
             cout << i->Serialize() << endl;
         }
     }
+
+    vector<T> *getEntities() const{
+        return entities;
+    };
+
+    int getAmountOfItems() const {
+        return amountOfItems;
+    }
+
+    void setAmountOfItems(int amountOfItems) {
+        this->amountOfItems = amountOfItems;
+    }
+
+    long getLastUsedId() const {
+        return lastUsedId;
+    }
+
+    void setLastUsedId(long lastUsedId) {
+        this->lastUsedId = lastUsedId;
+    }
 };
 
 
