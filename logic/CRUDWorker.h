@@ -13,7 +13,7 @@ public:
 
     void createEntity(vector<string> &params) override;
 
-    void removeEntity(const long id) override;
+    void removeEntity(const long id,void *service = nullptr) override;
 
     void replaceEntity(vector<string> &newParams, int id) override;
 

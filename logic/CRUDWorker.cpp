@@ -5,6 +5,7 @@
 #include "CRUDWorker.h"
 #include "stdexcept"
 #include "../util/Util.h"
+#include "../service/BusinessService.h"
 void CRUDWorker::createEntity(vector<string> &params){
     const long index = findIndex(stol(params.at(0)));
 
@@ -20,9 +21,15 @@ void CRUDWorker::createEntity(vector<string> &params){
 
 CRUDWorker::CRUDWorker(Service<Worker *> *service) : CRUD(service) {}
 
-void CRUDWorker::removeEntity(const long id) {
+void CRUDWorker::removeEntity(const long id,void *businessService) { //ili crud buisnissservice
     const long index = findIndex(id);
     if (index!=-1){
+
+        BusinessService *businessServiceParse = (BusinessService*)businessService;
+        for (Department *department : (*businessServiceParse->getEntities())) {
+            department->fireWorker(id);
+        }
+
         deleteEntity(index);
     } else {
         cout << "No element was removed because it doesn't exist" << endl;

@@ -42,6 +42,7 @@ int main() {
     vector<string> replaceParams = {"1", "Marko", "Mihajilovic", "1/1/1999", "Driver", "6000.000000", "0652133910",
                                     "24|1/5/2010|25/5/2010", "B,C", "2"};
     crud.replaceEntity(replaceParams,2);
+    crud.removeEntity(2,&businessService);
 
     cout << "All Workers" << endl;
     service.printArr();
