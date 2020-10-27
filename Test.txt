@@ -1,0 +1,19 @@
+//    //Service Worker ||| Service Department === Attribute value control
+//
+//    string a = service.getEntities()->at(0)->getName();
+//    string b = businessService.getEntities()->at(0)->getWorkers()->at(0)->getName();
+//
+//    cout << "Before change" << endl;
+//    cout << a << " " << b << endl;
+//
+//    service.getEntities()->at(0)->setName("Test");
+//
+//    a = service.getEntities()->at(0)->getName();
+//    b = businessService.getEntities()->at(0)->getWorkers()->at(0)->getName();
+//
+//    cout << "After change" << endl;
+//    cout << a << " " << b << endl;
+//
+//    if (a != b) {
+//        throw runtime_error("Service Worker ||| Service Department === Attribute value control !!! values are not matching");
+//    }

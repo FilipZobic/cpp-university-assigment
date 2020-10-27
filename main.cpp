@@ -25,179 +25,33 @@ using namespace std;
 
 int main() {
 
-    //Creating dates
-    Date annualLeaveStart(20,2,2010);
-    Date annualLeaveEnd(14,3,2010);
 
-    Date annualLeaveStart1(1,5,2010);
-    Date annualLeaveEnd1(25,5,2010);
 
-    Date birthDay(15,5,2000);
-
-    Date birthDay2(15,5,2001);
-
-    Date birthDay3(1,1,1999);
-
-    //Creating 3 types of workers
-        //Warehouseman
-            Worker *warehouseman = new Warehouseman(1,"Petar","Markovic",birthDay,2000.00,"064553910");
-            warehouseman->addOrReplaceAnnualLeave(annualLeaveStart,annualLeaveEnd);
-        //Clerk
-            Worker *clerk = new Clerk(2,"Zoran","Petrovic",birthDay2,2660.00,"0645213910","Register number 5, 55$ inside");
-        //Driver
-            vector<string> adc;
-            vector<string> abc = {"B","C"};
-            Worker *driver = new Driver(3,"Nikola","Vlasic",birthDay3,6000.00,"0652133910",2,abc);
-            driver->addOrReplaceAnnualLeave(annualLeaveStart1,annualLeaveEnd1);
-
-    //Creating service and reading data
+    //Creating worker service and reading data and worker CRUD
     vector<Worker*> WORKER_STORAGE_VECTOR; // njega menjam sa CRUD tj posaljem ga u CRUD pa pozovemo servis samo da snimi samog sebe
     string filename = "Workers.csv";
     WorkerService service(filename,&WORKER_STORAGE_VECTOR);
     CRUDWorker crud(&service);
 
-
-//    Department department(1);
-//    for (Worker* i : WORKER_STORAGE_VECTOR) {
-//
-//        department.hireWorker(i);
-//    }
-//    department.hireWorker(driver);
-//    department.hireWorker(driver);
-//
-//    for (Worker* workerF : (*department.getWorkers())) {
-//        cout << workerF->Serialize() << endl;
-//    }
-
-//    department.fireWorker(1);
-//    cout << "FIRE WORKER ID 1" << endl;
-//    for (Worker* workerF : (*department.getWorkers())) {
-//        cout << workerF->Serialize() << endl;
-//    }
-//    department.fireWorker(3);
-//    cout << "FIRE WORKER ID 3" << endl;
-//    for (Worker* workerF : (*department.getWorkers())) {
-//        cout << workerF->Serialize() << endl;
-//    }
-
-//    department.hireWorker(driver);
-//    department.hireWorker(clerk);
-//    department.hireWorker(warehouseman);
-
-//
-
-
-
-//    cout << "HIRED WORKERS" << endl;
-//    for (Worker* workerF : (*department.getWorkers())) {
-//        workerF->setName("ZEBRA");
-//        cout << workerF->Serialize() << endl;
-//    }
-//    department.setBoss(driver);
-//    cout << "DEPARTMENT SERRR" << endl;
-//    string depS = department.Serialize();
-//    cout << depS << endl;
-//    Department dep2;
-//    vector<long> workersInDepartment= {3,2,1};
-//    long idBoss = 3;
-//    long idDep = 1;
-//    dep2.Parse(idDep,idBoss,workersInDepartment,service.getEntities());
-//    cout << "HIRED WORKERS AFTER PARSING" << endl;
-//    for (Worker* workerF : (*department.getWorkers())) {
-//        cout << workerF->Serialize() << endl;
-//    }
-//    cout << "DEPARTMENT PARSED" << endl;
-//    string depS111 = dep2.Serialize();
-//    cout << depS111 << endl;
-
-    //Adding workers to storage
-//    WORKER_STORAGE_VECTOR.push_back(driver);
-//    WORKER_STORAGE_VECTOR.push_back(clerk);
-//    WORKER_STORAGE_VECTOR.push_back(warehouseman);
-
-//Testing storage
-    cout << "Array Main DATA LOADING======" << endl;
-    for (Worker* i : WORKER_STORAGE_VECTOR) {
-        cout << i->Serialize() << endl;
-    }
-    cout << "Array Service DATA LOADING======" << endl;
-    service.printArr();
-
+    //Creating business service and reading data and worker CRUD
     vector<Department*> DEPARTMENT_STORAGE_VECTOR; // njega menjam sa CRUD tj posaljem ga u CRUD pa pozovemo servis samo da snimi samog sebe
     string fileNameBusiness = "Department.csv";
     BusinessService businessService(fileNameBusiness,&DEPARTMENT_STORAGE_VECTOR,&service);
 
-    businessService.printArr();
+    service.getEntities()->at(0)->setName("Test");
+    vector<string> replaceParams = {"1", "Marko", "Mihajilovic", "1/1/1999", "Driver", "6000.000000", "0652133910",
+                                    "24|1/5/2010|25/5/2010", "B,C", "2"};
+    crud.replaceEntity(replaceParams,2);
 
-    //Service Saving
-//    service.writeToFile();
-
-//    crud.addEntity(driver);
-//
-//    //Testing storage
-//    cout << "Array Main ADDITION======" << endl;
-//    for (Worker* i : WORKER_STORAGE_VECTOR) {
-//        cout << i->Serialize() << endl;
-//    }
-//    cout << "Array Service ADDITION======" << endl;
-//    service.printArr();
+    cout << "All Workers" << endl;
+    service.printArr();
 
 
-//    crud.deleteEntity(3);
-//
-//    //Testing storage
-//    cout << "Array Main DELETION======" << endl;
-//    for (Worker* i : WORKER_STORAGE_VECTOR) {
-//        cout << i->Serialize() << endl;
-//    }
-//    cout << "Array Service DELETION======" << endl;
-//    service.printArr();
 
-//    crud.readEntities();
-//
-//    cout << "Array Main READING======" << endl;
-//    for (Worker* i : WORKER_STORAGE_VECTOR) {
-//        cout << i->Serialize() << endl;
-//    }
-//    cout << "Array Service READING======" << endl;
-//    service.printArr();
-
-//    vector<string> paramaters = {"8","Mihajlo","Zdravkovi","1/1/1998","Driver","6000.000000","0652133910","0","B,C","2"};
-//    crud.createEntity(paramaters);
-//
-//    cout << "Array Main CREATE ENTITY======" << endl;
-//    for (Worker* i : WORKER_STORAGE_VECTOR) {
-//        cout << i->Serialize() << endl;
-//    }
-//    cout << "Array Service CREATE ENTITY======" << endl;
-//    service.printArr();
-
-//    crud.removeEntity(47);
-//    crud.removeEntity(48);
-//    crud.removeEntity(49);
-//
-//    cout << "Array Main DELETE ENTITY======" << endl;
-//    for (Worker* i : WORKER_STORAGE_VECTOR) {
-//        cout << i->Serialize() << endl;
-//    }
-//    cout << "Array Service DELETE ENTITY======" << endl;
-//    service.printArr();
-
-//    vector<string> paramaters1 = {"40","Mihajlo","Zdravkovi","1/1/1998","Driver","6000.000000","0652133910","0","B,C","2"};
-//    crud.createEntity(paramaters1);
-
-    /*crud.removeEntity(51);
-    crud.removeEntity(50);
-
-    vector<string> paramaters = {"36","Marko","Zdravkovi","1/1/1998","Driver","6000.000000","0652133910","0","B,C","2"};
-    crud.replaceEntity(paramaters,stol(paramaters.at(0)));
-
-    cout << "Array Main REPLACE ENTITY======" << endl;
-    for (Worker* i : WORKER_STORAGE_VECTOR) {
-        cout << i->Serialize() << endl;
+    cout << "Department 1 workers" << endl;
+    for(Worker* worker : (*businessService.getEntities()->at(0)->getWorkers())){
+        cout << worker->Serialize() << endl;
     }
-    cout << "Array Service REPLACE ENTITY======" << endl;
-    service.printArr();*/
 
     return 0;
 }

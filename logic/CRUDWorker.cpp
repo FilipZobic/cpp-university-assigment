@@ -34,11 +34,13 @@ void CRUDWorker::removeEntity(const long id) {
 void CRUDWorker::replaceEntity(vector<string> &newParams, int id) {
     const long index = findIndex(id);
     if (index!=-1){
+        newParams.at(0) = to_string(id);
         vector<Worker*> *entities = service->getEntities();
-        Worker *newWorker;
-        service->parseEntity(&newWorker,newParams);
-        delete entities->at(index);
-        entities->at(index) = newWorker;
+//        Worker *newWorker;
+//        service->parseEntity(&newWorker,newParams);
+//        delete entities->at(index);
+//        (*entities->at(index)) = (*newWorker); //replace values functions then delete old one here also when deleting we have to search department service everytime
+        entities->at(index)->Parse(&newParams);
         service->writeToFile();
     } else {
         cout << "No element will be replaced because it doesn't exist" << endl;
