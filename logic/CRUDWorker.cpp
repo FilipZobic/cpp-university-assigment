@@ -4,8 +4,10 @@
 
 #include "CRUDWorker.h"
 #include "stdexcept"
+#include "../util/Util.h"
 void CRUDWorker::createEntity(vector<string> &params){
     const long index = findIndex(stol(params.at(0)));
+
     if (index==-1){
         Worker* newWorker;
         params[0] = to_string(service->getLastUsedId());
@@ -27,19 +29,7 @@ void CRUDWorker::removeEntity(const long id) {
     }
 }
 
-long CRUDWorker::findIndex(const long &id) {
-    long index = -1;
-    vector<Worker*> *entities = service->getEntities();
-    size_t i = 0;
-    for (Worker* worker : (*entities)) {
-        if (worker->getId() == id){
-            index = i;
-            break;
-        }
-        i++;
-    }
-    return index;
-}
+
 
 void CRUDWorker::replaceEntity(vector<string> &newParams, int id) {
     const long index = findIndex(id);
@@ -53,4 +43,10 @@ void CRUDWorker::replaceEntity(vector<string> &newParams, int id) {
     } else {
         cout << "No element will be replaced because it doesn't exist" << endl;
     }
+}
+
+long CRUDWorker::findIndex(long id) const {
+    vector<Worker*> *entities = service->getEntities();
+    long index = cuaUtil::findIndex<Worker*>(id,entities);
+    return index;
 };

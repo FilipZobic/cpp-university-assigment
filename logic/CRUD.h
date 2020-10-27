@@ -15,7 +15,7 @@ public:
     virtual void createEntity(vector<string> &params) = 0;/*1*/
     virtual void replaceEntity(vector<string> &newParams,int id) = 0;/*2*/
     virtual void removeEntity(const long id) = 0;/*3*/
-    virtual long findIndex(const long &id) = 0;/*2*//*3*/
+//    virtual long findIndex(const long &id) = 0;/*2*//*3*/
     void readEntities();
 };
 

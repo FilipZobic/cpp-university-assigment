@@ -1,5 +1,5 @@
 #include "Util.h"
-
+#include "../model/Worker.h"
 
 void cuaUtil::parseStringIntoVector(string &target, vector<string> &vectorStrings,string sep){
     size_t sepL = sep.length();
@@ -16,3 +16,7 @@ void cuaUtil::parseStringIntoVector(string &target, vector<string> &vectorString
         }
     } while (true);
 }
+
+
+
+//template cuaUtil::findIndex<Worker*>;

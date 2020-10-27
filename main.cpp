@@ -121,8 +121,11 @@ int main() {
 //    cout << "Array Service DELETE ENTITY======" << endl;
 //    service.printArr();
 
-    vector<string> paramaters1 = {"36","Mihajlo","Zdravkovi","1/1/1998","Driver","6000.000000","0652133910","0","B,C","2"};
-    crud.createEntity(paramaters1);
+//    vector<string> paramaters1 = {"40","Mihajlo","Zdravkovi","1/1/1998","Driver","6000.000000","0652133910","0","B,C","2"};
+//    crud.createEntity(paramaters1);
+
+    crud.removeEntity(51);
+    crud.removeEntity(50);
 
     vector<string> paramaters = {"36","Marko","Zdravkovi","1/1/1998","Driver","6000.000000","0652133910","0","B,C","2"};
     crud.replaceEntity(paramaters,stol(paramaters.at(0)));

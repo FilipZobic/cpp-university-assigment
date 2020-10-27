@@ -8,7 +8,6 @@ using namespace std;
 
 class CRUDWorker : public CRUD<Worker*> {
 private:
-    long findIndex(const long &id) override;
 public:
     CRUDWorker(Service<Worker *> *service);
 
@@ -17,6 +16,8 @@ public:
     void removeEntity(const long id) override;
 
     void replaceEntity(vector<string> &newParams, int id) override;
+
+    long findIndex(long id) const;
 
 };
 
