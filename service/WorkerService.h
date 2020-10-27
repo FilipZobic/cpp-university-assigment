@@ -1,15 +1,9 @@
-//
-// Created by filipz on 10/24/20.
-//
-
 #ifndef CPP_UNIVERSITY_ASSIGMENT_WORKERSERVICE_H
 #define CPP_UNIVERSITY_ASSIGMENT_WORKERSERVICE_H
 
 #include <string>
 #include <vector>
 #include <iostream>
-//#include <ifstream>
-//#include <ofstream>
 
 #include "../model/Worker.h"
 

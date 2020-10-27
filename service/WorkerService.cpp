@@ -3,8 +3,12 @@
 
 // mogu staviti template za to ali svaki koji saljem ce imati tu klasu CsvFormater i onda zavisnosti od cega je formiraj klasu
 
+WorkerService::WorkerService(const string &filename, vector<Worker*> *entities) : Service(filename, entities) {
+    parseAllEntities();
+}
 
 void WorkerService::parseEntity(Worker **entity, vector<string> &paramsForObject) {
+    //mozda moram obrisati startu memoriju
     if (paramsForObject.at(4) == "Driver"){
         (*entity) = new Driver();
     } else if(paramsForObject.at(4) == "Warehouseman"){
@@ -17,15 +21,11 @@ void WorkerService::parseEntity(Worker **entity, vector<string> &paramsForObject
     (*entity)->Parse(&paramsForObject);
 }
 
-WorkerService::WorkerService(const string &filename, vector<Worker*> *entities) : Service(filename, entities) {
-    parseAllEntities();
-}
-
 void WorkerService::parseAllEntities() {
     vector<string> lines = readFromFile();
     for (string &line : lines) {
         vector<string> paramsForObject;
-        cuaUtil::parseStringIntoVector(line,paramsForObject,"|*|");
+        cuaUtil::parseStringIntoVector(line,paramsForObject,"|*|"); // WORKER SERVICE
 
         Worker* entity;
         this->parseEntity(&entity,paramsForObject);

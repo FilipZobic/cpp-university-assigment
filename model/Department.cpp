@@ -2,7 +2,7 @@
 #include "../util/Util.h"
 #include "iostream"
 
-const string Department::sep = "||**||";
+const string Department::sep = "|*|";
 
 Department::Department(long id, Worker *boss,vector<Worker *>* workers) : id(id), boss(boss), workers(workers) {}
 Department::Department(long id,vector<Worker *>* workers) : id(id), workers(workers) {
@@ -48,7 +48,7 @@ string Department::Serialize() {
         }
         people.erase(people.size()-1,people.size());
     } else{
-        people += "";
+        people += "-1";
     }
 
     long bossId = -1;
@@ -63,8 +63,10 @@ string Department::Serialize() {
 void Department::Parse(const long &id,const long &bossId,vector<long> &workerIds,vector<Worker*> *entities) { // add boss id long &bossId ili ako se dva puta ponavlja stavi njega za boss ako ga ne nadje stavljamo nullptr opet
     this->id = id;
 
-    for (long &idW : workerIds) {
-        parseStaff(idW,entities, false);
+    if (workerIds.at(0) != -1){
+        for (long &idW : workerIds) {
+            parseStaff(idW,entities, false);
+        }
     }
 
     this->boss = nullptr;

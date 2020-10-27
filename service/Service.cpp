@@ -2,6 +2,7 @@
 #include <fstream>
 #include <stdexcept>
 #include "../util/Util.h"
+#include "../model/Department.h"
 
 template <typename T>
 Service<T>::Service(const string &filename,vector<T>* entities) : filename(filename),entities(entities),lastUsedId(0),amountOfItems(0) {
@@ -87,4 +88,5 @@ void Service<T>::writeToFile() {
 }
 
 template class Service<Worker*>;
+template class Service<Department*>;
 

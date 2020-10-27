@@ -14,6 +14,7 @@
 #include "./logic/CRUDWorker.h"
 
 #include "./model/Department.h"
+#include "./service/BusinessService.h"
 
 // clear array at service that is vector
 using namespace std;
@@ -56,13 +57,17 @@ int main() {
     CRUDWorker crud(&service);
 
 
-    Department department(1);
+//    Department department(1);
+//    for (Worker* i : WORKER_STORAGE_VECTOR) {
+//
+//        department.hireWorker(i);
+//    }
 //    department.hireWorker(driver);
 //    department.hireWorker(driver);
-
-    for (Worker* workerF : (*department.getWorkers())) {
-        cout << workerF->Serialize() << endl;
-    }
+//
+//    for (Worker* workerF : (*department.getWorkers())) {
+//        cout << workerF->Serialize() << endl;
+//    }
 
 //    department.fireWorker(1);
 //    cout << "FIRE WORKER ID 1" << endl;
@@ -79,34 +84,31 @@ int main() {
 //    department.hireWorker(clerk);
 //    department.hireWorker(warehouseman);
 
-    for (Worker* i : WORKER_STORAGE_VECTOR) {
-
-        department.hireWorker(i);
-    }
+//
 
 
 
-    cout << "HIRED WORKERS" << endl;
-    for (Worker* workerF : (*department.getWorkers())) {
-        workerF->setName("ZEBRA");
-        cout << workerF->Serialize() << endl;
-    }
-    department.setBoss(driver);
-    cout << "DEPARTMENT SERRR" << endl;
-    string depS = department.Serialize();
-    cout << depS << endl;
-    Department dep2;
-    vector<long> workersInDepartment= {3,2,1};
-    long idBoss = 3;
-    long idDep = 1;
-    dep2.Parse(idDep,idBoss,workersInDepartment,service.getEntities());
-    cout << "HIRED WORKERS AFTER PARSING" << endl;
-    for (Worker* workerF : (*department.getWorkers())) {
-        cout << workerF->Serialize() << endl;
-    }
-    cout << "DEPARTMENT PARSED" << endl;
-    string depS111 = dep2.Serialize();
-    cout << depS111 << endl;
+//    cout << "HIRED WORKERS" << endl;
+//    for (Worker* workerF : (*department.getWorkers())) {
+//        workerF->setName("ZEBRA");
+//        cout << workerF->Serialize() << endl;
+//    }
+//    department.setBoss(driver);
+//    cout << "DEPARTMENT SERRR" << endl;
+//    string depS = department.Serialize();
+//    cout << depS << endl;
+//    Department dep2;
+//    vector<long> workersInDepartment= {3,2,1};
+//    long idBoss = 3;
+//    long idDep = 1;
+//    dep2.Parse(idDep,idBoss,workersInDepartment,service.getEntities());
+//    cout << "HIRED WORKERS AFTER PARSING" << endl;
+//    for (Worker* workerF : (*department.getWorkers())) {
+//        cout << workerF->Serialize() << endl;
+//    }
+//    cout << "DEPARTMENT PARSED" << endl;
+//    string depS111 = dep2.Serialize();
+//    cout << depS111 << endl;
 
     //Adding workers to storage
 //    WORKER_STORAGE_VECTOR.push_back(driver);
@@ -121,6 +123,11 @@ int main() {
     cout << "Array Service DATA LOADING======" << endl;
     service.printArr();
 
+    vector<Department*> DEPARTMENT_STORAGE_VECTOR; // njega menjam sa CRUD tj posaljem ga u CRUD pa pozovemo servis samo da snimi samog sebe
+    string fileNameBusiness = "Department.csv";
+    BusinessService businessService(fileNameBusiness,&DEPARTMENT_STORAGE_VECTOR,&service);
+
+    businessService.printArr();
 
     //Service Saving
 //    service.writeToFile();
