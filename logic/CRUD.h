@@ -17,6 +17,7 @@ public:
     virtual void removeEntity(const long id) = 0;/*3*/
 //    virtual long findIndex(const long &id) = 0;/*2*//*3*/
     void readEntities();
+    virtual long findIndex(long id) const = 0;
 };
 
 /*

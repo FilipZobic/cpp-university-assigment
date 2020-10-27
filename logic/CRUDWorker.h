@@ -17,7 +17,7 @@ public:
 
     void replaceEntity(vector<string> &newParams, int id) override;
 
-    long findIndex(long id) const;
+    long findIndex(long id) const override;
 
 };
 

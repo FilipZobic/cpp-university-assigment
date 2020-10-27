@@ -13,6 +13,8 @@
 #include "./service/WorkerService.h"
 #include "./logic/CRUDWorker.h"
 
+#include "./model/Department.h"
+
 // clear array at service that is vector
 using namespace std;
 
@@ -52,6 +54,59 @@ int main() {
     string filename = "Workers.csv";
     WorkerService service(filename,&WORKER_STORAGE_VECTOR);
     CRUDWorker crud(&service);
+
+
+    Department department(1);
+//    department.hireWorker(driver);
+//    department.hireWorker(driver);
+
+    for (Worker* workerF : (*department.getWorkers())) {
+        cout << workerF->Serialize() << endl;
+    }
+
+//    department.fireWorker(1);
+//    cout << "FIRE WORKER ID 1" << endl;
+//    for (Worker* workerF : (*department.getWorkers())) {
+//        cout << workerF->Serialize() << endl;
+//    }
+//    department.fireWorker(3);
+//    cout << "FIRE WORKER ID 3" << endl;
+//    for (Worker* workerF : (*department.getWorkers())) {
+//        cout << workerF->Serialize() << endl;
+//    }
+
+//    department.hireWorker(driver);
+//    department.hireWorker(clerk);
+//    department.hireWorker(warehouseman);
+
+    for (Worker* i : WORKER_STORAGE_VECTOR) {
+
+        department.hireWorker(i);
+    }
+
+
+
+    cout << "HIRED WORKERS" << endl;
+    for (Worker* workerF : (*department.getWorkers())) {
+        workerF->setName("ZEBRA");
+        cout << workerF->Serialize() << endl;
+    }
+    department.setBoss(driver);
+    cout << "DEPARTMENT SERRR" << endl;
+    string depS = department.Serialize();
+    cout << depS << endl;
+    Department dep2;
+    vector<long> workersInDepartment= {3,2,1};
+    long idBoss = 3;
+    long idDep = 1;
+    dep2.Parse(idDep,idBoss,workersInDepartment,service.getEntities());
+    cout << "HIRED WORKERS AFTER PARSING" << endl;
+    for (Worker* workerF : (*department.getWorkers())) {
+        cout << workerF->Serialize() << endl;
+    }
+    cout << "DEPARTMENT PARSED" << endl;
+    string depS111 = dep2.Serialize();
+    cout << depS111 << endl;
 
     //Adding workers to storage
 //    WORKER_STORAGE_VECTOR.push_back(driver);
@@ -124,7 +179,7 @@ int main() {
 //    vector<string> paramaters1 = {"40","Mihajlo","Zdravkovi","1/1/1998","Driver","6000.000000","0652133910","0","B,C","2"};
 //    crud.createEntity(paramaters1);
 
-    crud.removeEntity(51);
+    /*crud.removeEntity(51);
     crud.removeEntity(50);
 
     vector<string> paramaters = {"36","Marko","Zdravkovi","1/1/1998","Driver","6000.000000","0652133910","0","B,C","2"};
@@ -135,7 +190,7 @@ int main() {
         cout << i->Serialize() << endl;
     }
     cout << "Array Service REPLACE ENTITY======" << endl;
-    service.printArr();
+    service.printArr();*/
 
     return 0;
 }

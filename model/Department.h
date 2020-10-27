@@ -14,18 +14,33 @@ private:
     vector<Worker*>* workers;
     static const string sep;
 public:
+    Department();
+    Department(long id);
+    Department(long id,vector<Worker *> *workers);
     Department(long id, Worker *boss,vector<Worker *> *workers);
+    ~Department();
 
     void hireWorker(Worker* worker);
-    void fireWorker(Worker* worker);
+    void fireWorker(const long &id);
 
     string Serialize();
 
+    void Parse(const long &id,const long &bossId,vector<long> &workerIds,vector<Worker*> *entities);
+    void parseStaff(const long &idW,vector<Worker*> *entities,const bool boss);
 
+    long getId() const;
 
-    void Parse(long &id,vector<long> &workerIds,vector<Worker*> *entities);
+    void setId(long id);
 
+    Worker *getBoss() const;
 
+    void setBoss(Worker *boss);
+
+    vector<Worker *> *getWorkers() const;
+
+    void setWorkers(vector<Worker *> *workers);
+
+    static const string &getSep();
 };
 
 
