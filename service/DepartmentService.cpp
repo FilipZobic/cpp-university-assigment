@@ -1,13 +1,13 @@
-#include "BusinessService.h"
+#include "DepartmentService.h"
 
 #include "../util/Util.h"
 
 
-BusinessService::BusinessService(const string &filename, vector<Department*> *entities,WorkerService *workerService) : Service(filename, entities),workerService(workerService) {
+DepartmentService::DepartmentService(const string &filename, vector<Department*> *entities, WorkerService *workerService) : Service(filename, entities), workerService(workerService) {
     parseAllEntities();
 }
 
-void BusinessService::parseAllEntities() {
+void DepartmentService::parseAllEntities() {
     vector<string> lines = readFromFile();
     for (string &line : lines) {
         vector<string> paramsForObject;
@@ -19,7 +19,7 @@ void BusinessService::parseAllEntities() {
     }
 }
 
-void BusinessService::parseEntity(Department **entity, vector<string> &paramsForObject) {
+void DepartmentService::parseEntity(Department **entity, vector<string> &paramsForObject) {
 
     // ovde convertujem i razvajam string parametre koji su prethodno iseceni
     // mozda moram obrisati startu memoriju

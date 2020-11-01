@@ -1,5 +1,5 @@
-#ifndef CPP_UNIVERSITY_ASSIGMENT_BUSINESSSERVICE_H
-#define CPP_UNIVERSITY_ASSIGMENT_BUSINESSSERVICE_H
+#ifndef CPP_UNIVERSITY_ASSIGMENT_DEPARTMENTSERVICE_H
+#define CPP_UNIVERSITY_ASSIGMENT_DEPARTMENTSERVICE_H
 
 #include <string>
 #include <vector>
@@ -11,11 +11,11 @@
 #include "../model/Department.h"
 #include "WorkerService.h"
 
-class BusinessService : public Service<Department*>{
+class DepartmentService : public Service<Department*>{
 private:
     WorkerService *workerService;
 public:
-    BusinessService(const string &filename, vector<Department*> *entities,WorkerService *workerService);
+    DepartmentService(const string &filename, vector<Department*> *entities, WorkerService *workerService);
 
     void parseAllEntities() override;
 
@@ -23,4 +23,4 @@ public:
 };
 
 
-#endif //CPP_UNIVERSITY_ASSIGMENT_BUSINESSSERVICE_H
+#endif //CPP_UNIVERSITY_ASSIGMENT_DEPARTMENTSERVICE_H

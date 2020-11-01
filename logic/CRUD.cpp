@@ -1,5 +1,6 @@
 #include "CRUD.h"
 #include <stdexcept>
+#include "../model/Department.h"
 
 template <typename T>
 CRUD<T>::CRUD(Service<T> *service) : service(service) {}
@@ -31,6 +32,21 @@ void CRUD<T>::deleteEntity(const long index) const { // we send id to parent cla
 
     service->writeToFile();
 }
+template <typename T>
+void CRUD<T>::replace(const long index,T entity) { // we send id to parent class that will overwrite this method then we send index of the element
+
+
+    vector<T> *entities = service->getEntities();
+    cout << "SIZE===" + to_string(entities->size()) << endl;
+    if (index>=entities->size()||0>index){
+        throw out_of_range("Index out of range in CRUD deleteEntity()");
+    }
+    delete entities->at(index);
+    entities->at(index) = entity;
+
+
+    service->writeToFile();
+}
 
 template <typename T>
 void CRUD<T>::readEntities(){
@@ -44,3 +60,4 @@ void CRUD<T>::readEntities(){
 
 
 template class CRUD<Worker*>;
+template class CRUD<Department*>;

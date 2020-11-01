@@ -22,6 +22,7 @@ public:
 
     void hireWorker(Worker* worker);
     void fireWorker(const long &id);
+    void replaceWorker(const long id,Worker *worker);
 
     string Serialize();
 

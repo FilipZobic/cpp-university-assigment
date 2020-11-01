@@ -1,7 +1,3 @@
-//
-// Created by filipz on 10/24/20.
-//
-
 #ifndef CPP_UNIVERSITY_ASSIGMENT_WORKER_H
 #define CPP_UNIVERSITY_ASSIGMENT_WORKER_H
 #include "Person.h"
@@ -10,6 +6,7 @@
 #include <string>
 #include <vector>
 #include "AnnualLeave.h"
+#include "fstream"
 
 using namespace std;
 
@@ -46,7 +43,6 @@ public:
     void checkSalary() const;
 
     void addOrReplaceAnnualLeave(Date &dateStart,Date &dateEnd) const;
-
 };
 
 

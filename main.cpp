@@ -14,7 +14,7 @@
 #include "./logic/CRUDWorker.h"
 
 #include "./model/Department.h"
-#include "./service/BusinessService.h"
+#include "./service/DepartmentService.h"
 
 // clear array at service that is vector
 using namespace std;
@@ -36,18 +36,20 @@ int main() {
     //Creating business service and reading data and worker CRUD
     vector<Department*> DEPARTMENT_STORAGE_VECTOR; // njega menjam sa CRUD tj posaljem ga u CRUD pa pozovemo servis samo da snimi samog sebe
     string fileNameBusiness = "Department.csv";
-    BusinessService businessService(fileNameBusiness,&DEPARTMENT_STORAGE_VECTOR,&service);
+    DepartmentService businessService(fileNameBusiness, &DEPARTMENT_STORAGE_VECTOR, &service);
 
-    service.getEntities()->at(0)->setName("Test");
-    vector<string> replaceParams = {"1", "Marko", "Mihajilovic", "1/1/1999", "Driver", "6000.000000", "0652133910",
-                                    "24|1/5/2010|25/5/2010", "B,C", "2"};
-    crud.replaceEntity(replaceParams,2);
+//    service.getEntities()->at(0)->setName("Test");
+//    vector<string> replaceParams = {"1", "Marko", "Lahovic", "1/1/1999", "Driver", "6000.000000", "0652133910",
+//                                    "24|1/5/2010|25/5/2010", "B,C", "2"};
+//    crud.replaceEntity(replaceParams,1,&businessService);
     crud.removeEntity(2,&businessService);
+
+//    vector<string> newParams = {"1", "Bojan", "Zoranovic", "1/1/1999", "Driver", "6000.000000", "0652133910",
+//                                    "24|1/5/2010|25/5/2010", "B,C", "2"};
+//    crud.createEntity(newParams);
 
     cout << "All Workers" << endl;
     service.printArr();
-
-
 
     cout << "Department 1 workers" << endl;
     for(Worker* worker : (*businessService.getEntities()->at(0)->getWorkers())){

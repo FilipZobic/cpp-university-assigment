@@ -3,21 +3,37 @@
 
 #include "../service/Service.h"
 
+#include "../util/Util.h"
+
 template <typename T>
 class CRUD {
 protected:
     Service<T>* service; //saljemo worker service ovde
     void addEntity(const T entity) const;/*1*/
     void deleteEntity(const long index) const;/*3*/
+    void replace(const long index,T entity);
 public:
     CRUD<T>(Service<T> *service);
 
-    virtual void createEntity(vector<string> &params) = 0;/*1*/
-    virtual void replaceEntity(vector<string> &newParams,int id) = 0;/*2*/
+//    virtual void createEntity(vector<string> &params) = 0;/*1*/
+    virtual void replaceEntity(vector<string> &newParams, int id, void *service) = 0;/*2*/
     virtual void removeEntity(const long id,void *service) = 0;/*3*/
 //    virtual long findIndex(const long &id) = 0;/*2*//*3*/
     void readEntities();
-    virtual long findIndex(long id) const = 0;
+//    virtual long findIndex(long id) const = 0;
+
+    long findIndex(long id) const {
+        vector<T> *entities = service->getEntities();
+        long index = cuaUtil::findIndex<T>(id,entities);
+        return index;
+    };
+
+    void createEntity(vector<string> &params){
+        T newEntity;
+        params[0] = to_string(service->getLastUsedId());
+        service->parseEntity(&newEntity, params);
+        addEntity(newEntity);
+    }
 };
 
 /*

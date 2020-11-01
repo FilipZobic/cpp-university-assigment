@@ -40,6 +40,15 @@ void Department::fireWorker(const long &id) {
     }
 }
 
+void Department::replaceWorker(const long id,Worker *worker) {
+    long index = cuaUtil::findIndex<Worker*>(id, this->workers);
+    if (index != -1){
+        workers->at(index) = worker;
+    }else {
+        cout << "Worker is not working here" << endl;
+    }
+};
+
 string Department::Serialize() {
     string people = "";
     if (!workers->empty()){
