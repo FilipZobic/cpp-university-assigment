@@ -10,48 +10,48 @@ using namespace std;
 
 template <typename T>
 class Service {
+
+private:
+    ifstream& readFirstLine(ifstream& stream);
+    void readAllLines(vector<string>& lines,ifstream &file);
+    void writeAllLines(ofstream &file) const;
+    template<typename Y>
+    void openFile(Y &file);
+
 protected:
     string filename;
     int amountOfItems;
     long lastUsedId;
     vector<T> *entities;
-    ifstream& readFirstLine(ifstream& stream);
     vector<string> readFromFile(); //reads all entities to vector calls parseEntity() and sets amountOfItems and lastUsedIde creates entities here
+
 public:
     Service(const string &filename,vector<T>* entities);
     void writeToFile(); //calls serilizatin and replaces everything in file each line with vector and amount and last usedid
     virtual void parseAllEntities() = 0;
     virtual void parseEntity(T *entity,vector<string> &paramsForObject) = 0;
 
-    template<typename Y>
-    void openFile(Y &file);
-    void readAllLines(vector<string>& lines,ifstream &file);
-    void writeAllLines(ofstream &file) const;
     void printArr(){
         for (T i : (*entities)) {
             cout << i->Serialize() << endl;
         }
     }
 
-    vector<T> *getEntities() const{
-        return entities;
-    };
+    const string &getFilename() const;
 
-    int getAmountOfItems() const {
-        return amountOfItems;
-    }
+    void setFilename(const string &filename);
 
-    void setAmountOfItems(int amountOfItems) {
-        this->amountOfItems = amountOfItems;
-    }
+    int getAmountOfItems() const;
 
-    long getLastUsedId() const {
-        return lastUsedId;
-    }
+    void setAmountOfItems(int amountOfItems);
 
-    void setLastUsedId(long lastUsedId) {
-        this->lastUsedId = lastUsedId;
-    }
+    long getLastUsedId() const;
+
+    void setLastUsedId(long lastUsedId);
+
+    vector<T> *getEntities() const;
+
+    void setEntities(vector<T> *entities);
 };
 
 

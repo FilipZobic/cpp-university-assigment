@@ -10,6 +10,12 @@ Business::Business(const string &name, long registrationNumber, long vat,vector<
         : name(name), registrationNumber(registrationNumber), vat(vat), departments(departments) {}
 
 void Business::operator<<(Department *department) {
+    // We can create an error check then re use it
+    for (Department* ref : *(this->departments)){
+        if (ref == department){
+            throw logic_error("Can't add department.Instance of the department is currently in the vector.");
+        }
+    }
     this->departments->push_back(department);
 }
 

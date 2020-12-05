@@ -87,6 +87,46 @@ void Service<T>::writeToFile() {
     file.close();
 }
 
+template<typename T>
+const string &Service<T>::getFilename() const {
+    return filename;
+}
+
+template<typename T>
+void Service<T>::setFilename(const string &filename) {
+    Service::filename = filename;
+}
+
+template<typename T>
+int Service<T>::getAmountOfItems() const {
+    return amountOfItems;
+}
+
+template<typename T>
+void Service<T>::setAmountOfItems(int amountOfItems) {
+    Service::amountOfItems = amountOfItems;
+}
+
+template<typename T>
+long Service<T>::getLastUsedId() const {
+    return lastUsedId;
+}
+
+template<typename T>
+void Service<T>::setLastUsedId(long lastUsedId) {
+    Service::lastUsedId = lastUsedId;
+}
+
+template<typename T>
+vector<T> *Service<T>::getEntities() const {
+    return entities;
+}
+
+template<typename T>
+void Service<T>::setEntities(vector<T> *entities) {
+    Service::entities = entities;
+}
+
 template class Service<Worker*>;
 template class Service<Department*>;
 

@@ -75,12 +75,13 @@ int main() {
     label->color(FL_BLUE);
 
 
-
+    // Dodaj Service Dodaj Crud zapamti department can only belong to one business and worker can only belong to one department
     window->resizable();
 
     vector<Department*> businessDepartments;
     Business *business = new Business("EPS",1111,9090,&businessDepartments);
-    *business << DEPARTMENT_STORAGE_VECTOR.at(0);
+    *business << DEPARTMENT_STORAGE_VECTOR.at(2);
+    *business << DEPARTMENT_STORAGE_VECTOR.at(1);
     cout << business->Serialize();
 
     window->end();
