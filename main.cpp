@@ -2,6 +2,15 @@
 #include <string>
 #include <vector>
 
+
+#include <FL/Fl.H>
+#include <FL/Fl_Window.H>
+#include <FL/Fl_Box.H>
+#include <FL/Fl_Text_Display.H>
+#include <FL/Fl_Button.H>
+#include <FL/Fl_Float_Input.H>
+
+
 #include "./model/Date.h"
 #include "./model/Person.h"
 #include "./model/Worker.h"
@@ -56,5 +65,21 @@ int main() {
         cout << worker->Serialize() << endl;
     }
 
-    return 0;
+    Fl_Window *window = new Fl_Window(1200, 700);
+
+    Fl_Box *label = new Fl_Box(500,0,200,100);
+    label->label("WORKERS");
+    label->labelsize(30);
+    label->labelcolor(FL_BLACK);
+    label->color(FL_BLUE);
+
+
+
+    window->resizable();
+
+
+
+    window->end();
+    window->show();
+    return Fl::run();
 }
