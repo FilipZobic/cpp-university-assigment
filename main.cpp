@@ -9,6 +9,7 @@
 #include <FL/Fl_Text_Display.H>
 #include <FL/Fl_Button.H>
 #include <FL/Fl_Float_Input.H>
+#include <model/Business.h>
 
 
 #include "./model/Date.h"
@@ -77,7 +78,10 @@ int main() {
 
     window->resizable();
 
-
+    vector<Department*> businessDepartments;
+    Business *business = new Business("EPS",1111,9090,&businessDepartments);
+    *business << DEPARTMENT_STORAGE_VECTOR.at(0);
+    cout << business->Serialize();
 
     window->end();
     window->show();

@@ -8,15 +8,16 @@
 #include <string>
 #include <vector>
 #include "Department.h"
+#include "service/CsvFormatter.h"
 
 using namespace std;
-
-class Business {
+// Implements formatter // Add service // Add CRUD
+class Business : public CsvFormatter<vector<string>*> {
 private:
     string name;
     long registrationNumber;
     long vat;
-    vector<Department*> departments;
+    vector<Department*> *departments;
 public:
     Business();
     /*
@@ -27,7 +28,11 @@ public:
      *
      *
      * */
-    Business(const string &name, long registrationNumber, long vat, const vector<Department *> &departments);
+    Business(const string &name, long registrationNumber, long vat,vector<Department *> *departments);
+
+    string Serialize() override;
+
+    void Parse(vector<string> *parameters) override;
 
     void operator << (Department *department);
 };
