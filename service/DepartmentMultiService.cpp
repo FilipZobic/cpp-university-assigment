@@ -32,7 +32,7 @@ void DepartmentMultiService::parseAllEntities() {
         for (string i : workerIds){
             int id = stoi(i);
             if (idSet.find(id) != idSet.end()) {
-                throw logic_error("Worker with that id was already stored in a department");
+                throw logic_error("Worker with that id was already stored in a department"); // can be template
             }
             for (Worker* worker : *this->serviceDependency->getEntities()) {
                 if (id == worker->getId()){
@@ -46,6 +46,9 @@ void DepartmentMultiService::parseAllEntities() {
             }
         }
         entities->push_back(entity); // we can add operator to do push_back
+    }
+    if (serviceDependency->getEntities()->size() != idSet.size()){
+        throw logic_error("There are workers that exist without a Department"); // can be template
     }
 }
 
