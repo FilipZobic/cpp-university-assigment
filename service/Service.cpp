@@ -1,6 +1,7 @@
 #include "Service.h"
 #include <fstream>
 #include <stdexcept>
+#include <model/Business.h>
 #include "../util/Util.h"
 #include "../model/Department.h"
 
@@ -129,4 +130,4 @@ void Service<T>::setEntities(vector<T> *entities) {
 
 template class Service<Worker*>;
 template class Service<Department*>;
-
+template class Service<Business*>;

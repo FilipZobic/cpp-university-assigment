@@ -1,6 +1,7 @@
 #ifndef CPP_UNIVERSITY_ASSIGMENT_UTIL_H
 #define CPP_UNIVERSITY_ASSIGMENT_UTIL_H
 
+#include <stdexcept>
 #include "string"
 #include "vector"
 
@@ -22,6 +23,16 @@ namespace cuaUtil {
             i++;
         }
         return index;
+    }
+
+    template<typename T>
+    void vectorInstanceCheck(T* newInstance, vector<T*>* vector) {
+        for (T* ref : *(vector)){
+            if (ref == newInstance){
+                string name = typeid(newInstance).name();
+                throw logic_error("Can't add " + name + ".Instance of the " + name + " is currently in the vector.");
+            }
+        }
     }
 }
 

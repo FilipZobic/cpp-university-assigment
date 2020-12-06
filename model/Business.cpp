@@ -3,27 +3,25 @@
 //
 
 #include "Business.h"
+#include "../util/Util.h"
 
 Business::Business() {}
 
-Business::Business(const string &name, long registrationNumber, long vat,vector<Department *> *departments)
-        : name(name), registrationNumber(registrationNumber), vat(vat), departments(departments) {}
+Business::Business(const string &name, long registrationNumber, long vat)
+        : name(name), registrationNumber(registrationNumber), vat(vat) {}
 
 void Business::operator<<(Department *department) {
-    // We can create an error check then re use it
-    for (Department* ref : *(this->departments)){
-        if (ref == department){
-            throw logic_error("Can't add department.Instance of the department is currently in the vector.");
-        }
-    }
-    this->departments->push_back(department);
+
+    cuaUtil::vectorInstanceCheck<Department>(department,&this->departments);
+
+    this->departments.push_back(department);
 }
 
 string Business::Serialize() {
 
     string departmentsString = "";
-    if (!departments->empty()){
-        for (Department *ref : (*departments)) {
+    if (!departments.empty()){
+        for (Department *ref : departments) {
             departmentsString += to_string(ref->getId()) + ",";
         }
         departmentsString.erase(departmentsString.size()-1,departmentsString.size());
@@ -35,5 +33,8 @@ string Business::Serialize() {
 }
 
 void Business::Parse(vector<string> *parameters) {
+    this->name = parameters->at(0);
+    this->registrationNumber = stol(parameters->at(1));
+    this->vat = stol(parameters->at(2));
 
 }

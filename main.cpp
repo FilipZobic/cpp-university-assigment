@@ -10,6 +10,7 @@
 #include <FL/Fl_Button.H>
 #include <FL/Fl_Float_Input.H>
 #include <model/Business.h>
+#include <service/BusinessMultiService.h>
 
 
 #include "./model/Date.h"
@@ -46,13 +47,13 @@ int main() {
     //Creating business service and reading data and worker CRUD
     vector<Department*> DEPARTMENT_STORAGE_VECTOR; // njega menjam sa CRUD tj posaljem ga u CRUD pa pozovemo servis samo da snimi samog sebe
     string fileNameBusiness = "Department.csv";
-    DepartmentService businessService(fileNameBusiness, &DEPARTMENT_STORAGE_VECTOR, &service);
+    DepartmentService departmentService(fileNameBusiness, &DEPARTMENT_STORAGE_VECTOR, &service);
 
 //    service.getEntities()->at(0)->setName("Test");
 //    vector<string> replaceParams = {"1", "Marko", "Lahovic", "1/1/1999", "Driver", "6000.000000", "0652133910",
 //                                    "24|1/5/2010|25/5/2010", "B,C", "2"};
-//    crud.replaceEntity(replaceParams,1,&businessService);
-    crud.removeEntity(2,&businessService);
+//    crud.replaceEntity(replaceParams,1,&departmentService);
+    crud.removeEntity(2,&departmentService);
 
 //    vector<string> newParams = {"1", "Bojan", "Zoranovic", "1/1/1999", "Driver", "6000.000000", "0652133910",
 //                                    "24|1/5/2010|25/5/2010", "B,C", "2"};
@@ -62,7 +63,7 @@ int main() {
     service.printArr();
 
     cout << "Department 1 workers" << endl;
-    for(Worker* worker : (*businessService.getEntities()->at(0)->getWorkers())){
+    for(Worker* worker : (*departmentService.getEntities()->at(0)->getWorkers())){
         cout << worker->Serialize() << endl;
     }
 
@@ -78,13 +79,27 @@ int main() {
     // Dodaj Service Dodaj Crud zapamti department can only belong to one business and worker can only belong to one department
     window->resizable();
 
-    vector<Department*> businessDepartments;
-    Business *business = new Business("EPS",1111,9090,&businessDepartments);
-    *business << DEPARTMENT_STORAGE_VECTOR.at(2);
-    *business << DEPARTMENT_STORAGE_VECTOR.at(1);
-    cout << business->Serialize();
+//    Business *business = new Business("EPS",1111,9090);
+//    Business *business2 = new Business("DELL",9024,7000);
+//    (*business) << DEPARTMENT_STORAGE_VECTOR.at(2);
+//    (*business) << DEPARTMENT_STORAGE_VECTOR.at(1);
+//    (*business2) << DEPARTMENT_STORAGE_VECTOR.at(0);
+//    cout << business->Serialize();
+//    cout << business2->Serialize();
+
+    vector<Business*> BUSINESS_STORAGE_VECTOR;
+//    BUSINESS_STORAGE_VECTOR.push_back(business);
+//    BUSINESS_STORAGE_VECTOR.push_back(business2);
+    string businessFilename = "Business.csv";
+    BusinessMultiService businessService(businessFilename, &BUSINESS_STORAGE_VECTOR, &departmentService);
+    businessService.writeToFile();
+//    CRUDBusiness businessCRUD(&businessService);
 
     window->end();
     window->show();
+
+    cout << "Checking" << endl;
+    cout << businessService.getEntities()->at(0)->Serialize() << endl;
+    cout << businessService.getEntities()->at(1)->Serialize() << endl;
     return Fl::run();
 }

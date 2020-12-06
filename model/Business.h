@@ -17,7 +17,7 @@ private:
     string name;
     long registrationNumber;
     long vat;
-    vector<Department*> *departments;
+    vector<Department*> departments;
 public:
     Business();
     /*
@@ -28,7 +28,7 @@ public:
      *
      *
      * */
-    Business(const string &name, long registrationNumber, long vat,vector<Department *> *departments);
+    Business(const string &name, long registrationNumber, long vat);
 
     string Serialize() override;
 
