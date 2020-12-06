@@ -25,7 +25,7 @@
 #include "./logic/CRUDWorker.h"
 
 #include "./model/Department.h"
-#include "./service/DepartmentService.h"
+#include "./service/DepartmentMultiService.h"
 
 // clear array at service that is vector
 using namespace std;
@@ -47,7 +47,7 @@ int main() {
     //Creating business service and reading data and worker CRUD
     vector<Department*> DEPARTMENT_STORAGE_VECTOR; // njega menjam sa CRUD tj posaljem ga u CRUD pa pozovemo servis samo da snimi samog sebe
     string fileNameBusiness = "Department.csv";
-    DepartmentService departmentService(fileNameBusiness, &DEPARTMENT_STORAGE_VECTOR, &service);
+    DepartmentMultiService departmentService(fileNameBusiness, &DEPARTMENT_STORAGE_VECTOR, &service);
 
 //    service.getEntities()->at(0)->setName("Test");
 //    vector<string> replaceParams = {"1", "Marko", "Lahovic", "1/1/1999", "Driver", "6000.000000", "0652133910",
@@ -98,8 +98,12 @@ int main() {
     window->end();
     window->show();
 
-    cout << "Checking" << endl;
+    cout << "Checking Business" << endl;
     cout << businessService.getEntities()->at(0)->Serialize() << endl;
     cout << businessService.getEntities()->at(1)->Serialize() << endl;
+    cout << "Checking departments" << endl;
+    cout << departmentService.getEntities()->at(0)->Serialize() << endl;
+    cout << departmentService.getEntities()->at(1)->Serialize() << endl;
+    cout << departmentService.getEntities()->at(2)->Serialize() << endl;
     return Fl::run();
 }

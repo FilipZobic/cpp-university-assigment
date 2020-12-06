@@ -35,7 +35,7 @@ void BusinessMultiService::parseEntity(Business **entity, vector<string> &params
 }
 
 BusinessMultiService::BusinessMultiService
-    (const string &filename, vector<Business*> *entities,DepartmentService *serviceDependency) :
+    (const string &filename, vector<Business*> *entities, DepartmentMultiService *serviceDependency) :
         MultiService(filename,entities,serviceDependency) {
     this->parseAllEntities();
 }

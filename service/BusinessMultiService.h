@@ -4,11 +4,11 @@
 
 #include <model/Business.h>
 #include "MultiService.h"
-#include "DepartmentService.h"
+#include "DepartmentMultiService.h"
 
-class BusinessMultiService : public MultiService<Business*,DepartmentService*> {
+class BusinessMultiService : public MultiService<Business*,DepartmentMultiService*> {
 public:
-    BusinessMultiService(const string &filename, vector<Business*> *entities, DepartmentService *serviceDependency);
+    BusinessMultiService(const string &filename, vector<Business*> *entities, DepartmentMultiService *serviceDependency);
 
     void parseAllEntities() override;
 

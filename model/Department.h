@@ -7,12 +7,11 @@
 
 #include "Worker.h"
 
-class Department{
+class Department : public CsvFormatter<long>{
 private:
     long id;
     Worker* boss; //parse with id then read from inited array using findIndex if -1 then don't add it
     vector<Worker*>* workers;
-    static const string sep;
 public:
     Department();
     Department(long id);
@@ -24,9 +23,9 @@ public:
     void fireWorker(const long &id);
     void replaceWorker(const long id,Worker *worker);
 
-    string Serialize();
+    string Serialize() override;
 
-    void Parse(const long &id,const long &bossId,vector<long> &workerIds,vector<Worker*> *entities);
+    void Parse(long id) override;
     void parseStaff(const long &idW,vector<Worker*> *entities,const bool boss);
 
     long getId() const;
@@ -42,6 +41,8 @@ public:
     void setWorkers(vector<Worker *> *workers);
 
     static const string &getSep();
+
+    void operator << (Worker *worker);
 };
 
 

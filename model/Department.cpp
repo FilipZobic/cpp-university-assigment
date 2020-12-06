@@ -2,8 +2,6 @@
 #include "../util/Util.h"
 #include "iostream"
 
-const string Department::sep = "|*|";
-
 Department::Department(long id, Worker *boss,vector<Worker *>* workers) : id(id), boss(boss), workers(workers) {}
 Department::Department(long id,vector<Worker *>* workers) : id(id), workers(workers) {
     this->boss = nullptr;
@@ -69,40 +67,17 @@ string Department::Serialize() {
 }
 
 
-void Department::Parse(const long &id,const long &bossId,vector<long> &workerIds,vector<Worker*> *entities) { // add boss id long &bossId ili ako se dva puta ponavlja stavi njega za boss ako ga ne nadje stavljamo nullptr opet
+void Department::Parse(long id) { // add boss id long &bossId ili ako se dva puta ponavlja stavi njega za boss ako ga ne nadje stavljamo nullptr opet
+
+    // first need to set workers then boss id we find from workers in department
+    // set workers in service
+
     this->id = id;
-
-    if (workerIds.at(0) != -1){
-        for (long &idW : workerIds) {
-            parseStaff(idW,entities, false);
-        }
-    }
-
-    this->boss = nullptr;
-
-    //Sets boss if we received valid id
-    if (bossId!=-1){
-        parseStaff(bossId,entities, true);
-    }
-}
-
-void Department::parseStaff(const long &idW,vector<Worker*> *entities,const bool boss){
-    for (Worker* worker: (*entities)) {
-        if (idW == worker->getId()){
-            if (boss){
-                this->boss = worker;
-            }else {
-                this->workers->push_back(worker);
-            }
-            break;
-        }
-    }
 }
 
 // check id returns worker if true
 //its in for loop where we check the service
 //easier to find boss and workers without writing more code
-
 
 long Department::getId() const {
     return id;
@@ -130,6 +105,13 @@ void Department::setWorkers(vector<Worker *> *workers) {
 
 const string &Department::getSep() {
     return sep;
+}
+
+void Department::operator<<(Worker *worker) {
+
+    cuaUtil::vectorInstanceCheck<Worker>(worker,this->workers);
+
+    this->workers->push_back(worker);
 }
 
 

@@ -1,14 +1,14 @@
 #include "CRUDWorker.h"
 #include "stdexcept"
 #include "../util/Util.h"
-#include "../service/DepartmentService.h"
+#include "../service/DepartmentMultiService.h"
 CRUDWorker::CRUDWorker(Service<Worker *> *service) : CRUD(service) {}
 
 void CRUDWorker::removeEntity(const long id,void *departmentService) { //ili crud buisnissservice
     const long index = findIndex(id);
     if (index!=-1){
 
-        DepartmentService *businessServiceParse = (DepartmentService*)departmentService;
+        DepartmentMultiService *businessServiceParse = (DepartmentMultiService*)departmentService;
         for (Department *department : (*businessServiceParse->getEntities())) {
             department->fireWorker(id);
         }
@@ -29,7 +29,7 @@ void CRUDWorker::replaceEntity(vector<string> &newParams, int id, void *departme
         newParams.at(0) = to_string(id);
         service->parseEntity(&entity,newParams);
 
-        DepartmentService *businessServiceParse = (DepartmentService*)departmentService;//
+        DepartmentMultiService *businessServiceParse = (DepartmentMultiService*)departmentService;//
         for (Department *department : (*businessServiceParse->getEntities())) {
             department->replaceWorker(id,entity);
         }
