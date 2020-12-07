@@ -69,16 +69,13 @@ string Department::Serialize() {
         bossId = this->boss->getId();
     }
 
-    return  to_string(this->id) + sep + to_string(bossId) + sep + people;
+    return  to_string(this->id) + sep + this->name + sep + to_string(bossId) + sep + people;
 }
 
 
-void Department::Parse(long id) { // add boss id long &bossId ili ako se dva puta ponavlja stavi njega za boss ako ga ne nadje stavljamo nullptr opet
-
-    // first need to set workers then boss id we find from workers in department
-    // set workers in service
-
-    this->id = id;
+void Department::Parse(vector<string> params) {
+    this->name = params.at(1);
+    this->id = stol(params.at(0));
 }
 
 // check id returns worker if true
@@ -107,10 +104,6 @@ vector<Worker *> *Department::getWorkers() const {
 
 void Department::setWorkers(vector<Worker *> *workers) {
     Department::workers = workers;
-}
-
-const string &Department::getSep() {
-    return sep;
 }
 
 void Department::operator<<(Worker *worker) {

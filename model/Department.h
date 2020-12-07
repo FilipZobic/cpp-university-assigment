@@ -7,10 +7,11 @@
 
 #include "Worker.h"
 
-class Department : public CsvFormatter<long>{
-private:
+class Department : public CsvFormatter<vector<string>>{
+private: //add name to department then fix service then parse ser then crude Parse should recieve params id and name also other paramaters shift one position
     long id;
-    Worker* boss; //parse with id then read from inited array using findIndex if -1 then don't add it
+    string name;
+    Worker* boss;
     vector<Worker*>* workers;
 public:
     Department();
@@ -25,7 +26,7 @@ public:
 
     string Serialize() override;
 
-    void Parse(long id) override;
+    void Parse(vector<string> params) override;
 
     long getId() const;
 

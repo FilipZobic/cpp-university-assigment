@@ -15,12 +15,12 @@ void DepartmentMultiService::parseAllEntities() {
         vector<string> paramsForObject;
         cuaUtil::parseStringIntoVector(line,paramsForObject,"|*|"); //Business Service
 
-        string workerIdsString = paramsForObject.at(2);
-        paramsForObject.erase(paramsForObject.begin()+2);
+        string workerIdsString = paramsForObject.at(3);
+        paramsForObject.erase(paramsForObject.begin()+3);
         vector<string> workerIds;
 
-        long bossId = stol(paramsForObject.at(1));
-        paramsForObject.erase(paramsForObject.begin()+1);
+        long bossId = stol(paramsForObject.at(2));
+        paramsForObject.erase(paramsForObject.begin()+2);
 
         cuaUtil::parseStringIntoVector(workerIdsString,workerIds,",");
 
@@ -55,7 +55,6 @@ void DepartmentMultiService::parseAllEntities() {
 void DepartmentMultiService::parseEntity(Department **entity, vector<string> &paramsForObject) {
 
     (*entity) = new Department;
-    const long id = stol(paramsForObject.at(0));
-    (*entity)->Parse(id);
+    (*entity)->Parse(paramsForObject);
 } //replace cu mozda morati redefinisati za svaki da sa novom instancom ne presnimi ga neko samo polja da zameni jer adrese se mozda zeznu
 

@@ -79,7 +79,7 @@ int main() {
     // Crud operations
     Department *dep1 = departmentService.getEntities()->at(0);
     crudWorker.setDepartment(dep1);
-    crudWorker.removeEntity(29);
+    crudWorker.removeEntity(32);
     crudWorker.replaceEntity(clerk);
 //    dep1->setBoss(clerk); // ovo ce biti u crudDepartment od postojecih zaposlenih radnika kako bi pozvali write
 
