@@ -33,6 +33,9 @@ void Department::fireWorker(const long &id) {
     long index = cuaUtil::findIndex<Worker*>(id, this->workers);
     if (index != -1){
         workers->erase(workers->begin()+index);
+        if (boss != nullptr && boss->getId() == id) {
+            this->setBoss(nullptr);
+        }
     }else {
         cout << "Worker is not working here" << endl;
     }
