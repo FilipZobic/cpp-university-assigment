@@ -21,12 +21,11 @@ public:
 
     void hireWorker(Worker* worker);
     void fireWorker(const long &id);
-    void replaceWorker(const long id,Worker *worker);
+    void replaceWorker(Worker *worker);
 
     string Serialize() override;
 
     void Parse(long id) override;
-    void parseStaff(const long &idW,vector<Worker*> *entities,const bool boss);
 
     long getId() const;
 

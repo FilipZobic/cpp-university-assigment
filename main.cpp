@@ -36,6 +36,29 @@ using namespace std;
 
 int main() {
 
+    // For Testing Creation
+
+    Date birthDay(15,5,2000);
+    Date birthDay2(15,5,2001);
+    Date birthDay3(1,1,1999);
+
+    // Warehouseman
+    Date annualLeaveStart(1,5,2010);
+    Date annualLeaveEnd(25,5,2010);
+    Worker *warehouseman = new Warehouseman(1,"Petar","Markovic",birthDay,2000.00,"064553910");
+    warehouseman->addOrReplaceAnnualLeave(annualLeaveStart,annualLeaveEnd);
+
+    // Clerk
+    Worker *clerk = new Clerk(32,"Zoran","Petrovic",birthDay2,2660.00,"0645213910","Register number 5, 55$ inside");
+
+    //Driver
+    vector<string> adc;
+    vector<string> abc = {"B","C"};
+    Worker *driver = new Driver(3,"Nikola","Vlasic",birthDay3,6000.00,"0652133910",2,abc);
+
+
+
+    // Program Start
     // Init services
     vector<Worker*> WORKER_STORAGE_VECTOR;
     string filenameWorker = "Workers.csv";
@@ -54,8 +77,11 @@ int main() {
     CRUDWorker crudWorker(&workerService, &departmentService);
 
     // Crud operations
-    crudWorker.setDepartment(departmentService.getEntities()->at(0));
+    Department *dep1 = departmentService.getEntities()->at(0);
+    crudWorker.setDepartment(dep1);
     crudWorker.removeEntity(29);
+    crudWorker.replaceEntity(clerk);
+//    dep1->setBoss(clerk); // ovo ce biti u crudDepartment od postojecih zaposlenih radnika kako bi pozvali write
 
 
     cout << "All Workers" << endl;

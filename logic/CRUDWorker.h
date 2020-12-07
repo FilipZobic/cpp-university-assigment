@@ -18,7 +18,11 @@ public:
 
     void removeEntity(const long id) override;
 
-    void replaceEntity(vector<string> &newParams, int id) override;
+    void replaceEntity(Worker *newWorker) override;
+
+    void createEntity(Worker *const entity) override;
+
+    void addAnnualLeave(const long id,string start, string end); // add logic for error
 
     Department *getDepartment() const;
 

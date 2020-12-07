@@ -13,11 +13,9 @@ private:
 public:
     CRUDDepartment(Service<Department *> *service);
 
-
-    void replaceEntity(vector<string> &newParams, int id) override;
+    void replaceEntity(Department *entity) override;
 
     void removeEntity(const long id) override;
-
 };
 
 

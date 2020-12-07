@@ -25,7 +25,7 @@ void Department::hireWorker(Worker *worker) {
     if (index == -1){
         workers->push_back(worker);
     }else {
-        cout << "Worker is already working here" << endl;
+        throw logic_error("Workers is already working here");
     }
 }
 
@@ -41,12 +41,15 @@ void Department::fireWorker(const long &id) {
     }
 }
 
-void Department::replaceWorker(const long id,Worker *worker) {
-    long index = cuaUtil::findIndex<Worker*>(id, this->workers);
+void Department::replaceWorker(Worker *worker) {
+    long index = cuaUtil::findIndex<Worker*>(worker->getId(), this->workers);
     if (index != -1){
+        if (boss != nullptr && boss->getId() == worker->getId()) {
+            this->setBoss(worker);
+        }
         workers->at(index) = worker;
     }else {
-        cout << "Worker is not working here" << endl;
+        throw logic_error("Worker is not working here");
     }
 };
 

@@ -43,8 +43,6 @@ void CRUD<T>::replace(const long index,T entity) { // we send id to parent class
     }
     delete entities->at(index);
     entities->at(index) = entity;
-
-
     service->writeToFile();
 }
 

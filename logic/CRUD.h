@@ -9,14 +9,14 @@ template <typename T>
 class CRUD {
 protected:
     Service<T> *const service; //saljemo worker service ovde
-    void addEntity(const T entity) const;/*1*/
     void deleteEntity(const long index) const;/*3*/
     void replace(const long index,T entity);
+    void addEntity(const T entity) const;/*1*/
 public:
     CRUD<T>(Service<T> *service);
 
-//    virtual void createEntity(vector<string> &params) = 0;/*1*/
-    virtual void replaceEntity(vector<string> &newParams, int id) = 0;/*2*/
+    virtual void createEntity(const T entity) = 0;
+    virtual void replaceEntity(T entity) = 0;/*2*/
     virtual void removeEntity(const long id) = 0;/*3*/
 //    virtual long findIndex(const long &id) = 0;/*2*//*3*/
     void readEntities();
@@ -28,12 +28,6 @@ public:
         return index;
     };
 
-    void createEntity(vector<string> &params){
-        T newEntity;
-        params[0] = to_string(service->getLastUsedId());
-        service->parseEntity(&newEntity, params);
-        addEntity(newEntity);
-    }
 };
 
 /*
