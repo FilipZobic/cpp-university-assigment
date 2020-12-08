@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <util/Util.h>
 #include "../model/Worker.h"
 #include "iostream"
 using namespace std;
@@ -52,6 +53,10 @@ public:
     vector<T> *getEntities() const;
 
     void setEntities(vector<T> *entities);
+
+    void clearMemory(const long id);
+
+    long findIndex(long id) const;
 };
 
 

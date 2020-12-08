@@ -9,7 +9,7 @@ void CRUDWorker::removeEntity(const long id) {
     if (this->department == nullptr){
         throw logic_error("Department is null");
     }
-    const long index = findIndex(id);
+    const long index = service->findIndex(id);
     if (index!=-1){
         this->department->fireWorker(id);
 
@@ -24,13 +24,20 @@ void CRUDWorker::replaceEntity(Worker *newWorker) {
     if (this->department == nullptr){
         throw logic_error("Department is null");
     }
-    const long index = findIndex(newWorker->getId());
+    const long index = service->findIndex(newWorker->getId());
     if (index!=-1){
         this->department->replaceWorker(newWorker);
         this->replace(index,newWorker);
     } else {
         cout << "No element will be replaced because it doesn't exist" << endl;
     }
+}
+
+void CRUDWorker::createEntity(Worker *const worker) {
+    worker->setId(service->getLastUsedId());
+    this->addEntity(worker);
+    this->department->hireWorker(worker);
+    this->departmentService->writeToFile();
 }
 
 Department *CRUDWorker::getDepartment() const {
@@ -41,9 +48,3 @@ void CRUDWorker::setDepartment(Department *department) {
     CRUDWorker::department = department;
 }
 
-void CRUDWorker::createEntity(Worker *const worker) {
-    worker->setId(service->getLastUsedId());
-    this->addEntity(worker);
-    this->department->hireWorker(worker);
-    this->departmentService->writeToFile();
-}

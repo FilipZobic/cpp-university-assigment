@@ -43,6 +43,8 @@ public:
     static const string &getSep();
 
     void operator << (Worker *worker);
+
+
 };
 
 

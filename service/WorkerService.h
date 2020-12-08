@@ -21,6 +21,7 @@ public:
     void parseAllEntities() override;
 
     void parseEntity(Worker **entity, vector<string> &paramsForObject) override;
+
 private:
 
 };

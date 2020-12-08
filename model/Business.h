@@ -17,7 +17,7 @@ private:
     string name;
     long registrationNumber;
     long vat;
-    vector<Department*> departments;
+    vector<struct Department *> *departments;
 public:
     Business();
     /*
@@ -35,6 +35,12 @@ public:
     void Parse(vector<string> *parameters) override;
 
     void operator << (Department *department);
+
+    const vector<Department *>* getDepartments() const;
+
+    long getId() const;
+
+    vector<long> removeDepartment(const long depId);
 };
 
 

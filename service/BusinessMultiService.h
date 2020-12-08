@@ -13,6 +13,7 @@ public:
     void parseAllEntities() override;
 
     void parseEntity(Business **entity, vector<string> &paramsForObject) override;
+
 };
 
 

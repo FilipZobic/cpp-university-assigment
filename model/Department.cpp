@@ -13,11 +13,12 @@ Department::Department(long id):id(id) {
 Department::Department() {
     this->workers = new vector<Worker*>;
     this->boss = nullptr;
-    this->id = -1;
 }
 Department::~Department() {
+    this->workers->erase(this->workers->begin(),this->workers->end());
     delete workers;
-    delete boss;
+    this->boss = nullptr;
+    delete this->boss;
 }
 
 void Department::hireWorker(Worker *worker) {

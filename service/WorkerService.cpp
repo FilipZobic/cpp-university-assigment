@@ -32,3 +32,4 @@ void WorkerService::parseAllEntities() {
         entities->push_back(entity);
     }
 }
+

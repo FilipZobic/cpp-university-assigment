@@ -1,9 +1,8 @@
 #ifndef CPP_UNIVERSITY_ASSIGMENT_CRUD_H
 #define CPP_UNIVERSITY_ASSIGMENT_CRUD_H
 
+#include <util/Util.h>
 #include "../service/Service.h"
-
-#include "../util/Util.h"
 
 template <typename T>
 class CRUD {
@@ -21,12 +20,6 @@ public:
 //    virtual long findIndex(const long &id) = 0;/*2*//*3*/
     void readEntities();
 //    virtual long findIndex(long id) const = 0;
-
-    long findIndex(long id) const {
-        vector<T> *entities = service->getEntities();
-        long index = cuaUtil::findIndex<T>(id,entities);
-        return index;
-    };
 
 };
 

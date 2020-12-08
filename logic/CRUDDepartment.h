@@ -3,19 +3,41 @@
 
 using namespace std;
 
-#include <model/Business.h>
 #include "CRUD.h"
 #include "../model/Department.h"
+#include "../util/Util.h"
+#include "../service/DepartmentMultiService.h"
+#include "../service/WorkerService.h"
+#include "../service/BusinessMultiService.h"
+#include "../model/Business.h"
+
+
+//Dep Crud
+//Busniss
+//WorkerService
+//DepartmentService
+//BusinessService
 
 class CRUDDepartment : public CRUD<Department*>  {
 private:
     Business *business;
+    WorkerService *const workerService;
+    BusinessMultiService *const businessMultiService;
 public:
-    CRUDDepartment(Service<Department *> *service);
+    CRUDDepartment(DepartmentMultiService *departmentMultiService,
+                   WorkerService *const workerService,
+                   BusinessMultiService *const businessMultiService);
 
     void replaceEntity(Department *entity) override;
 
     void removeEntity(const long id) override;
+
+    void createEntity(Department *const entity) override;
+
+    void setBusiness(Business *business);
+
+    void setBoss(const long depId, Worker* boss);
+
 };
 
 

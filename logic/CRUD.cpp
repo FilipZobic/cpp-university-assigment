@@ -18,19 +18,7 @@ void CRUD<T>::addEntity(const T entity) const {
 template <typename T>
 void CRUD<T>::deleteEntity(const long index) const { // we send id to parent class that will overwrite this method then we send index of the element
 
-
-    vector<T> *entities = service->getEntities();
-    cout << "SIZE===" + to_string(entities->size()) << endl;
-    if (index>=entities->size()||0>index){
-        throw out_of_range("Index out of range in CRUD deleteEntity()");
-    }
-    delete entities->at(index);
-    entities->erase(entities->begin()+index,entities->begin()+index+1);
-
-    service->setAmountOfItems(service->getAmountOfItems()-1);
-
-
-    service->writeToFile();
+    service->clearMemory(index);
 }
 template <typename T>
 void CRUD<T>::replace(const long index,T entity) { // we send id to parent class that will overwrite this method then we send index of the element

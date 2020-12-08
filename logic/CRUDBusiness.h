@@ -2,8 +2,10 @@
 #define CPP_UNIVERSITY_ASSIGMENT_CRUDBUSINESS_H
 
 
+using namespace std;
 class CRUDBusiness{
-};
+private:
 
+};
 
 #endif //CPP_UNIVERSITY_ASSIGMENT_CRUDBUSINESS_H

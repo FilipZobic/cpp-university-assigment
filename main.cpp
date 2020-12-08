@@ -11,6 +11,7 @@
 #include <FL/Fl_Float_Input.H>
 #include <model/Business.h>
 #include <service/BusinessMultiService.h>
+#include <logic/CRUDDepartment.h>
 
 
 #include "./model/Date.h"
@@ -23,6 +24,7 @@
 #include "./model/Driver.h"
 #include "./service/WorkerService.h"
 #include "./logic/CRUDWorker.h"
+#include "./logic/CRUDDepartment.h"
 
 #include "./model/Department.h"
 #include "./service/DepartmentMultiService.h"
@@ -49,7 +51,7 @@ int main() {
     warehouseman->addOrReplaceAnnualLeave(annualLeaveStart,annualLeaveEnd);
 
     // Clerk
-    Worker *clerk = new Clerk(32,"Zoran","Petrovic",birthDay2,2660.00,"0645213910","Register number 5, 55$ inside");
+    Worker *clerk = new Clerk(500,"Zoran","Petrovic",birthDay2,2660.00,"0645213910","Register number 5, 55$ inside");
 
     //Driver
     vector<string> adc;
@@ -75,13 +77,25 @@ int main() {
 
     // Init CRUDs
     CRUDWorker crudWorker(&workerService, &departmentService);
+    CRUDDepartment crudDepartment(&departmentService,&workerService,&businessService);
+    Business *departmentBus = businessService.getEntities()->at(1);
+    crudDepartment.setBusiness(departmentBus);
+    crudDepartment.removeEntity(1);
 
     // Crud operations
-    Department *dep1 = departmentService.getEntities()->at(0);
-    crudWorker.setDepartment(dep1);
-    crudWorker.removeEntity(32);
-    crudWorker.replaceEntity(clerk);
-//    dep1->setBoss(clerk); // ovo ce biti u crudDepartment od postojecih zaposlenih radnika kako bi pozvali write
+//        Department *dep1 = departmentService.getEntities()->at(0); // once we remove this we can't get dep
+//        crudWorker.setDepartment(dep1);
+//        crudWorker.removeEntity(34);
+//        crudWorker.replaceEntity(clerk);
+//    crudWorker.createEntity(driver);
+//    crudWorker.createEntity(clerk);
+//    crudWorker.createEntity(warehouseman);
+
+//    dep1->setBoss(warehouseman); // ovo ce biti u crudDepartment od postojecih zaposlenih radnika kako bi pozvali write
+    // ovo ce biti u crudDepartment od postojecih zaposlenih radnika kako bi pozvali write
+    //    crudWorker.removeEntity(35);
+    //    crudWorker.removeEntity(36);
+//    crudWorker.replaceEntity(clerk);
 
 
     cout << "All Workers" << endl;
@@ -100,7 +114,9 @@ int main() {
     cout << "Checking departments" << endl;
     cout << departmentService.getEntities()->at(0)->Serialize() << endl;
     cout << departmentService.getEntities()->at(1)->Serialize() << endl;
-    cout << departmentService.getEntities()->at(2)->Serialize() << endl;
+//    cout << departmentService.getEntities()->at(2)->Serialize() << endl;
+
+
 
     // Gui
     Fl_Window *window = new Fl_Window(1200, 700);
