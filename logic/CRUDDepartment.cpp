@@ -24,7 +24,7 @@ void CRUDDepartment::removeEntity(const long depId) {
         // Clears department from service and business vector
             // returns workers ids
         vector<long> workersToRemove = this->business->removeDepartment(depId); // returns all workers that belong to department and erases the array then deletes it and removes the department from business.department vector
-        this->deleteEntity(depId); // deletes it from worker service; calls clear memory
+        this->service->clearMemory(depId); // deletes it from worker service; calls clear memory
 
         // clears worker that belonged to department from workerService and deletes them from memory
         for(long workerId : workersToRemove){
@@ -34,7 +34,7 @@ void CRUDDepartment::removeEntity(const long depId) {
         //Write to file
         this->businessMultiService->writeToFile();
         this->service->writeToFile();
-        this->workerService->writeToFile();
+        this->workerService->writeToFile(); // maybe remove writeToFile from clearMemory
     } else {
         cout << "No element was removed because it doesn't exist" << endl;
     }
@@ -56,25 +56,22 @@ void CRUDDepartment::setBusiness(Business *business) {
 }
 
 // Done
-void CRUDDepartment::setBoss(const long depId, Worker *boss) {
+void CRUDDepartment::setBoss(Department *department, Worker *boss) {
     if (this->business == nullptr){
         throw logic_error("Business is null");
     }
+
     for(Department *dep : *business->getDepartments()){
-        if (depId == dep->getId()){
-            bool bossExists = false;
+        if (department == dep){
             for (Worker *worker : *dep->getWorkers()) {
                 if (worker == boss) {
-                    bossExists = true;
-                    break;
+                    dep->setBoss(boss);
+                    service->writeToFile();
+                    return;
                 }
             }
-            if (!bossExists){
-                throw logic_error("Sent worker can't be boss because it doesn't belong in that department");
+            throw logic_error("Sent worker can't be boss because it doesn't belong in that department");
             }
-            dep->setBoss(boss);
-            return;
-        }
     }
-    throw logic_error("That department does not exist");
+    throw logic_error("That department does not belong in the current business");
 }

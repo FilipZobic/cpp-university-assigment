@@ -36,7 +36,7 @@ public:
 
     void setBusiness(Business *business);
 
-    void setBoss(const long depId, Worker* boss);
+    void setBoss(Department *department, Worker* boss);
 
 };
 

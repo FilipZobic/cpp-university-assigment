@@ -90,7 +90,12 @@ int main() {
 //    crudWorker.createEntity(driver);
 //    crudWorker.createEntity(clerk);
 //    crudWorker.createEntity(warehouseman);
-
+    Business *businessDummyForBoss = businessService.getEntities()->at(0);
+    crudDepartment.setBusiness(businessDummyForBoss);
+    Department *departmentDummyForBoss = businessDummyForBoss->getDepartments()->at(1);
+    Worker *workerDummyForBoss = departmentDummyForBoss->getWorkers()->at(0);
+    crudDepartment.setBusiness(businessDummyForBoss);
+    crudDepartment.setBoss(departmentDummyForBoss,workerDummyForBoss);
 //    dep1->setBoss(warehouseman); // ovo ce biti u crudDepartment od postojecih zaposlenih radnika kako bi pozvali write
     // ovo ce biti u crudDepartment od postojecih zaposlenih radnika kako bi pozvali write
     //    crudWorker.removeEntity(35);
