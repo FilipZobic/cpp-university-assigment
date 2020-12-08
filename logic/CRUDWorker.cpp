@@ -48,3 +48,19 @@ void CRUDWorker::setDepartment(Department *department) {
     CRUDWorker::department = department;
 }
 
+void CRUDWorker::setBoss(Department *department, Worker *boss) {
+    if (this->department == nullptr){
+        throw logic_error("Department is null");
+    }
+
+    for (Worker *worker : *this->department->getWorkers()) {
+        if (worker == boss) {
+            this->department->setBoss(boss);
+            service->writeToFile();
+            return;
+        }
+    }
+    throw logic_error("Sent worker can't be boss because it doesn't belong in that department");
+}
+
+void addAnnualLeave(Worker *worker);

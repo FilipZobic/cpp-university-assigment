@@ -58,50 +58,35 @@ int main() {
     vector<string> abc = {"B","C"};
     Worker *driver = new Driver(3,"Nikola","Vlasic",birthDay3,6000.00,"0652133910",2,abc);
 
+    // Department
+    Department department(2,"Apple", nullptr,new vector<Worker*>);
 
 
     // Program Start
     // Init services
     vector<Worker*> WORKER_STORAGE_VECTOR;
-    string filenameWorker = "Workers.csv";
-    WorkerService workerService(filenameWorker, &WORKER_STORAGE_VECTOR);
+    WorkerService workerService("Workers.csv", &WORKER_STORAGE_VECTOR);
 
     vector<Department*> DEPARTMENT_STORAGE_VECTOR;
-    string filenameDepartment = "Department.csv";
-    DepartmentMultiService departmentService(filenameDepartment, &DEPARTMENT_STORAGE_VECTOR, &workerService);
+    DepartmentMultiService departmentService("Department.csv", &DEPARTMENT_STORAGE_VECTOR, &workerService);
 
     vector<Business*> BUSINESS_STORAGE_VECTOR;
-    string filenameBusiness = "Business.csv";
-    BusinessMultiService businessService(filenameBusiness, &BUSINESS_STORAGE_VECTOR, &departmentService);
-//    businessService.writeToFile();
+    BusinessMultiService businessService("Business.csv", &BUSINESS_STORAGE_VECTOR, &departmentService);
 
     // Init CRUDs
     CRUDWorker crudWorker(&workerService, &departmentService);
     CRUDDepartment crudDepartment(&departmentService,&workerService,&businessService);
-    Business *departmentBus = businessService.getEntities()->at(1);
-    crudDepartment.setBusiness(departmentBus);
-    crudDepartment.removeEntity(1);
 
-    // Crud operations
-//        Department *dep1 = departmentService.getEntities()->at(0); // once we remove this we can't get dep
-//        crudWorker.setDepartment(dep1);
-//        crudWorker.removeEntity(34);
-//        crudWorker.replaceEntity(clerk);
+    // Testing crud
+    Business *departmentBus = businessService.getEntities()->at(0);
+    crudDepartment.setBusiness(departmentBus);
+    crudDepartment.replaceEntity(&department);
+//    crudDepartment.createEntity(&department);
+//
+    crudWorker.setDepartment(&department);
 //    crudWorker.createEntity(driver);
 //    crudWorker.createEntity(clerk);
 //    crudWorker.createEntity(warehouseman);
-    Business *businessDummyForBoss = businessService.getEntities()->at(0);
-    crudDepartment.setBusiness(businessDummyForBoss);
-    Department *departmentDummyForBoss = businessDummyForBoss->getDepartments()->at(1);
-    Worker *workerDummyForBoss = departmentDummyForBoss->getWorkers()->at(0);
-    crudDepartment.setBusiness(businessDummyForBoss);
-    crudDepartment.setBoss(departmentDummyForBoss,workerDummyForBoss);
-//    dep1->setBoss(warehouseman); // ovo ce biti u crudDepartment od postojecih zaposlenih radnika kako bi pozvali write
-    // ovo ce biti u crudDepartment od postojecih zaposlenih radnika kako bi pozvali write
-    //    crudWorker.removeEntity(35);
-    //    crudWorker.removeEntity(36);
-//    crudWorker.replaceEntity(clerk);
-
 
     cout << "All Workers" << endl;
     workerService.printArr();

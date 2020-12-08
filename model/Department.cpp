@@ -2,6 +2,7 @@
 #include "../util/Util.h"
 #include "iostream"
 
+Department::Department(long id, string name, Worker *boss,vector<Worker *>* workers) : id(id), boss(boss), workers(workers), name(name) {}
 Department::Department(long id, Worker *boss,vector<Worker *>* workers) : id(id), boss(boss), workers(workers) {}
 Department::Department(long id,vector<Worker *>* workers) : id(id), workers(workers) {
     this->boss = nullptr;
@@ -112,6 +113,14 @@ void Department::operator<<(Worker *worker) {
     cuaUtil::vectorInstanceCheck<Worker>(worker,this->workers);
 
     this->workers->push_back(worker);
+}
+
+const string &Department::getName() const {
+    return name;
+}
+
+void Department::setName(const string &name) {
+    Department::name = name;
 }
 
 

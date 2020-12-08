@@ -27,6 +27,8 @@ public:
     Department *getDepartment() const;
 
     void setDepartment(Department *department);
+
+    void setBoss(Department *department, Worker* boss);
 };
 
 

@@ -36,8 +36,6 @@ public:
 
     void setBusiness(Business *business);
 
-    void setBoss(Department *department, Worker* boss);
-
 };
 
 

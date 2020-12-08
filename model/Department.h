@@ -18,6 +18,7 @@ public:
     Department(long id);
     Department(long id,vector<Worker *> *workers);
     Department(long id, Worker *boss,vector<Worker *> *workers);
+    Department(long id, string name, Worker *boss,vector<Worker *>* workers);
     ~Department();
 
     void hireWorker(Worker* worker);
@@ -35,6 +36,10 @@ public:
     Worker *getBoss() const;
 
     void setBoss(Worker *boss);
+
+    const string &getName() const;
+
+    void setName(const string &name);
 
     vector<Worker *> *getWorkers() const;
 

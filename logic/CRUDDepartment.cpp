@@ -11,7 +11,18 @@ CRUDDepartment::CRUDDepartment
 CRUD(departmentMultiService),workerService(workerService),businessMultiService(businessMultiService){}
 
 void CRUDDepartment::replaceEntity(Department *entity) { // just replace with setter and getters old and new
-    // pop all workers into new department
+    if (this->business == nullptr){
+        throw logic_error("Business is null");
+    }
+    bool isPartOfCurrentBus = false;
+    for (Department* dep: *this->business->getDepartments()){
+        isPartOfCurrentBus = dep->getId() == entity->getId();
+        break;
+    }
+    if (isPartOfCurrentBus) throw logic_error("That department does not belong in current business");
+    long index = service->findIndex(entity->getId());
+    service->getEntities()->at(index)->setName(entity->getName());
+    service->writeToFile();
 }
 
 // working on it
@@ -55,23 +66,4 @@ void CRUDDepartment::setBusiness(Business *business) {
     this->business = business;
 }
 
-// Done
-void CRUDDepartment::setBoss(Department *department, Worker *boss) {
-    if (this->business == nullptr){
-        throw logic_error("Business is null");
-    }
-
-    for(Department *dep : *business->getDepartments()){
-        if (department == dep){
-            for (Worker *worker : *dep->getWorkers()) {
-                if (worker == boss) {
-                    dep->setBoss(boss);
-                    service->writeToFile();
-                    return;
-                }
-            }
-            throw logic_error("Sent worker can't be boss because it doesn't belong in that department");
-            }
-    }
-    throw logic_error("That department does not belong in the current business");
-}
+// we can place this instead in crud worker
