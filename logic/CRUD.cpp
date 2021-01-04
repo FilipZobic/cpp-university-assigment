@@ -1,5 +1,6 @@
 #include "CRUD.h"
 #include <stdexcept>
+#include <model/Business.h>
 #include "../model/Department.h"
 
 template <typename T>
@@ -44,6 +45,12 @@ void CRUD<T>::readEntities(){
     service->parseAllEntities();
 }
 
+template<typename T>
+Service<T> *const CRUD<T>::getService() const {
+    return service;
+}
+
 
 template class CRUD<Worker*>;
 template class CRUD<Department*>;
+template class CRUD<Business*>;

@@ -57,6 +57,10 @@ public:
     void clearMemory(const long id);
 
     long findIndex(long id) const;
+
+    void addToVector(T entity){
+        this->entities->push_back(entity);
+    }
 };
 
 

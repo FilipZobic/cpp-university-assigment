@@ -21,6 +21,8 @@ public:
     void readEntities();
 //    virtual long findIndex(long id) const = 0;
 
+    Service<T> *const getService() const;
+
 };
 
 /*

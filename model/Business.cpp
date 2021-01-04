@@ -29,22 +29,15 @@ string Business::Serialize() {
         departmentsString += "-1";
     }
 
-    return this->name + sep + to_string(this->registrationNumber) + sep + to_string(this->vat) + sep + departmentsString;
+    return this->name + sep + to_string(this->registrationNumber) + sep + to_string(this->vat) + sep + departmentsString + sep + to_string(programId);
 }
 
 void Business::Parse(vector<string> *parameters) {
     this->name = parameters->at(0);
     this->registrationNumber = stol(parameters->at(1));
     this->vat = stol(parameters->at(2));
+    this->programId = stol(parameters->at(3));
 
-}
-
-const vector<Department *>* Business::getDepartments() const { // pogeldaj gde se koristi
-    return departments;
-}
-
-long Business::getId() const {
-    return registrationNumber;
 }
 
 vector<long> Business::removeDepartment(const long depId) {
@@ -62,4 +55,50 @@ vector<long> Business::removeDepartment(const long depId) {
     }
 
     return workerIds;
+}
+
+void Business::replace(Business *newBusiness) {
+    this->name = newBusiness->getName();
+    this->registrationNumber = newBusiness->getId();
+    this->vat = newBusiness->getVat();
+}
+
+const vector<Department *>* Business::getDepartments() const { // pogeldaj gde se koristi
+    return departments;
+}
+
+long Business::getId() const {
+    return registrationNumber;
+}
+
+void Business::setId(long registrationNumber) {
+    this->registrationNumber = registrationNumber;
+}
+
+const string &Business::getName() const {
+    return name;
+}
+
+void Business::setName(const string &name) {
+    this->name = name;
+}
+
+long Business::getVat() const {
+    return vat;
+}
+
+void Business::setVat(long vat) {
+    this->vat = vat;
+}
+
+void Business::setDepartments(vector<struct Department *> *departments) {
+    this->departments = departments;
+}
+
+long Business::getProgramId() const {
+    return programId;
+}
+
+void Business::setProgramId(long programId) {
+    this->programId = programId;
 }

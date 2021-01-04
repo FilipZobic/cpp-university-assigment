@@ -12,6 +12,8 @@
 #include <model/Business.h>
 #include <service/BusinessMultiService.h>
 #include <logic/CRUDDepartment.h>
+#include <logic/CRUDBusiness.h>
+#include <gui/MainWindow.h>
 
 
 #include "./model/Date.h"
@@ -76,14 +78,15 @@ int main() {
     // Init CRUDs
     CRUDWorker crudWorker(&workerService, &departmentService);
     CRUDDepartment crudDepartment(&departmentService,&workerService,&businessService);
+    CRUDBusiness crudBusiness(&businessService, &crudDepartment);
 
     // Testing crud
-    Business *departmentBus = businessService.getEntities()->at(0);
-    crudDepartment.setBusiness(departmentBus);
-    crudDepartment.replaceEntity(&department);
+//    Business *departmentBus = businessService.getEntities()->at(0);
+//    crudDepartment.setBusiness(departmentBus);
+//    crudDepartment.replaceEntity(&department);
 //    crudDepartment.createEntity(&department);
 //
-    crudWorker.setDepartment(&department);
+//    crudWorker.setDepartment(&department);
 //    crudWorker.createEntity(driver);
 //    crudWorker.createEntity(clerk);
 //    crudWorker.createEntity(warehouseman);
@@ -109,15 +112,25 @@ int main() {
 
 
     // Gui
-    Fl_Window *window = new Fl_Window(1200, 700);
 
-    Fl_Box *label = new Fl_Box(500,0,200,100);
-    label->label("WORKERS");
-    label->labelsize(30);
-    label->labelcolor(FL_BLACK);
-    label->color(FL_BLUE);
+//
+//    Fl_Box *label = new Fl_Box(500,0,200,100);
+//    label->label("WORKERS");
+//    label->labelsize(30);
+//    label->labelcolor(FL_BLACK);
+//    label->color(FL_BLUE);
+//
+//    window->resizable();
+//
+//    window->end();
+//    window->show();
+
+    Fl_Window *window = new Fl_Window(1100, 458);
 
     window->resizable();
+
+    string a ="Main window";
+    MainWindow mainWindow(a.c_str(), &crudBusiness);
 
     window->end();
     window->show();

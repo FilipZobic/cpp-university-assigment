@@ -17,6 +17,7 @@ private:
     string name;
     long registrationNumber;
     long vat;
+    long programId;
     vector<struct Department *> *departments;
 public:
     Business();
@@ -40,7 +41,26 @@ public:
 
     long getId() const;
 
+    const string &getName() const;
+
+    void setName(const string &name);
+
+    void setId(long registrationNumber);
+
+    long getVat() const;
+
+    void setVat(long vat);
+
+    void setDepartments(vector<struct Department *> *departments);
+
+    long getProgramId() const;
+
+    void setProgramId(long programId);
+
+
     vector<long> removeDepartment(const long depId);
+
+    void replace(Business* newBusiness);
 };
 
 
