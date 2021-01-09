@@ -1,29 +1,27 @@
-//
-// Created by filipz on 1/4/21.
-//
-
-#include "BusinessTable.h"
-#include <FL/Fl.H>
+#include "Table.h"
 #include <FL/fl_draw.H>
+#include <model/Business.h>
 
-BusinessTable::BusinessTable(int x, int y, int w, int h, const char *l, BusinessTableModel *model) :
-Fl_Table_Row(x, y, w, h, l), model(model) {
+template<typename T>
+Table<T>::Table(int x, int y, int w, int h, const char *l, AbstractTableModel<T> *model) :
+    Fl_Table_Row(x, y, w, h, l), model(model)
+    {
+        rows(model->getNumberOfRows());
+        row_header(1);
+        row_height_all(20);
+        row_resize(0);
+        type(SELECT_SINGLE);
 
-    rows(model->getNumberOfRows());
-    row_header(1);
-    row_height_all(20);
-    row_resize(0);
-    type(SELECT_SINGLE);
 
+        cols(model->getNumberOfColumns());
+        col_header(1);
+//        col_width_all(80);
+        col_resize(1);
+        end();
+    }
 
-    cols(model->getNumberOfColumns());
-    col_header(1);
-    // col_width_all(80);
-    col_resize(1);
-    end();
-}
-
-void BusinessTable::draw_cell(TableContext context, int row, int column, int x , int y, int w, int h) {
+template<typename T>
+void Table<T>::draw_cell(TableContext context, int row, int column, int x , int y, int w, int h) {
     switch (context)
     {
         case CONTEXT_COL_HEADER:
@@ -71,13 +69,9 @@ void BusinessTable::draw_cell(TableContext context, int row, int column, int x ,
     }
 }
 
-#include <iostream>
-
-void BusinessTable::updateRows() {
-    cout << "UPDATE_ROWS" << endl;
+template <typename T>
+void Table<T>::updateRows() {
     rows(this->model->getNumberOfRows());
 }
 
-    BusinessTableModel* BusinessTable::getModel() const {
-    return model;
-}
+template class Table<Business*>;

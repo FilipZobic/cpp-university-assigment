@@ -13,7 +13,7 @@
 #include <logic/CRUDBusiness.h>
 #include "BusinessTableModel.h"
 #include "NewEntityBusiness.h"
-#include "BusinessTable.h"
+#include "Table.h"
 
 class MainWindow : public Fl_Group {
 protected:
@@ -31,7 +31,7 @@ protected:
     Fl_Box *purposeLabel;
 
     // Table
-    BusinessTable *tableDisplay;
+    Table<Business*> *tableDisplay;
 
 public:
     enum SwitchType {ALL, ONE, TWO, THREE, FOUR, FIVE};

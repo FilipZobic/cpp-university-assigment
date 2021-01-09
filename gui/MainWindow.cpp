@@ -5,8 +5,8 @@
 #include "MainWindow.h"
 #include "NewEntityBusiness.h"
 #include <FL/Fl_Table_Row.H>
-#include "BusinessTable.h"
 #include "Event.h"
+#include "Table.h"
 
 MainWindow::MainWindow(const char *string, CRUDBusiness *crudBusiness) :
 Fl_Group(0, 0, 1100, 458, string),crudBusiness(crudBusiness) {
@@ -46,8 +46,8 @@ Fl_Group(0, 0, 1100, 458, string),crudBusiness(crudBusiness) {
 //    Fl_Table_Row *row = new Fl_Table_Row(0,0,1100,10);
 //    tableDisplay->add(row);
 
-    BusinessTableModel *model = new BusinessTableModel(crudBusiness->getService()->getEntities());
-    tableDisplay = new BusinessTable(0, 215, 1100, 240, "", model);// send something
+    AbstractTableModel<Business*> *model = new BusinessTableModel(crudBusiness->getService()->getEntities());
+    tableDisplay = new Table<Business*>(0, 215, 1100, 240, "", model);// send something
 
     //tableModel->updateTable();
     tableDisplay->col_header();
