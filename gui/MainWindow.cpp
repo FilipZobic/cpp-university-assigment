@@ -155,8 +155,9 @@ void MainWindow::deleteEventHandler(Fl_Widget *widget, void *data) {
         long id = mainWindow->tableDisplay->model->at(i)->getId();
         mainWindow->crudBusiness->removeEntity(id);
     }
-    mainWindow->turnOffButtons();
     mainWindow->reRender();
+    mainWindow->turnOffButtons();
+//    mainWindow->checkButtons(nullptr, mainWindow);
 }
 
 void MainWindow::loadEventHandler(Fl_Widget *widget, void *data) {
