@@ -61,6 +61,10 @@ public:
     vector<long> removeDepartment(const long depId);
 
     void replace(Business* newBusiness);
+
+    int getNumberOfDepartments();
+
+    int getNumberOfWorkers();
 };
 
 

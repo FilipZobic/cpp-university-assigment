@@ -102,3 +102,15 @@ long Business::getProgramId() const {
 void Business::setProgramId(long programId) {
     this->programId = programId;
 }
+
+int Business::getNumberOfDepartments() {
+    return this->departments->size();
+}
+
+int Business::getNumberOfWorkers() {
+    int sum = 0;
+    for(Department *department : *this->departments){
+        sum += department->getNumberOfWorkers();
+    }
+    return sum;
+}

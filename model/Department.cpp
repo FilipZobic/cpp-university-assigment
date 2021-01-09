@@ -123,5 +123,9 @@ void Department::setName(const string &name) {
     Department::name = name;
 }
 
+int Department::getNumberOfWorkers() {
+    return this->workers->size();
+}
+
 
 // u servicu od departmenta proveravaj kada se worker deletuje to cu raditi tako sto ubacim jos jednu funkciju gde se poziva delete worker koja poziva check all departments for worker itd

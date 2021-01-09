@@ -50,7 +50,6 @@ Service<T> *const CRUD<T>::getService() const {
     return service;
 }
 
-
 template class CRUD<Worker*>;
 template class CRUD<Department*>;
 template class CRUD<Business*>;

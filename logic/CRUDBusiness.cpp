@@ -11,6 +11,9 @@ void CRUDBusiness::createEntity(Business *const business) {
     if (this->businessIdHashSet.find(business->getId()) != this->businessIdHashSet.end()){
         throw logic_error ("A business already has that registration number");
     }
+
+    business->setProgramId(service->getLastUsedId());
+
     this->businessIdHashSet[business->getId()] = business;
     this->addEntity(business);
     this->service->writeToFile();
@@ -18,7 +21,6 @@ void CRUDBusiness::createEntity(Business *const business) {
 
 // Namesti da moze da se menja id i neka radi proveru da li neki drugi poseduje taj id
 void CRUDBusiness::replaceEntity(Business *newBusiness) {
-    auto index = this->businessIdHashSet.find(newBusiness->getId());
 
     bool canReplace = false;
     Business *oldBusiness;
@@ -26,12 +28,20 @@ void CRUDBusiness::replaceEntity(Business *newBusiness) {
     for (auto &map : this->businessIdHashSet) {
         canReplace = map.second->getProgramId() == newBusiness->getProgramId();
         oldBusiness = map.second;
+        cout << "Can replace: " << canReplace << endl;
         if(canReplace) break;
     }
 
     if(!canReplace) throw logic_error ("Nothing to replace");
 
-    Business *registrationNumberBusiness = this->businessIdHashSet.at(index->first);
+    long old_registration_number = newBusiness->getId();
+    Business *registrationNumberBusiness;
+    auto index = this->businessIdHashSet.find(newBusiness->getId());
+    if (businessIdHashSet.count(old_registration_number)){
+        registrationNumberBusiness = this->businessIdHashSet.at(index->first);
+    }
+
+
     
     if (index != this->businessIdHashSet.end() && registrationNumberBusiness != oldBusiness){
         throw logic_error ("A business already has that registration number");
@@ -45,21 +55,26 @@ void CRUDBusiness::replaceEntity(Business *newBusiness) {
 }
 
 void CRUDBusiness::removeEntity(const long id) {
-    long registrationNumber = -1000;
+    long registrationNumber = id;
 
-    for (auto &map : this->businessIdHashSet) {
-        if(map.second->getProgramId() == id){
-            registrationNumber = map.second->getId();
-            break;
-        };
+    if (!this->businessIdHashSet.count(id)) {
+        throw logic_error("Nothing to remove");
     }
 
-    if (registrationNumber == -1000) throw logic_error("Nothing to remove");
+    auto index = this->businessIdHashSet.find(id);
+
+    Business *business = index->second;
+    crudDepartment->setBusiness(business);
+
+    for (Department *department : *business->getDepartments()) {
+        crudDepartment->removeEntity(department->getId());
+    }
 
     this->businessIdHashSet.erase(businessIdHashSet.find(registrationNumber));
 
     const long businessIndex = service->findIndex(registrationNumber);
-    if (businessIndex != -1) throw logic_error("ERROR Business is not valid");
 
-    // Remove all departments
+    if (businessIndex == -1) throw logic_error("ERROR Business is not valid");
+
+    this->service->clearMemory(registrationNumber);
 }

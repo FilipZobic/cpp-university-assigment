@@ -49,6 +49,8 @@ public:
 
     void operator << (Worker *worker);
 
+    int getNumberOfWorkers();
+
 
 };
 

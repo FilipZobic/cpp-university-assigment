@@ -42,10 +42,10 @@ void CRUDDepartment::removeEntity(const long depId) {
             workerService->clearMemory(workerId);
         }
 
-        //Write to file
+//        //Write to file
         this->businessMultiService->writeToFile();
-        this->service->writeToFile();
-        this->workerService->writeToFile(); // maybe remove writeToFile from clearMemory
+//        this->service->writeToFile();
+//        this->workerService->writeToFile(); // maybe remove writeToFile from clearMemory
     } else {
         cout << "No element was removed because it doesn't exist" << endl;
     }
