@@ -7,6 +7,8 @@
 #include <FL/Fl_Table_Row.H>
 #include "Event.h"
 #include "Table.h"
+#include "AbstractEntityWindow.h"
+#include "BusinessWindow.h"
 
 MainWindow::MainWindow(const char *string, CRUDBusiness *crudBusiness) :
 Fl_Group(0, 0, 1100, 458, string),crudBusiness(crudBusiness) {
@@ -105,12 +107,8 @@ void MainWindow::checkButtons(Fl_Widget *widget, void *data) {
 void MainWindow::createEventHandler(Fl_Widget *widget, void *data) {
     MainWindow *mainWindow = (MainWindow*)data;
 
-    //Event<Business*,MainWindow*> event(nullptr, mainWindow);
-    NewEntityBusiness *window = new NewEntityBusiness(385, 685, "New Business", mainWindow->getCrudBusiness(), mainWindow);
-    //window->callback(MainWindow::reRender, mainWindow);
-
+    AbstractEntityWindow<Business*> *window = new BusinessWindow("New Business", mainWindow);
     window->show();
-    // on close delete the pointer
 }
 
 void MainWindow::readEventHandler(Fl_Widget *widget, void *data) {
@@ -129,14 +127,7 @@ void MainWindow::modifyEventHandler(Fl_Widget *widget, void *data) {
 
     Business *oldBusiness = mainWindow->tableDisplay->model->at(startRow);
 
-    cout << oldBusiness->Serialize() << endl;
-
-
-//    Event event;
-//    event.pFunction = mainWindow->reRender;
-    //Event<Business*,MainWindow*> event(oldBusiness, mainWindow);
-
-    NewEntityBusiness *window = new NewEntityBusiness(385, 685, "Replace Business", mainWindow->getCrudBusiness(), mainWindow, NewEntityBusiness::Replace, oldBusiness);
+    AbstractEntityWindow<Business*> *window = new BusinessWindow("New Business", mainWindow, BusinessWindow::Replace, oldBusiness);
     window->show();
 }
 
