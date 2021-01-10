@@ -1,9 +1,11 @@
 #include "BusinessWindow.h"
 #include "MainWindow.h"
 
-BusinessWindow::BusinessWindow(const char *title, void *eventInvoker,
+BusinessWindow::BusinessWindow(const char *title, AbstractGroup<Business*> *eventInvoker,
                                AbstractEntityWindow<Business *>::Type type, Business *entity)
         : AbstractEntityWindow(385, 415, title, eventInvoker, type, entity) {
+
+    this->begin();
 
     this->name = new Fl_Input(115, 15, 235, 50);
     this->name->copy_label("*Name:");
@@ -17,6 +19,9 @@ BusinessWindow::BusinessWindow(const char *title, void *eventInvoker,
     if (type == Replace) {
         this->fillOutInputs();
     }
+
+    this->end();
+    this->show();
 }
 
 void BusinessWindow::inputValidationCheck() {
@@ -52,22 +57,20 @@ Business *BusinessWindow::newEntity() {
 }
 
 void BusinessWindow::createEventHandler() {
-    MainWindow *form = (MainWindow *) eventInvoker;
     Business *newBusiness = newEntity();
-    form->getCrudBusiness()->createEntity(newBusiness);
-    form->reRender();
+    eventInvoker->getCrud()->createEntity(newBusiness);
+    eventInvoker->reRender();
     delete this;
 }
 
 
 void BusinessWindow::replaceEventHandler() {
-    MainWindow *form = (MainWindow *) eventInvoker;
     Business *newBusiness = newEntity();
 
     newBusiness->setProgramId(this->entity->getProgramId());
 
-    form->getCrudBusiness()->replaceEntity(newBusiness);
-    form->reRender();
+    eventInvoker->getCrud()->replaceEntity(newBusiness);
+    eventInvoker->getCrud();
 
     delete this;
 }

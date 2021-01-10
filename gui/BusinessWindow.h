@@ -7,9 +7,11 @@
 
 #include "AbstractEntityWindow.h"
 
+#include "BusinessGroup.h"
+
 class BusinessWindow : public AbstractEntityWindow<Business*>{
 public:
-    BusinessWindow(const char *title, void *eventInvoker, Type type = New, Business *entity = nullptr);
+    BusinessWindow(const char *title, AbstractGroup<Business*> *eventInvoker, Type type = New, Business *entity = nullptr);
 
 protected:
     Fl_Input *name;

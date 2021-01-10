@@ -2,7 +2,7 @@
 #include <FL/fl_ask.H>
 
 template<typename T>
-AbstractEntityWindow<T>::AbstractEntityWindow(int w, int h, const char *title, void *eventInvoker,
+AbstractEntityWindow<T>::AbstractEntityWindow(int w, int h, const char *title, AbstractGroup<T> *eventInvoker,
                                                 AbstractEntityWindow::Type type, T entity):Fl_Window(w, h, title),
                                                 eventInvoker(eventInvoker), type(type), entity(entity) {
 
@@ -28,6 +28,7 @@ AbstractEntityWindow<T>::AbstractEntityWindow(int w, int h, const char *title, v
     btnCreate->callback(AbstractEntityWindow<T>::create, this);
 
     this->set_modal();
+    this->show();
 }
 
 template<typename T>

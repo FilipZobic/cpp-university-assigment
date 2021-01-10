@@ -30,7 +30,7 @@ int main() {
 
     window->resizable();
 
-    MainWindow mainWindow("Main window", &crudBusiness);
+    MainWindow mainWindow("Main window", &crudBusiness, &crudDepartment, &crudWorker);
 
     window->end();
     window->show();

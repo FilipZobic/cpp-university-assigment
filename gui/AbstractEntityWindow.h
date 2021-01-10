@@ -6,6 +6,7 @@
 #include <FL/Fl_Button.H>
 #include <FL/Fl_Int_Input.H>
 #include "../logic/CRUDBusiness.h"
+#include "AbstractGroup.h"
 
 using namespace std;
 
@@ -14,14 +15,14 @@ class AbstractEntityWindow : public Fl_Window {
 public:
     enum Type{New, Replace};
 
-    AbstractEntityWindow(int w, int h, const char *title, void *eventInvoker, Type type = New, T entity = nullptr);
+    AbstractEntityWindow(int w, int h, const char *title, AbstractGroup<T> *eventInvoker, Type type = New, T entity = nullptr);
     virtual void createEventHandler() = 0;
     virtual void inputValidationCheck() = 0;
     virtual void replaceEventHandler() = 0;
     virtual T newEntity() = 0;
     virtual void fillOutInputs() = 0;
 protected:
-    void *eventInvoker;
+    AbstractGroup<T> *eventInvoker;
     Type type;
     T entity;
 
