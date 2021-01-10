@@ -1,5 +1,7 @@
 #include "BusinessTableModel.h"
 
+BusinessTableModel::BusinessTableModel(vector<Business*> *entities) : AbstractTableModel(5, entities) {}
+
 string BusinessTableModel::getColumnHeader(int y) {
     switch (y) {
         case 0:

@@ -11,7 +11,7 @@
 #include <FL/Fl_Table.H>
 #include <FL/Fl_Text_Display.H>
 #include <logic/CRUDBusiness.h>
-#include "BusinessTableModel.h"
+#include "gui/BusinessGUI/BusinessTableModel.h"
 #include "Table.h"
 
 using namespace std;
@@ -30,6 +30,7 @@ protected:
     Fl_Button *btnChange;
     Fl_Button *btnDelete;
     Fl_Button *btnLoad;
+    Fl_Button *back;
     Fl_Box *purposeLabel;
 
 
@@ -56,11 +57,17 @@ public:
 
     static void loadEventHandler(Fl_Widget *widget, void *data); // abstraktno
 
+    Fl_Button *addBackButton();
+
     TableSelection getSelection();
+
+    T getSelectedEntity();
 
     CRUD<T> *getCrud() const; // abstraktno
 
     void reRender(); // abstraktno
+
+    Fl_Button *getBtnLoad() const;
 };
 
 

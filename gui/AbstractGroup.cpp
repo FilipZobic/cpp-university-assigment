@@ -8,7 +8,7 @@ using namespace std;
 template<typename T>
 AbstractGroup<T>::AbstractGroup(const char *string, const char *purpose, CRUD<T> *crud, AbstractTableModel<T> *tableModel, Fl_Window *parent)
 : Fl_Group(parent->x(), parent->y(), parent->w(), parent->h(), string), crud(crud){
-
+    this->begin();
     purposeLabel = new Fl_Box(20, 116, 220, 24, purpose);
 
     btnCreate = new Fl_Button(45, 150, 165, 50, "CREATE");
@@ -24,16 +24,16 @@ AbstractGroup<T>::AbstractGroup(const char *string, const char *purpose, CRUD<T>
 
     this->turnOffButtons();
 
-    this->tableModel = new BusinessTableModel(crud->getService()->getEntities());
+    this->tableModel = tableModel;
 
-    tableDisplay = new Table<Business*>(0, 215, 1100, 240, "", this->tableModel);
+    tableDisplay = new Table<T>(0, 215, 1100, 240, "", this->tableModel);
 
     //tableModel->updateTable();
     tableDisplay->col_header();
     tableDisplay->row_header();
     tableDisplay->callback(AbstractGroup::checkButtons, this);
 
-    // this->resizable();
+    this->show();
     this->end();
 }
 
@@ -127,4 +127,25 @@ TableSelection AbstractGroup<T>::getSelection() {
     return tableSelection;
 }
 
+template<typename T>
+Fl_Button *AbstractGroup<T>::getBtnLoad() const {
+    return btnLoad;
+}
+
+template<typename T>
+T AbstractGroup<T>::getSelectedEntity() {
+    TableSelection tableSelection = getSelection();
+    return tableModel->at(tableSelection.startRow);
+}
+
+template<typename T>
+Fl_Button *AbstractGroup<T>::addBackButton() {
+    this->begin();
+    this->back = new Fl_Button(5,5,90,40,"Back");
+    return this->back;
+    this->end();
+}
+
 template class AbstractGroup<Business*>;
+template class AbstractGroup<Department*>;
+template class AbstractGroup<Worker*>;

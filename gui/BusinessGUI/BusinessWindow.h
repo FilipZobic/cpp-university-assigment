@@ -5,19 +5,18 @@
 #ifndef CPP_UNIVERSITY_ASSIGMENT_BUSINESSWINDOW_H
 #define CPP_UNIVERSITY_ASSIGMENT_BUSINESSWINDOW_H
 
-#include "AbstractEntityWindow.h"
+#include "gui/AbstractEntityWindow.h"
 
 #include "BusinessGroup.h"
 
 class BusinessWindow : public AbstractEntityWindow<Business*>{
-public:
-    BusinessWindow(const char *title, AbstractGroup<Business*> *eventInvoker, Type type = New, Business *entity = nullptr);
-
 protected:
     Fl_Input *name;
     Fl_Int_Input *registrationNumber;
     Fl_Int_Input *vat;
 public:
+    BusinessWindow(const char *title, AbstractGroup<Business*> *eventInvoker, Type type = New, Business *entity = nullptr);
+
     void createEventHandler() override;
 
     void inputValidationCheck() override;

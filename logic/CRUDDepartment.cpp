@@ -17,9 +17,9 @@ void CRUDDepartment::replaceEntity(Department *entity) { // just replace with se
     bool isPartOfCurrentBus = false;
     for (Department* dep: *this->business->getDepartments()){
         isPartOfCurrentBus = dep->getId() == entity->getId();
-        break;
+        if (isPartOfCurrentBus) break;
     }
-    if (isPartOfCurrentBus) throw logic_error("That department does not belong in current business");
+    if (!isPartOfCurrentBus) throw logic_error("That department does not belong in current business");
     long index = service->findIndex(entity->getId());
     service->getEntities()->at(index)->setName(entity->getName());
     service->writeToFile();
@@ -44,8 +44,6 @@ void CRUDDepartment::removeEntity(const long depId) {
 
 //        //Write to file
         this->businessMultiService->writeToFile();
-//        this->service->writeToFile();
-//        this->workerService->writeToFile(); // maybe remove writeToFile from clearMemory
     } else {
         cout << "No element was removed because it doesn't exist" << endl;
     }
@@ -64,6 +62,10 @@ void CRUDDepartment::createEntity(Department *const department) {
 // Done
 void CRUDDepartment::setBusiness(Business *business) {
     this->business = business;
+}
+
+Business *CRUDDepartment::getBusiness() const {
+    return business;
 }
 
 // we can place this instead in crud worker

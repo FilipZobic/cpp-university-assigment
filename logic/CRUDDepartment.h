@@ -36,6 +36,8 @@ public:
 
     void setBusiness(Business *business);
 
+    Business *getBusiness() const;
+
 };
 
 

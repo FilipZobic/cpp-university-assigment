@@ -1,5 +1,5 @@
 #include "BusinessWindow.h"
-#include "MainWindow.h"
+#include "gui/MainWindow.h"
 
 BusinessWindow::BusinessWindow(const char *title, AbstractGroup<Business*> *eventInvoker,
                                AbstractEntityWindow<Business *>::Type type, Business *entity)
@@ -70,7 +70,7 @@ void BusinessWindow::replaceEventHandler() {
     newBusiness->setProgramId(this->entity->getProgramId());
 
     eventInvoker->getCrud()->replaceEntity(newBusiness);
-    eventInvoker->getCrud();
+    eventInvoker->reRender();
 
     delete this;
 }

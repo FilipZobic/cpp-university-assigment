@@ -3,7 +3,6 @@
 
 void BusinessGroup::create() {
     BusinessWindow *window = new BusinessWindow("New Business", this);
-    window->show();
 }
 
 void BusinessGroup::modify() {
@@ -11,8 +10,7 @@ void BusinessGroup::modify() {
     TableSelection region = this->getSelection();
     Business *oldBusiness = this->tableModel->at(region.startRow);
 
-    BusinessWindow *window = new BusinessWindow("New Business", this, BusinessWindow::Replace, oldBusiness);
-    window->show();
+    BusinessWindow *window = new BusinessWindow("Replace Business", this, BusinessWindow::Replace, oldBusiness);
 }
 
 BusinessGroup::BusinessGroup(const char *string,  const char *purpose, CRUD<Business *> *crud,

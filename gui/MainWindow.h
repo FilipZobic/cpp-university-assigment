@@ -8,9 +8,10 @@
 #include <FL/Fl_Text_Display.H>
 #include <logic/CRUDBusiness.h>
 #include <logic/CRUDWorker.h>
-#include "BusinessTableModel.h"
+#include "gui/BusinessGUI/BusinessTableModel.h"
 #include "Table.h"
-#include "BusinessGroup.h"
+#include "gui/BusinessGUI/BusinessGroup.h"
+#include "gui/DepartmentGUI/DepartmentGroup.h"
 
 class MainWindow : public Fl_Group {
 protected:
@@ -19,9 +20,16 @@ protected:
     CRUDWorker *crudWorker;
 
     BusinessGroup *businessGroup;
+    DepartmentGroup *departmentGroup = nullptr;
 public:
     MainWindow(const char *string, CRUDBusiness *crudBusiness,
                CRUDDepartment *crudDepartment, CRUDWorker *crudWorker);
+
+    static void loadBusiness(Fl_Widget *widget, void *data);
+    static void loadWorker(Fl_Widget *widget, void *data);
+
+    struct Event{Fl_Group *hide; Fl_Group *show;};
+    static void connectBackButton(Fl_Widget *widget, void *data);
 };
 
 

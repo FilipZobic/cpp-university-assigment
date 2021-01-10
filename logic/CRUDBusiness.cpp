@@ -65,9 +65,9 @@ void CRUDBusiness::removeEntity(const long id) {
 
     Business *business = index->second;
     crudDepartment->setBusiness(business);
-
-    for (Department *department : *business->getDepartments()) {
-        crudDepartment->removeEntity(department->getId());
+    vector<long> ids = business->departmentIds();
+    for (long id : ids) {
+        crudDepartment->removeEntity(id);
     }
 
     this->businessIdHashSet.erase(businessIdHashSet.find(registrationNumber));

@@ -1,9 +1,9 @@
 #ifndef CPP_UNIVERSITY_ASSIGMENT_BUSINESSGROUP_H
 #define CPP_UNIVERSITY_ASSIGMENT_BUSINESSGROUP_H
 
-#include "AbstractGroup.h"
+#include "gui/AbstractGroup.h"
 
-class BusinessGroup : AbstractGroup<Business*>{
+class BusinessGroup : public AbstractGroup<Business*>{
 public:
     BusinessGroup(const char *string, const char *purpose, CRUD<Business *> *crud,
                   AbstractTableModel<Business *> *tableModel, Fl_Window *parent);

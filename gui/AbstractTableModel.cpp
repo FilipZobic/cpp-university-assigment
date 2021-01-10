@@ -26,4 +26,6 @@ T AbstractTableModel<T>::at(size_t index) {
 }
 
 template class AbstractTableModel<Business*>;
+template class AbstractTableModel<Department*>;
+template class AbstractTableModel<Worker*>;
 

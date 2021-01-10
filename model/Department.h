@@ -14,8 +14,12 @@ private: //add name to department then fix service then parse ser then crude Par
     Worker* boss;
     vector<Worker*>* workers;
 public:
+    enum Type {Warehouseman, Clerk, Driver};
     Department();
     Department(long id);
+
+    Department(const string &name);
+
     Department(long id,vector<Worker *> *workers);
     Department(long id, Worker *boss,vector<Worker *> *workers);
     Department(long id, string name, Worker *boss,vector<Worker *>* workers);
@@ -45,11 +49,13 @@ public:
 
     void setWorkers(vector<Worker *> *workers);
 
-    static const string &getSep();
-
     void operator << (Worker *worker);
 
     int getNumberOfWorkers();
+
+    int getNumberOfSpecificWorker(Type type);
+
+    string getBossName();
 
 
 };

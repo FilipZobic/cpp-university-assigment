@@ -11,6 +11,13 @@ Department::Department(long id):id(id) {
     this->workers = new vector<Worker*>;
     this->boss = nullptr;
 }
+
+
+Department::Department(const string &name) : name(name) {
+    this->workers = new vector<Worker*>;
+    this->boss = nullptr;
+}
+
 Department::Department() {
     this->workers = new vector<Worker*>;
     this->boss = nullptr;
@@ -126,6 +133,33 @@ void Department::setName(const string &name) {
 int Department::getNumberOfWorkers() {
     return this->workers->size();
 }
+
+int Department::getNumberOfSpecificWorker(Department::Type type) {
+    int size = 0;
+    string toSearchFor = "";
+    if (type == Warehouseman) {
+        toSearchFor = "Warehouseman";
+    } else if (type == Clerk) {
+        toSearchFor = "Clerk";
+    } else if (type == Driver) {
+        toSearchFor = "Driver";
+    }
+
+    for (Worker *worker : *this->workers) {
+        if (worker->getType() == toSearchFor) size++;
+    }
+
+    return size;
+}
+
+string Department::getBossName() {
+    if (nullptr == this->boss){
+        return "No Boss";
+    }else {
+        return this->boss->getName();
+    }
+}
+
 
 
 // u servicu od departmenta proveravaj kada se worker deletuje to cu raditi tako sto ubacim jos jednu funkciju gde se poziva delete worker koja poziva check all departments for worker itd

@@ -75,3 +75,5 @@ void Table<T>::updateRows() {
 }
 
 template class Table<Business*>;
+template class Table<Department*>;
+template class Table<Worker*>;

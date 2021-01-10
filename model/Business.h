@@ -65,6 +65,10 @@ public:
     int getNumberOfDepartments();
 
     int getNumberOfWorkers();
+
+    vector<Department*>* getDepartmentsConst();
+
+    vector<long> departmentIds();
 };
 
 

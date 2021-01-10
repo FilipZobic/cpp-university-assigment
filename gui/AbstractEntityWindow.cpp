@@ -55,3 +55,5 @@ void AbstractEntityWindow<T>::create(Fl_Widget *widget, void *data) {
 }
 
 template class AbstractEntityWindow<Business*>;
+template class AbstractEntityWindow<Department*>;
+template class AbstractEntityWindow<Worker*>;

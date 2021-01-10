@@ -114,3 +114,17 @@ int Business::getNumberOfWorkers() {
     }
     return sum;
 }
+
+vector<Department *> *Business::getDepartmentsConst() {
+    return this->departments;
+}
+
+vector<long> Business::departmentIds() {
+    vector<long> ids;
+
+    for(Department *department : *this->departments){
+        ids.push_back(department->getId());
+    }
+
+    return ids;
+}
