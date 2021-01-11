@@ -9,7 +9,7 @@
 #include <logic/CRUDBusiness.h>
 #include <logic/CRUDWorker.h>
 #include "gui/BusinessGUI/BusinessTableModel.h"
-#include "Table.h"
+#include "gui/AbstractTable/Table.h"
 #include "gui/BusinessGUI/BusinessGroup.h"
 #include "gui/DepartmentGUI/DepartmentGroup.h"
 

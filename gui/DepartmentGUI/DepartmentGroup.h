@@ -10,6 +10,7 @@ public:
                     AbstractTableModel<Department *> *tableModel, Fl_Window *parent);
 
 protected:
+    NavigationDisplay<Business*> *display;
 public:
     void create() override;
 

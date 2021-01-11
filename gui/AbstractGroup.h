@@ -12,7 +12,9 @@
 #include <FL/Fl_Text_Display.H>
 #include <logic/CRUDBusiness.h>
 #include "gui/BusinessGUI/BusinessTableModel.h"
-#include "Table.h"
+#include "gui/AbstractTable/Table.h"
+#include "gui/AbstractDisplay/AbstractNavigationDisplayModel.h"
+#include "gui/AbstractDisplay/NavigationDisplay.h"
 
 using namespace std;
 
@@ -57,8 +59,6 @@ public:
 
     static void loadEventHandler(Fl_Widget *widget, void *data); // abstraktno
 
-    Fl_Button *addBackButton();
-
     TableSelection getSelection();
 
     T getSelectedEntity();
@@ -67,7 +67,10 @@ public:
 
     void reRender(); // abstraktno
 
+    Fl_Button *addBackButton();
+
     Fl_Button *getBtnLoad() const;
+
 };
 
 

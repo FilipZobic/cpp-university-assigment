@@ -19,6 +19,8 @@ AbstractGroup<T>::AbstractGroup(const char *string, const char *purpose, CRUD<T>
 
     btnDelete = new Fl_Button(395, 150, 165, 50,"DELETE");
     btnDelete->callback(AbstractGroup::deleteEventHandler, this);
+    btnDelete->color(FL_DARK_RED);
+    btnDelete->labelcolor(FL_WHITE);
 
     btnLoad = new Fl_Button(570, 150, 165, 50,"LOAD");
 
@@ -145,6 +147,7 @@ Fl_Button *AbstractGroup<T>::addBackButton() {
     return this->back;
     this->end();
 }
+
 
 template class AbstractGroup<Business*>;
 template class AbstractGroup<Department*>;

@@ -6,7 +6,7 @@
 #ifndef CPP_UNIVERSITY_ASSIGMENT_BUSINESSTABLEMODEL_H
 #define CPP_UNIVERSITY_ASSIGMENT_BUSINESSTABLEMODEL_H
 
-#include "gui/AbstractTableModel.h"
+#include "gui/AbstractTable/AbstractTableModel.h"
 
 using namespace std;
 

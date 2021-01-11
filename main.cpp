@@ -26,11 +26,12 @@ int main() {
     CRUDDepartment crudDepartment(&departmentService,&workerService,&businessService);
     CRUDBusiness crudBusiness(&businessService, &crudDepartment);
 
-    Fl_Window *window = new Fl_Window(1100, 458);
+    Fl_Window *window = new Fl_Window(300, 200,1100, 458);
 
     window->resizable();
 
     MainWindow mainWindow("Main window", &crudBusiness, &crudDepartment, &crudWorker);
+
 
     window->end();
     window->show();

@@ -17,12 +17,10 @@ AbstractEntityWindow<T>::AbstractEntityWindow(int w, int h, const char *title, A
     btnCancel->callback(AbstractEntityWindow<T>::cancel, this);
 
 
+    this->btnCreate = new Fl_Button(btn_create_x, btn_y, btnWith, btnHeight, "CREATE");
 
-    if (this->type == New) {
-        this->btnCreate = new Fl_Button(btn_create_x, btn_y, btnWith, btnHeight, "CREATE");
-    } else if (this->type == Replace) {
-        this->btnCreate = new Fl_Button(btn_create_x, btn_y, btnWith, btnHeight, "REPLACE");
-        //this->fillOutInputs();
+    if (this->type == Replace) {
+        this->btnCreate->label("REPLACE");
     }
 
     btnCreate->callback(AbstractEntityWindow<T>::create, this);

@@ -5,7 +5,7 @@
 #include "MainWindow.h"
 #include <FL/Fl_Table_Row.H>
 #include <gui/DepartmentGUI/DepartmentTableModel.h>
-#include "Table.h"
+#include "gui/AbstractTable/Table.h"
 #include "AbstractEntityWindow.h"
 #include "gui/BusinessGUI/BusinessWindow.h"
 

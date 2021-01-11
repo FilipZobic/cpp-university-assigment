@@ -4,11 +4,18 @@
 
 #include "DepartmentGroup.h"
 #include "DepartmentWindow.h"
+#include "BusinessDisplayModel.h"
 
 DepartmentGroup::DepartmentGroup(const char *string, const char *purpose, CRUD<Department *> *crud,
                                  AbstractTableModel<Department *> *tableModel, Fl_Window *parent) : AbstractGroup(
         string, purpose, crud, tableModel, parent) {
     this->begin();
+
+    CRUDDepartment *crudDepartment = (CRUDDepartment*)crud;
+    Business *business = crudDepartment->getBusiness();
+    AbstractNavigationDisplayModel<Business*> *displayModel = new BusinessDisplayModel(business, crudDepartment->getBusinessServiceVector());
+    display = new NavigationDisplay<Business*>(displayModel);
+
     this->end();
     this->show();
 }

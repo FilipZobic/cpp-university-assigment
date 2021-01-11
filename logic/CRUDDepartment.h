@@ -38,6 +38,10 @@ public:
 
     Business *getBusiness() const;
 
+    vector<Business*>* getBusinessServiceVector();
+
+
+
 };
 
 

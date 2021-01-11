@@ -68,4 +68,8 @@ Business *CRUDDepartment::getBusiness() const {
     return business;
 }
 
+vector<Business *> *CRUDDepartment::getBusinessServiceVector() {
+    return this->businessMultiService->getEntities();
+}
+
 // we can place this instead in crud worker

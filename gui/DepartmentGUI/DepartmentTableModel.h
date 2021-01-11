@@ -4,7 +4,7 @@
 
 #include <model/Department.h>
 
-#include <gui/AbstractTableModel.h>
+#include <gui/AbstractTable/AbstractTableModel.h>
 
 class DepartmentTableModel : public AbstractTableModel<Department*> {
 public:
