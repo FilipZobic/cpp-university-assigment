@@ -4,7 +4,8 @@
 Person::Person() {}
 
 Person::Person(const long &id, const string &name, const string &surname, const Date &birthday) : id(id), name(name),
-                                                                                surname(surname), birthday(birthday) {}
+                                                                                surname(surname), birthday(birthday) {
+}
 
 
 long Person::getId() const {

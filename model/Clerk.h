@@ -18,6 +18,10 @@ public:
     string Serialize() override;
 
     void Parse(vector<string> *parameters) override;
+
+    const string &getCashRegisterInfo() const;
+
+    void setCashRegisterInfo(const string &cashRegisterInfo);
 };
 
 

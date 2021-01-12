@@ -22,3 +22,11 @@ void Clerk::Parse(vector<string> *parameters) {
     this->cashRegisterInfo = parameters->at(0);
     parameters->erase(parameters->begin(),parameters->begin()+1);
 }
+
+const string &Clerk::getCashRegisterInfo() const {
+    return cashRegisterInfo;
+}
+
+void Clerk::setCashRegisterInfo(const string &cashRegisterInfo) {
+    Clerk::cashRegisterInfo = cashRegisterInfo;
+}

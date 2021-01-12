@@ -18,10 +18,11 @@ void AbstractNavigatorImplementation<T>::navigatorPreviousHandler(Fl_Widget *wid
 }
 
 template<typename T>
-void AbstractNavigatorImplementation<T>::connectButtons(NavigationDisplay<Business*> *display) {
+void AbstractNavigatorImplementation<T>::connectButtons(NavigationDisplay<T> *display) {
 
     display->getPrevBtn()->callback(this->navigatorPreviousHandler, this);
     display->getNextBtn()->callback(this->navigatorNextHandler, this);
 }
 
 template class AbstractNavigatorImplementation<Business*>;
+template class AbstractNavigatorImplementation<Department*>;

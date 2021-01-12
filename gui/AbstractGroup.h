@@ -41,9 +41,9 @@ public:
 
     AbstractGroup(const char *string, const char *purpose, CRUD<T> *crud, AbstractTableModel<T> *tableModel, Fl_Window *parent);
 
-    void turnOnButtons(SwitchType switchType = ALL); // abstraktno
+    virtual void turnOnButtons(SwitchType switchType = ALL); // abstraktno
 
-    void turnOffButtons(SwitchType switchType = ALL); // abstraktno
+    virtual void turnOffButtons(SwitchType switchType = ALL); // abstraktno
 
     void static checkButtons(Fl_Widget *widget, void *data); // abstraktno
 

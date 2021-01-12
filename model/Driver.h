@@ -13,9 +13,18 @@ public:
     Driver(const long &id, const string &name, const string &surname, const Date &birthday,
            double salary, const string &mobileNumber, const int &numTrafficInfractions,vector<string> &cat);
 
+    Driver(const long &id, const string &name, const string &surname, const Date &birthday,
+           double salary, const string &mobileNumber, int numTrafficInfractions);
+
     string Serialize() override;
 
     void Parse(vector<string> *parameters) override;
+
+    int getNumTrafficInfractions() const;
+
+    void setNumTrafficInfractions(int numTrafficInfractions);
+
+    string drivingCategoriesToString();
 };
 
 

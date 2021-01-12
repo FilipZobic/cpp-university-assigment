@@ -21,14 +21,7 @@ private:
     vector<struct Department *> *departments;
 public:
     Business();
-    /*
-     * Worker can't exist without department tied to one
-     * Department can't exist without business tied to one
-     * Business can exist on its own
-     *
-     *
-     *
-     * */
+
     Business(const string &name, long registrationNumber, long vat);
 
     string Serialize() override;

@@ -13,7 +13,7 @@ void CRUDWorker::removeEntity(const long id) {
     if (index!=-1){
         this->department->fireWorker(id);
 
-        this->deleteEntity(index);
+        this->deleteEntity(id); // clearMemory
         this->departmentService->writeToFile();
     } else {
         cout << "No element was removed because it doesn't exist" << endl;

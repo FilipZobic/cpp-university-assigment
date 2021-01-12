@@ -5,6 +5,7 @@
 #include "MainWindow.h"
 #include <FL/Fl_Table_Row.H>
 #include <gui/DepartmentGUI/DepartmentTableModel.h>
+#include <gui/WorkerGUI/WorkerTableModel.h>
 #include "gui/AbstractTable/Table.h"
 #include "AbstractEntityWindow.h"
 #include "gui/BusinessGUI/BusinessWindow.h"
@@ -45,12 +46,39 @@ void MainWindow::loadBusiness(Fl_Widget *widget, void *data) {
     event->hide = mainWindow->departmentGroup;
     backBtn->callback(MainWindow::connectBackButton, event);
 
+    mainWindow->departmentGroup->getBtnLoad()->callback(MainWindow::loadWorker, mainWindow);
+
     mainWindow->departmentGroup->show();
     mainWindow->end();
 }
 
 void MainWindow::loadWorker(Fl_Widget *widget, void *data) {
+    MainWindow *mainWindow = (MainWindow*)data;
+    mainWindow->departmentGroup->hide();
 
+    Department *department = mainWindow->departmentGroup->getSelectedEntity();
+
+    mainWindow->crudWorker->setDepartment(department);
+
+    if (mainWindow->workerGroup != nullptr) {
+        delete mainWindow->workerGroup;
+    }
+
+    CRUDDepartment *crudDepartment = (CRUDDepartment*)mainWindow->departmentGroup->getCrud();
+
+    AbstractTableModel<Worker*> *model = new WorkerTableModel(mainWindow->crudWorker->getDepartment()->getWorkers());
+    mainWindow->begin();
+    mainWindow->workerGroup = new WorkerGroup("Worker Window", "Department Worker View:", mainWindow->crudWorker, model, (Fl_Window*) mainWindow, crudDepartment->getBusiness()->getDepartmentsConst());
+    Fl_Button *backBtn = mainWindow->workerGroup->addBackButton();
+    Event *event = new Event;
+    event->show = mainWindow->departmentGroup;
+    event->hide = mainWindow->workerGroup;
+    backBtn->callback(MainWindow::connectBackButton, event);
+
+    //mainWindow->departmentGroup->getBtnLoad()->callback(MainWindow::loadWorker, mainWindow);
+
+    mainWindow->workerGroup->show();
+    mainWindow->end();
 }
 
 void MainWindow::connectBackButton(Fl_Widget *widget, void *data) {

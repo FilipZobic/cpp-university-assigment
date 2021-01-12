@@ -61,6 +61,7 @@ void Worker::checkSalary() const{
 Worker::Worker():Person() {}
 
 void Worker::addOrReplaceAnnualLeave(Date &dateStart,Date &dateEnd) const {
+    // prekopiraj vrednosti sa setterima i getterima
     this->annualLeave->setCurrentDays(dateStart,dateEnd);
 };
 

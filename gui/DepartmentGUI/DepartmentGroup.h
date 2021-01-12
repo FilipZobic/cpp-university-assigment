@@ -18,8 +18,7 @@ public:
 
     void updateCrudAndTableModel() override;
 
-protected:
-    NavigationDisplay<Business*> *display;
+
 public:
     void create() override;
 

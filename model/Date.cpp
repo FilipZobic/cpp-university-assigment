@@ -80,19 +80,19 @@ bool Date::isInputValid(const int &day, const int &month, const int &year) {
 
     if (day<=0||month<=0||year<=0)
     {
-        throw std::invalid_argument("Values can't be =< 0");
+        throw std::logic_error("Values can't be =< 0");
     }
 
     if (year < minYear) {
-        throw std::invalid_argument("Year can't be lower then 1900");
+        throw std::logic_error("Year can't be lower then 1900");
     }
 
     if (month>12) {
-        throw std::invalid_argument("Month can have maximum value of 12");
+        throw std::logic_error("Month can have maximum value of 12");
     }
 
     if(daysInMonth[month-1]<day) {
-        throw std::invalid_argument("Number of days in specific month too high");
+        throw std::logic_error("Number of days in specific month too high");
     }
 
     return true; // maybe remove errors and just return true or false

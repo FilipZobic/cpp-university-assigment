@@ -6,12 +6,14 @@
 
 template <typename T>
 class AbstractNavigatorImplementation {
+protected:
+    NavigationDisplay<T> *display;
 public:
     AbstractNavigatorImplementation();
 
     static void navigatorNextHandler(Fl_Widget *widget, void* data);
     static void navigatorPreviousHandler(Fl_Widget *widget, void* data);
-    void connectButtons(NavigationDisplay<Business*> *display);
+    void connectButtons(NavigationDisplay<T> *display);
     virtual void navigatorNext() = 0;
     virtual void navigatorPrevious() = 0;
     virtual void createNavigator() = 0;

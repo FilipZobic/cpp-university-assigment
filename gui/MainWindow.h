@@ -8,6 +8,7 @@
 #include <FL/Fl_Text_Display.H>
 #include <logic/CRUDBusiness.h>
 #include <logic/CRUDWorker.h>
+#include <gui/WorkerGUI/WorkerGroup.h>
 #include "gui/BusinessGUI/BusinessTableModel.h"
 #include "gui/AbstractTable/Table.h"
 #include "gui/BusinessGUI/BusinessGroup.h"
@@ -21,6 +22,7 @@ protected:
 
     BusinessGroup *businessGroup;
     DepartmentGroup *departmentGroup = nullptr;
+    WorkerGroup *workerGroup = nullptr;
 public:
     MainWindow(const char *string, CRUDBusiness *crudBusiness,
                CRUDDepartment *crudDepartment, CRUDWorker *crudWorker);
