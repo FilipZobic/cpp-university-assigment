@@ -20,7 +20,6 @@ public:
     void replaceEntity(Business *newBusiness) override;
 
     void removeEntity(const long id) override;
-private:
 };
 
 #endif //CPP_UNIVERSITY_ASSIGMENT_CRUDBUSINESS_H

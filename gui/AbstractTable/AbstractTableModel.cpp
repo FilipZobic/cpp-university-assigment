@@ -25,6 +25,16 @@ T AbstractTableModel<T>::at(size_t index) {
     return this->entities->at(index);
 }
 
+template<typename T>
+vector<T> *AbstractTableModel<T>::getEntities() const {
+    return entities;
+}
+
+template<typename T>
+void AbstractTableModel<T>::setEntities(vector<T> *entities) {
+    AbstractTableModel::entities = entities;
+}
+
 template class AbstractTableModel<Business*>;
 template class AbstractTableModel<Department*>;
 template class AbstractTableModel<Worker*>;

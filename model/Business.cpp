@@ -128,3 +128,11 @@ vector<long> Business::departmentIds() {
 
     return ids;
 }
+
+int Business::getNumberOfSpecificWorker(Department::Type type) {
+    int sum = 0;
+    for (Department *dep : *departments) {
+        sum += dep->getNumberOfSpecificWorker(type);
+    }
+    return sum;
+}

@@ -27,24 +27,30 @@ int AbstractNavigationDisplayModel<T>::size() {
 
 template<typename T>
 bool AbstractNavigationDisplayModel<T>::canIncreaseIndex() {
-    return this->currentIndex + 1 < this->size();
+    return this->currentIndex + 1 != this->size();
 }
 
 template<typename T>
 bool AbstractNavigationDisplayModel<T>::canDecreaseIndex() {
-    return this->currentIndex - 1 != 0;
+    return this->currentIndex - 1 != -1;
 }
 
+#include <iostream>
+
 template<typename T>
-void AbstractNavigationDisplayModel<T>::nextEntity() {
+T AbstractNavigationDisplayModel<T>::nextEntity() {
+    cout << currentIndex << endl;
     this->currentIndex += 1;
     this->currentEntity = this->entities->at(this->currentIndex);
+    return this->currentEntity;
 }
 
 template<typename T>
-void AbstractNavigationDisplayModel<T>::prevEntity() {
+T AbstractNavigationDisplayModel<T>::prevEntity() {
+    cout << currentIndex << endl;
     this->currentIndex -= 1;
     this->currentEntity = this->entities->at(this->currentIndex);
+    return this->currentEntity;
 }
 
 

@@ -69,6 +69,8 @@ public:
     vector<Department*>* getDepartmentsConst();
 
     vector<long> departmentIds();
+
+    int getNumberOfSpecificWorker(Department::Type type);
 };
 
 

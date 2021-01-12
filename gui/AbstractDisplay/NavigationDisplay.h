@@ -12,6 +12,7 @@
 #include <vector>
 #include "AbstractNavigationDisplayModel.h"
 #include <Fl/Fl_Output.H>
+#include <gui/AbstractGroup.h>
 
 using namespace std;
 
@@ -28,7 +29,14 @@ protected:
 public:
     NavigationDisplay(AbstractNavigationDisplayModel<T> *model);
     void *createDetailsDisplay();
+    void checkButtons();
+    void reRender();
+    T nextEntity();
+    T prevEntity();
 
+    Fl_Button *getPrevBtn() const;
+
+    Fl_Button *getNextBtn() const;
 
 };
 

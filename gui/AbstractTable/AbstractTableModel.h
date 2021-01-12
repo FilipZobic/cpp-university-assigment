@@ -28,6 +28,10 @@ public:
     int getNumberOfRows();
     int getNumberOfColumns();
     T at(size_t index);
+
+    vector<T> *getEntities() const;
+
+    void setEntities(vector<T> *entities);
 };
 
 

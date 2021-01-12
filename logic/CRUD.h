@@ -4,27 +4,24 @@
 #include <util/Util.h>
 #include "../service/Service.h"
 
+using namespace cuaUtil;
+
 template <typename T>
 class CRUD {
 protected:
     Service<T> *const service; //saljemo worker service ovde
-    void deleteEntity(const long index) const;/*3*/
+    void deleteEntity(const long index) const;
     void replace(const long index,T entity);
-    void addEntity(const T entity) const;/*1*/
+    void addEntity(const T entity) const;
 public:
     CRUD<T>(Service<T> *service);
 
     virtual void createEntity(const T entity) = 0;
-    virtual void replaceEntity(T entity) = 0;/*2*/
-    virtual void removeEntity(const long id) = 0;/*3*/
-//    virtual long findIndex(const long &id) = 0;/*2*//*3*/
+    virtual void replaceEntity(T entity) = 0;
+    virtual void removeEntity(const long id) = 0;
     void readEntities();
-//    virtual long findIndex(long id) const = 0;
 
     Service<T> *const getService() const;
-
-
-
 };
 
 /*

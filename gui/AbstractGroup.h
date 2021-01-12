@@ -71,6 +71,10 @@ public:
 
     Fl_Button *getBtnLoad() const;
 
+    Table<T> *getTableDisplay() const;
+
+    void setTableDisplay(Table<T> *tableDisplay);
+
 };
 
 

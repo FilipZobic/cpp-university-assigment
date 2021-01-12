@@ -21,14 +21,16 @@ public:
     AbstractNavigationDisplayModel(T currentEntity, vector<T> *entities);
 
     virtual Fl_Group *createDetailsDisplay() = 0; // returns a group with more outputs
+    virtual void updateDetailDisplay() = 0; // returns a group with more outputs
     virtual std::string getMainDisplayText() = 0;
     std::string getQueueDisplayText();
     int getCurrentIndex();
     int size();
     bool canIncreaseIndex();
     bool canDecreaseIndex();
-    void nextEntity();
-    void prevEntity();
+    T nextEntity();
+    T prevEntity();
+
 
 
 };

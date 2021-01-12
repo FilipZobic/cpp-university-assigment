@@ -148,6 +148,16 @@ Fl_Button *AbstractGroup<T>::addBackButton() {
     this->end();
 }
 
+template<typename T>
+Table<T> *AbstractGroup<T>::getTableDisplay() const {
+    return tableDisplay;
+}
+
+template<typename T>
+void AbstractGroup<T>::setTableDisplay(Table<T> *tableDisplay) {
+    AbstractGroup::tableDisplay = tableDisplay;
+}
+
 
 template class AbstractGroup<Business*>;
 template class AbstractGroup<Department*>;
