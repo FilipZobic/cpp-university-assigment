@@ -104,7 +104,7 @@ Worker *Department::getBoss() const {
 }
 
 void Department::setBoss(Worker *boss) {
-    Department::boss = boss;
+    this->boss = boss;
 }
 
 vector<Worker *> *Department::getWorkers() const {
@@ -156,8 +156,16 @@ string Department::getBossName() {
     if (nullptr == this->boss){
         return "No Boss";
     }else {
-        return this->boss->getName();
+        return this->boss->getFullName();
     }
+}
+
+double Department::getSpending() {
+    double sum = 0;
+    for (Worker *worker : *this->workers){
+        sum += worker->getSalary();
+    }
+    return sum;
 }
 
 

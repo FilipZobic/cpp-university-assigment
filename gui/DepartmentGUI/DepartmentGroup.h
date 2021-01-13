@@ -18,6 +18,7 @@ public:
 
     void updateCrudAndTableModel() override;
 
+    void reRender() override;
 
 public:
     void create() override;

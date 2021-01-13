@@ -31,6 +31,10 @@ public:
     void turnOffButtons(SwitchType switchType) override;
 
     static void annualLeaveEventHandler(Fl_Widget *widget, void *data);
+
+    void reRender() override;
+
+    static void assignBossHandler(Fl_Widget *widget, void* data);
 };
 
 #endif

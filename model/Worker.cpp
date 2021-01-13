@@ -90,3 +90,7 @@ void Worker::copyAnnualLeave(AnnualLeave *annualLeave) {
     this->annualLeave = new AnnualLeave(annualLeave);
 }
 
+string Worker::getDisplayNumber() {
+
+}
+

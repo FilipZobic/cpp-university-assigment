@@ -24,5 +24,15 @@ void AbstractNavigatorImplementation<T>::connectButtons(NavigationDisplay<T> *di
     display->getNextBtn()->callback(this->navigatorNextHandler, this);
 }
 
+template<typename T>
+NavigationDisplay<T> *AbstractNavigatorImplementation<T>::getDisplay() const {
+    return display;
+}
+
+template<typename T>
+void AbstractNavigatorImplementation<T>::setDisplay(NavigationDisplay<T> *display) {
+    AbstractNavigatorImplementation::display = display;
+}
+
 template class AbstractNavigatorImplementation<Business*>;
 template class AbstractNavigatorImplementation<Department*>;

@@ -155,7 +155,7 @@ void WorkerWindow::fillOutInputs() {
 
     this->name->value(entity->getName().c_str());
     this->surname->value(entity->getSurname().c_str());
-    this->salary->value(to_string(entity->getSalary()).c_str());
+    this->salary->value(cuaUtil::roundDouble(entity->getSalary()).c_str());
     this->birthDay->value(entity->getBirthday().toString().c_str());
     this->phoneNumber->value(entity->getMobileNumber().c_str());
 

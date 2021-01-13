@@ -120,6 +120,7 @@ template<typename T>
 void AbstractGroup<T>::reRender() {
     this->tableDisplay->updateRows();
     this->tableDisplay->redraw();
+    this->redraw();
 }
 
 template<typename T>

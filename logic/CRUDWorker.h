@@ -28,7 +28,7 @@ public:
 
     void setDepartment(Department *department);
 
-    void setBoss(Department *department, Worker* boss);
+    void setBoss(Worker* boss);
 };
 
 

@@ -64,6 +64,8 @@ public:
     vector<long> departmentIds();
 
     int getNumberOfSpecificWorker(Department::Type type);
+
+    double calculateSpending() const;
 };
 
 

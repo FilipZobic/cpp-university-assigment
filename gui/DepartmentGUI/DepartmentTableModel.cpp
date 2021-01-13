@@ -1,10 +1,7 @@
-//
-// Created by filipz on 1/10/21.
-//
-
+#include "util/Util.h"
 #include "DepartmentTableModel.h"
 
-DepartmentTableModel::DepartmentTableModel(vector<Department*> *entities) : AbstractTableModel(6,
+DepartmentTableModel::DepartmentTableModel(vector<Department*> *entities) : AbstractTableModel(7,
                                                                                                     entities) {}
 
 string DepartmentTableModel::getColumnHeader(int y) {
@@ -21,6 +18,8 @@ string DepartmentTableModel::getColumnHeader(int y) {
             return "Nu. Clerks";
         case 5:
             return "Nu. Drivers";
+        case 6:
+            return "Spending";
         default:
             throw logic_error("Wrong value passed");
     }
@@ -41,6 +40,8 @@ string DepartmentTableModel::getCellValue(int x, int y) {
             return to_string(department->getNumberOfSpecificWorker(Department::Clerk));
         case 5:
             return to_string(department->getNumberOfSpecificWorker(Department::Driver));
+        case 6:
+            return cuaUtil::roundDouble(department->getSpending());
         default:
             throw logic_error("Wrong value passed");
     }

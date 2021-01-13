@@ -136,3 +136,11 @@ int Business::getNumberOfSpecificWorker(Department::Type type) {
     }
     return sum;
 }
+
+double Business::calculateSpending() const {
+    double sum = 0;
+    for (Department *department : *this->departments) {
+        sum += department->getSpending();
+    }
+    return sum;
+}

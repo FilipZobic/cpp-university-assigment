@@ -57,5 +57,9 @@ void Person::Parse(vector<string> *parameters) {
     parameters->erase(parameters->begin(),parameters->cbegin()+4);
 }
 
+string Person::getFullName() {
+    return this->name + " " + this->surname;
+}
+
 
 

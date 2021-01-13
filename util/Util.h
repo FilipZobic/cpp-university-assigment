@@ -1,6 +1,6 @@
 #ifndef CPP_UNIVERSITY_ASSIGMENT_UTIL_H
 #define CPP_UNIVERSITY_ASSIGMENT_UTIL_H
-
+#include <regex>
 #include <stdexcept>
 #include "string"
 #include "vector"
@@ -35,7 +35,7 @@ namespace cuaUtil {
         }
     }
 
-
+    string roundDouble(double number, std::size_t pos = 2);
 
 }
 

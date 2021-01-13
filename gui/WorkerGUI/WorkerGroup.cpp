@@ -17,6 +17,7 @@ WorkerGroup::WorkerGroup(const char *string, const char *purpose, CRUD<Worker *>
     this->annualLeaveBtn->callback(WorkerGroup::annualLeaveEventHandler,this);
     assignBoss = new Fl_Button (920, 150, 165, 50);
     assignBoss->copy_label("SET BOSS");
+    assignBoss->callback(WorkerGroup::assignBossHandler, this);
     annualLeaveBtn->copy_label("ANNUAL LEAVE");
     CRUDWorker *crudWorker = (CRUDWorker*)crud;
     Department *department = crudWorker->getDepartment();
@@ -94,5 +95,16 @@ void WorkerGroup::annualLeaveEventHandler(Fl_Widget *widget, void *data) {
     AnnualLeaveWindow *window = new AnnualLeaveWindow("Add Annual Leave", workerWindow, WorkerWindow::New, oldWorker);
 }
 
+void WorkerGroup::reRender() {
+    AbstractGroup::reRender();
+    this->display->reRender();
+}
 
-static void annualLeaveEventHandler(Fl_Widget *widget, void *data);
+void WorkerGroup::assignBossHandler(Fl_Widget *widget, void *data) {
+    WorkerGroup *workerWindow = (WorkerGroup*)data;
+    TableSelection region = workerWindow->getSelection();
+    Worker *worker = workerWindow->tableModel->at(region.startRow);
+    CRUDWorker *crudWorker = (CRUDWorker*)workerWindow->crud;
+    crudWorker->setBoss(worker);
+    workerWindow->reRender();
+}

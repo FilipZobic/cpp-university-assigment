@@ -13,9 +13,9 @@ protected:
     Fl_Output *a1;
     Fl_Output *a2;
     Fl_Output *a3;
-    Fl_Output *a4;
     Fl_Output *a5;
     Fl_Output *a6;
+    Fl_Output *a7;
 public:
     BusinessDisplayModel(Business *currentEntity, vector<Business*> *entities);
 

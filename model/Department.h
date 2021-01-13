@@ -57,6 +57,7 @@ public:
 
     string getBossName();
 
+    double getSpending();
 
 };
 

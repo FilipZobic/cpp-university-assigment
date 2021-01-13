@@ -52,6 +52,8 @@ public:
 
     void copyAnnualLeave(AnnualLeave *annualLeave);
 
+    string getDisplayNumber();
+
 };
 
 

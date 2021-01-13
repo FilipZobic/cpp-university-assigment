@@ -40,6 +40,8 @@ public:
 
     virtual void Parse(vector<string> *parameters) override = 0;
 
+    string getFullName();
+
 };
 
 

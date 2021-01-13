@@ -65,7 +65,7 @@ public:
 
     CRUD<T> *getCrud() const; // abstraktno
 
-    void reRender(); // abstraktno
+    virtual void reRender(); // abstraktno
 
     Fl_Button *addBackButton();
 

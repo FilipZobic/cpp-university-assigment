@@ -17,6 +17,22 @@ void cuaUtil::parseStringIntoVector(string &target, vector<string> &vectorString
     } while (true);
 }
 
+string cuaUtil::roundDouble(double number, std::size_t pos) {
+    string roundDouble(double number, std::size_t pos = 2);
+        string toReturn = to_string(number);
+        string patternText = "\\-{0,1}[0-9]*\\.{1}[0-9]{" + to_string(pos) + "}";
+        regex pattern(patternText);
+
+        for(std::sregex_iterator i = std::sregex_iterator(toReturn.begin(), toReturn.end(), pattern);
+            i != std::sregex_iterator();
+            ++i )
+        {
+            std::smatch m = *i;
+            return m.str();
+        }
+
+}
+
 
 
 //template cuaUtil::findIndex<Worker*>;

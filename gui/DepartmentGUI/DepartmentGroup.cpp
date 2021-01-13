@@ -63,3 +63,8 @@ void DepartmentGroup::createNavigator(){
 void DepartmentGroup::updateCrudAndTableModel() {
 
 }
+
+void DepartmentGroup::reRender() {
+    AbstractGroup::reRender();
+    this->display->reRender();
+}
