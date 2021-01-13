@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <vector>
 #include "../util/Util.h"
+#include <regex>
 
 Date::Date(){};
 Date::Date(int const day,int const month,int const year){
@@ -126,3 +127,21 @@ long Date::getSumOfDays(int const start) {
 
     return daysSum;
 };
+
+bool Date::patternCheckDate(string date) {
+    if (date.size() > 10 || date.size() < 8){
+        return true;
+    }
+
+    if (!regex_match(date,regex("^[0-9]{1,2}[/][0-9]{1,2}[/][0-9]{4}$"))){
+        return true;
+    }
+
+    return false;
+}
+
+Date::Date(const Date &date) {
+    this->day = date.getDay();
+    this->month = date.getMonth();
+    this->year = date.getYear();
+}

@@ -13,6 +13,8 @@ private:
     Date start;
     Date end;
 public:
+
+    enum LeaveDetails{Start, End};
     /*
      * start must be higher then end
      * when setting values always call getSubtraction
@@ -33,6 +35,21 @@ public:
 
     void Parse(string &parameters) override;
 
+    const Date &getStart() const;
+
+    void setStart(const Date &start);
+
+    const Date &getAnEnd() const;
+
+    void setAnEnd(const Date &anEnd);
+
+    AnnualLeave(Date &start, Date &anEnd);
+
+    AnnualLeave();
+
+    int getCurrentDays() const;
+
+    AnnualLeave(AnnualLeave *annualLeave);
 };
 
 

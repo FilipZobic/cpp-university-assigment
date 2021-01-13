@@ -11,6 +11,7 @@ class Date : public CsvFormatter<string&>{
 public:
     Date();
     Date(int const day,int const month,int const year);
+    Date(const Date &date);
     ~Date();
 
     int getDay() const;
@@ -26,6 +27,9 @@ public:
     void Parse(string &dateString) override;
 
     long getSumOfDays(int const start = minYear);
+
+    static bool patternCheckDate(string);
+
 protected:
     bool isInputValid(const int &day, const int &month, const int &year);
 

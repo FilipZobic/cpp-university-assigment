@@ -39,6 +39,7 @@ void DepartmentGroup::navigatorNext() {
 
     crudDepartment->setBusiness(business);
     this->tableDisplay->model->setEntities(business->getDepartmentsConst());
+    this->turnOffButtons(ALL);
 
     this->reRender();
 }
@@ -50,6 +51,7 @@ void DepartmentGroup::navigatorPrevious() {
 
     crudDepartment->setBusiness(business);
     this->tableDisplay->model->setEntities(business->getDepartmentsConst());
+    this->turnOffButtons(ALL);
     this->reRender();
 }
 

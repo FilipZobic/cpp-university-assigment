@@ -40,8 +40,6 @@ public:
 
     string getWorkerType();
 
-    bool patternCheckDate(); // logic for months years and days is in model i think
-
     bool patternCheckDrivingLicenses();
 
     bool patternPhoneNumberCheck();

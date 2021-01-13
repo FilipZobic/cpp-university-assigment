@@ -29,6 +29,8 @@ public:
     void turnOnButtons(SwitchType switchType) override;
 
     void turnOffButtons(SwitchType switchType) override;
+
+    static void annualLeaveEventHandler(Fl_Widget *widget, void *data);
 };
 
 #endif

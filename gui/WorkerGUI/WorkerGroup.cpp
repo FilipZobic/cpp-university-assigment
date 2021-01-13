@@ -2,6 +2,7 @@
 #include "logic/CRUDWorker.h"
 #include "DepartmentDisplayModel.h"
 #include "WorkerWindow.h"
+#include "AnnualLeaveWindow.h"
 
 WorkerGroup::WorkerGroup(const char *string, const char *purpose, CRUD<Worker *> *crud,
                          AbstractTableModel<Worker *> *tableModel, Fl_Window *parent, vector<Department*>* businessDepartments) : AbstractGroup(string, purpose,
@@ -13,6 +14,7 @@ WorkerGroup::WorkerGroup(const char *string, const char *purpose, CRUD<Worker *>
     this->btnCreate->copy_label("HIRE");
     // add event here for card
     this->annualLeaveBtn = new Fl_Button(745, 150, 165, 50);
+    this->annualLeaveBtn->callback(WorkerGroup::annualLeaveEventHandler,this);
     assignBoss = new Fl_Button (920, 150, 165, 50);
     assignBoss->copy_label("SET BOSS");
     annualLeaveBtn->copy_label("ANNUAL LEAVE");
@@ -21,6 +23,8 @@ WorkerGroup::WorkerGroup(const char *string, const char *purpose, CRUD<Worker *>
     AbstractNavigationDisplayModel<Department*> *displayModel = new DepartmentDisplayModel(department, businessDepartments);
     display = new NavigationDisplay<Department*>(displayModel);
     this->connectButtons(display);
+
+    this->turnOffButtons(ALL);
 
     this->end();
     this->show();
@@ -46,6 +50,7 @@ void WorkerGroup::navigatorNext() {
 
     crudWorker->setDepartment(department);
     this->tableDisplay->model->setEntities(department->getWorkers());
+    this->turnOffButtons(ALL);
     this->reRender();
 }
 
@@ -56,6 +61,7 @@ void WorkerGroup::navigatorPrevious() {
 
     crudWorker->setDepartment(department);
     this->tableDisplay->model->setEntities(department->getWorkers());
+    this->turnOffButtons(ALL);
     this->reRender();
 }
 
@@ -80,3 +86,13 @@ void WorkerGroup::turnOffButtons(AbstractGroup<Worker *>::SwitchType switchType)
     this->btnLoad->deactivate();
     this->assignBoss->deactivate();
 }
+
+void WorkerGroup::annualLeaveEventHandler(Fl_Widget *widget, void *data) {
+    WorkerGroup *workerWindow = (WorkerGroup*)data;
+    TableSelection region = workerWindow->getSelection();
+    Worker *oldWorker = workerWindow->tableModel->at(region.startRow);
+    AnnualLeaveWindow *window = new AnnualLeaveWindow("Add Annual Leave", workerWindow, WorkerWindow::New, oldWorker);
+}
+
+
+static void annualLeaveEventHandler(Fl_Widget *widget, void *data);

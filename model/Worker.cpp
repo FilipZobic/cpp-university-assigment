@@ -63,6 +63,30 @@ Worker::Worker():Person() {}
 void Worker::addOrReplaceAnnualLeave(Date &dateStart,Date &dateEnd) const {
     // prekopiraj vrednosti sa setterima i getterima
     this->annualLeave->setCurrentDays(dateStart,dateEnd);
+}
+
+AnnualLeave *Worker::getAnnualLeave() const {
+    return annualLeave;
+}
+
+void Worker::setAnnualLeave(AnnualLeave *annualLeave) {
+    delete this->annualLeave;
+    this->annualLeave = annualLeave;
+}
+
+string Worker::getAnnualLeaveValue(AnnualLeave::LeaveDetails leaveDetails) {
+    if (annualLeave == nullptr || annualLeave->getCurrentDays() == 0){
+        return "";
+    }
+
+    if (leaveDetails == AnnualLeave::Start){
+        return this->annualLeave->getStart().toString();
+    }else{
+        return  this->annualLeave->getAnEnd().toString();
+    }
 };
 
+void Worker::copyAnnualLeave(AnnualLeave *annualLeave) {
+    this->annualLeave = new AnnualLeave(annualLeave);
+}
 

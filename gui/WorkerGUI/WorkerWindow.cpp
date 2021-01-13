@@ -78,7 +78,7 @@ void WorkerWindow::inputValidationCheck() {
         throw logic_error("Number min 7 max 15 numbers can also have leading +");
     }
 
-    if (this->patternCheckDate()){
+    if (Date::patternCheckDate(this->birthDay->value())){
         throw logic_error("Date is invalid use: dd/mm/yyyy");
     }
     if (type == "Warehouseman"){
@@ -106,6 +106,9 @@ void WorkerWindow::replaceEventHandler() {
 
     Worker *worker = newEntity();
     worker->setId(this->entity->getId());
+
+    worker->copyAnnualLeave(this->entity->getAnnualLeave());
+
     eventInvoker->getCrud()->replaceEntity(worker);
     eventInvoker->reRender();
     delete this;
@@ -203,21 +206,6 @@ void WorkerWindow::checkWorkerType(Fl_Widget *widget, void *data) {
 // ovo ide u crud worker
 string WorkerWindow::getWorkerType() {
     return this->workerType->value();
-}
-
-#include <iostream>
-
-bool WorkerWindow::patternCheckDate() {
-    string birthDay = this->birthDay->value();
-    if (birthDay.size() > 10 || birthDay.size() < 8){
-        return true;
-    }
-
-   if (!regex_match(birthDay,regex("^[0-9]{1,2}[/][0-9]{1,2}[/][0-9]{4}$"))){
-       return true;
-   }
-
-    return false;
 }
 
 bool WorkerWindow::patternCheckDrivingLicenses() {

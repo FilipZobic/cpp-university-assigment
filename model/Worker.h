@@ -43,6 +43,15 @@ public:
     void checkSalary() const;
 
     void addOrReplaceAnnualLeave(Date &dateStart,Date &dateEnd) const;
+
+    AnnualLeave *getAnnualLeave() const;
+
+    void setAnnualLeave(AnnualLeave *annualLeave);
+
+    string getAnnualLeaveValue(AnnualLeave::LeaveDetails leaveDetails);
+
+    void copyAnnualLeave(AnnualLeave *annualLeave);
+
 };
 
 

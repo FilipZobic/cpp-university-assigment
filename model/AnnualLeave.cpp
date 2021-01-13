@@ -44,3 +44,37 @@ void AnnualLeave::setCurrentDays(Date &start, Date &end) {
     this->end = end;
     this->currentDays = subtraction;
 }
+
+const Date &AnnualLeave::getStart() const {
+    return start;
+}
+
+void AnnualLeave::setStart(const Date &start) {
+    AnnualLeave::start = start;
+}
+
+const Date &AnnualLeave::getAnEnd() const {
+    return end;
+}
+
+void AnnualLeave::setAnEnd(const Date &anEnd) {
+    end = anEnd;
+}
+
+AnnualLeave::AnnualLeave(Date &start,Date &anEnd) : start(start), end(anEnd) {
+    this->setCurrentDays(start, anEnd);
+}
+
+AnnualLeave::AnnualLeave() {
+    currentDays = 0;
+}
+
+int AnnualLeave::getCurrentDays() const {
+    return currentDays;
+}
+
+AnnualLeave::AnnualLeave(AnnualLeave *annualLeave) {
+    this->start = Date(annualLeave->getStart());
+    this->end = Date(annualLeave->getAnEnd());
+    this->currentDays = annualLeave->getCurrentDays();
+}
