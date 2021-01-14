@@ -51,12 +51,19 @@ void BusinessWindow::inputValidationCheck() {
         throw logic_error("Registration number can't be equal or lower then 0");
     }
 
-    if (stof(vatStr) <= 0){
-        throw logic_error("VAT can't be equal or lower then 0");
+    regNuStr = to_string(regNu);
+    if (regNuStr.size() != 8){
+        throw logic_error("Registration number must be exactly 8 numbers no leading 0");
     }
 
-    if (to_string(regNu).size() != 8){
-        throw logic_error("Registration number must be exactly 8 numbers no leading 0");
+    long vatNu = stol(vatStr);
+    vatStr = to_string(vatNu);
+    if (vatStr.size() != 9){
+        throw logic_error("VAT must be exactly 9 digits");
+    }
+
+    if (vatStr.find(regNuStr) == std::string::npos){
+        throw logic_error("First 8 digits of VAT must be the same as registration number");
     }
 
     string address = this->address->value();
