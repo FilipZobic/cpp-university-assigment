@@ -13,8 +13,6 @@ private:
 public:
     CRUDBusiness(Service<Business *> *service, CRUDDepartment *crudDepartment);
 
-    CRUDBusiness(Service<Business *> *service, const CRUDDepartment *crudDepartment);
-
     void createEntity(Business *const entity) override;
 
     void replaceEntity(Business *newBusiness) override;
@@ -22,4 +20,4 @@ public:
     void removeEntity(const long id) override;
 };
 
-#endif //CPP_UNIVERSITY_ASSIGMENT_CRUDBUSINESS_H
+#endif

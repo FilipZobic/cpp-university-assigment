@@ -8,10 +8,9 @@
 #include "../service/DepartmentMultiService.h"
 using namespace std;
 
-
 class CRUDWorker : public CRUD<Worker*> {
 private:
-    Department *department; // not const //department preko setter if department == nullptrt error
+    Department *department;
     DepartmentMultiService * const departmentService;
 public:
     CRUDWorker(WorkerService *service, DepartmentMultiService *departmentService);//Worker service
@@ -22,8 +21,6 @@ public:
 
     void createEntity(Worker *const entity) override;
 
-    void addAnnualLeave(const long id,string start, string end); // add logic for error
-
     Department *getDepartment() const;
 
     void setDepartment(Department *department);
@@ -31,5 +28,4 @@ public:
     void setBoss(Worker* boss);
 };
 
-
-#endif //CPP_UNIVERSITY_ASSIGMENT_CRUDWORKER_H
+#endif

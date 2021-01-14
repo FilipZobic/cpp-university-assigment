@@ -1,7 +1,5 @@
 #include "CRUDWorker.h"
 #include "stdexcept"
-#include "../util/Util.h"
-#include "../service/DepartmentMultiService.h"
 CRUDWorker::CRUDWorker(WorkerService *service, DepartmentMultiService *departmentService) :
 CRUD(service), departmentService(departmentService), department(nullptr) {}
 
@@ -54,14 +52,4 @@ void CRUDWorker::setBoss(Worker *boss) {
     }
     this->department->setBoss(boss);
     departmentService->writeToFile();
-//    for (Worker *worker : *this->department->getWorkers()) {
-//        if (worker == boss) {
-//            //service->writeToFile();
-//            departmentService->writeToFile();
-//            return;
-//        }
-//    }
-//    throw logic_error("Sent worker can't be boss because it doesn't belong in that department");
 }
-
-void addAnnualLeave(Worker *worker);

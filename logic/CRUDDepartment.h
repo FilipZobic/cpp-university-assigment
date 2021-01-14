@@ -11,13 +11,6 @@ using namespace std;
 #include "../service/BusinessMultiService.h"
 #include "../model/Business.h"
 
-
-//Dep Crud
-//Busniss
-//WorkerService
-//DepartmentService
-//BusinessService
-
 class CRUDDepartment : public CRUD<Department*>  {
 private:
     Business *business;
@@ -42,4 +35,4 @@ public:
 };
 
 
-#endif //CPP_UNIVERSITY_ASSIGMENT_CRUDDEPARTMENT_H
+#endif

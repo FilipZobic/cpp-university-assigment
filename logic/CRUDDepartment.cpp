@@ -1,16 +1,9 @@
 #include "CRUDDepartment.h"
 
-
-
-
-//calls the save method after finding correct department
-//add fire
-//add hire
-CRUDDepartment::CRUDDepartment
-(DepartmentMultiService *departmentMultiService, WorkerService *const workerService,BusinessMultiService *const businessMultiService):
+CRUDDepartment::CRUDDepartment(DepartmentMultiService *departmentMultiService, WorkerService *const workerService,BusinessMultiService *const businessMultiService):
 CRUD(departmentMultiService),workerService(workerService),businessMultiService(businessMultiService){}
 
-void CRUDDepartment::replaceEntity(Department *entity) { // just replace with setter and getters old and new
+void CRUDDepartment::replaceEntity(Department *entity) {
     entity->setBusiness(this->business);
     if (this->business == nullptr){
         throw logic_error("Business is null");
@@ -26,31 +19,27 @@ void CRUDDepartment::replaceEntity(Department *entity) { // just replace with se
     service->writeToFile();
 }
 
-// working on it
+
 void CRUDDepartment::removeEntity(const long depId) {
     if (this->business == nullptr){
         throw logic_error("Business is null");
     }
     const long departmentIndex = service->findIndex(depId);
     if (departmentIndex != -1){
-        // Clears department from service and business vector
-            // returns workers ids
-        vector<long> workersToRemove = this->business->removeDepartment(depId); // returns all workers that belong to department and erases the array then deletes it and removes the department from business.department vector
-        this->service->clearMemory(depId); // deletes it from worker service; calls clear memory
 
-        // clears worker that belonged to department from workerService and deletes them from memory
+        vector<long> workersToRemove = this->business->removeDepartment(depId);
+        this->service->clearMemory(depId);
+
         for(long workerId : workersToRemove){
             workerService->clearMemory(workerId);
         }
 
-//        //Write to file
         this->businessMultiService->writeToFile();
     } else {
-        cout << "No element was removed because it doesn't exist" << endl;
+//        cout << "No element was removed because it doesn't exist" << endl;
     }
 }
 
-// Done
 void CRUDDepartment::createEntity(Department *const department) {
     department->setBusiness(this->business);
     if (this->business == nullptr){
@@ -61,7 +50,7 @@ void CRUDDepartment::createEntity(Department *const department) {
     *this->business << department;
     this->businessMultiService->writeToFile();
 }
-// Done
+
 void CRUDDepartment::setBusiness(Business *business) {
     this->business = business;
 }
