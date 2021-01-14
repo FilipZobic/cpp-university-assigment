@@ -1,14 +1,8 @@
-//
-// Created by filipz on 1/4/21.
-//
-
 #include "MainWindow.h"
 #include <FL/Fl_Table_Row.H>
 #include <gui/DepartmentGUI/DepartmentTableModel.h>
 #include <gui/WorkerGUI/WorkerTableModel.h>
-#include "gui/AbstractTable/Table.h"
 #include "AbstractEntityWindow.h"
-#include "gui/BusinessGUI/BusinessWindow.h"
 
 
 MainWindow::MainWindow(const char *string, CRUDBusiness *crudBusiness,
@@ -23,6 +17,16 @@ MainWindow::MainWindow(const char *string, CRUDBusiness *crudBusiness,
 
     this->end();
     this->show();
+}
+
+MainWindow::~MainWindow() {
+    delete businessGroup;
+    if (departmentGroup != nullptr){
+        delete departmentGroup;
+        if (workerGroup != nullptr){
+            delete workerGroup;
+        }
+    }
 }
 
 void MainWindow::loadBusiness(Fl_Widget *widget, void *data) {
@@ -46,13 +50,13 @@ void MainWindow::loadBusiness(Fl_Widget *widget, void *data) {
     event->hide = mainWindow->departmentGroup;
     backBtn->callback(MainWindow::connectBackButton, event);
 
-    mainWindow->departmentGroup->getBtnLoad()->callback(MainWindow::loadWorker, mainWindow);
+    mainWindow->departmentGroup->getBtnLoad()->callback(MainWindow::loadDepartment, mainWindow);
 
     mainWindow->departmentGroup->show();
     mainWindow->end();
 }
 
-void MainWindow::loadWorker(Fl_Widget *widget, void *data) {
+void MainWindow::loadDepartment(Fl_Widget *widget, void *data) {
     MainWindow *mainWindow = (MainWindow*)data;
     mainWindow->departmentGroup->hide();
 
@@ -74,8 +78,6 @@ void MainWindow::loadWorker(Fl_Widget *widget, void *data) {
     event->show = mainWindow->departmentGroup;
     event->hide = mainWindow->workerGroup;
     backBtn->callback(MainWindow::connectBackButton, event);
-
-    //mainWindow->departmentGroup->getBtnLoad()->callback(MainWindow::loadWorker, mainWindow);
 
     mainWindow->workerGroup->show();
     mainWindow->end();

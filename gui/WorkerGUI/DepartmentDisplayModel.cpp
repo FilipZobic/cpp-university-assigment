@@ -1,12 +1,14 @@
-//
-// Created by filipz on 1/12/21.
-//
-
 #include "DepartmentDisplayModel.h"
 #include "util/Util.h"
 #include "model/Business.h"
 DepartmentDisplayModel::DepartmentDisplayModel(Department *currentEntity, vector<Department*> *entities)
         : AbstractNavigationDisplayModel(currentEntity, entities) {
+}
+
+DepartmentDisplayModel::~DepartmentDisplayModel() {
+    delete boss;
+    delete spending;
+    delete businessName;
 }
 
 Fl_Group *DepartmentDisplayModel::createDetailsDisplay() {

@@ -16,12 +16,6 @@ public:
     void connectButtons(NavigationDisplay<T> *display);
     virtual void navigatorNext() = 0;
     virtual void navigatorPrevious() = 0;
-    virtual void createNavigator() = 0;
-    virtual void updateCrudAndTableModel() = 0;
-
-    NavigationDisplay<T> *getDisplay() const;
-
-    void setDisplay(NavigationDisplay<T> *display);
 };
 
 #endif

@@ -12,19 +12,21 @@ class WorkerWindow : public AbstractEntityWindow<Worker*> {
 protected:
     Fl_Input *name;
     Fl_Input *surname;
-    Fl_Input *birthDay; // pattern
+    Fl_Input *birthDay;
     Fl_Input_Choice *workerType;
     Fl_Float_Input *salary;
-    Fl_Input *phoneNumber; // pattern
+    Fl_Input *phoneNumber;
 
     Fl_Input *clerkInfo;
 
     Fl_Int_Input *driverInfractions;
-    Fl_Input *driverLicenses; // pattern
+    Fl_Input *driverLicenses;
 
 public:
     WorkerWindow(const char *title, AbstractGroup<Worker *> *eventInvoker, Type type = New,
                  Worker *entity = nullptr);
+
+    virtual ~WorkerWindow();
 
     void createEventHandler() override;
 
@@ -42,6 +44,5 @@ public:
 
     bool patternCheckDrivingLicenses();
 };
-
 
 #endif

@@ -12,13 +12,16 @@ Table<T>::Table(int x, int y, int w, int h, const char *l, AbstractTableModel<T>
         row_resize(0);
         type(SELECT_SINGLE);
 
-
         cols(model->getNumberOfColumns());
         col_header(1);
-//        col_width_all(80);
         col_resize(1);
         end();
     }
+
+template<typename T>
+Table<T>::~Table() {
+    delete model;
+}
 
 template<typename T>
 void Table<T>::draw_cell(TableContext context, int row, int column, int x , int y, int w, int h) {

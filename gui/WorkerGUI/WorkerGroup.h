@@ -14,6 +14,8 @@ public:
     WorkerGroup(const char *string, const char *purpose, CRUD<Worker *> *crud, AbstractTableModel<Worker *> *tableModel,
                 Fl_Window *parent, vector<Department*>* businessDepartments);
 
+    virtual ~WorkerGroup();
+
     void create() override;
 
     void modify() override;
@@ -21,10 +23,6 @@ public:
     void navigatorNext() override;
 
     void navigatorPrevious() override;
-
-    void createNavigator() override;
-
-    void updateCrudAndTableModel() override;
 
     void turnOnButtons(SwitchType switchType) override;
 

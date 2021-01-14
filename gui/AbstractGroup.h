@@ -1,10 +1,5 @@
-//
-// Created by filipz on 1/9/21.
-//
-
 #ifndef CPP_UNIVERSITY_ASSIGMENT_ABSTRACTGROUP_H
 #define CPP_UNIVERSITY_ASSIGMENT_ABSTRACTGROUP_H
-
 
 #include <FL/Fl_Group.H>
 #include <FL/Fl_Button.H>
@@ -17,7 +12,6 @@
 #include "gui/AbstractDisplay/NavigationDisplay.h"
 
 using namespace std;
-
 
 struct TableSelection {int startRow, endRow, startColumn, endColumn;};
 
@@ -32,7 +26,7 @@ protected:
     Fl_Button *btnChange;
     Fl_Button *btnDelete;
     Fl_Button *btnLoad;
-    Fl_Button *back;
+    Fl_Button *back = nullptr;
     Fl_Box *purposeLabel;
 
 
@@ -41,41 +35,35 @@ public:
 
     AbstractGroup(const char *string, const char *purpose, CRUD<T> *crud, AbstractTableModel<T> *tableModel, Fl_Window *parent);
 
-    virtual void turnOnButtons(SwitchType switchType = ALL); // abstraktno
+    virtual ~AbstractGroup();
 
-    virtual void turnOffButtons(SwitchType switchType = ALL); // abstraktno
+    virtual void turnOnButtons(SwitchType switchType = ALL);
 
-    void static checkButtons(Fl_Widget *widget, void *data); // abstraktno
+    virtual void turnOffButtons(SwitchType switchType = ALL);
 
-    static void createEventHandler(Fl_Widget *widget, void *data); // abstraktno
+    void static checkButtons(Fl_Widget *widget, void *data);
+
+    static void createEventHandler(Fl_Widget *widget, void *data);
 
     virtual void create() = 0;
 
-    static void modifyEventHandler(Fl_Widget *widget, void *data); // abstraktno
+    static void modifyEventHandler(Fl_Widget *widget, void *data);
 
     virtual void modify() = 0;
 
-    static void deleteEventHandler(Fl_Widget *widget, void *data); // abstraktno
-
-    static void loadEventHandler(Fl_Widget *widget, void *data); // abstraktno
+    static void deleteEventHandler(Fl_Widget *widget, void *data);
 
     TableSelection getSelection();
 
     T getSelectedEntity();
 
-    CRUD<T> *getCrud() const; // abstraktno
+    CRUD<T> *getCrud() const;
 
-    virtual void reRender(); // abstraktno
+    virtual void reRender();
 
     Fl_Button *addBackButton();
 
     Fl_Button *getBtnLoad() const;
-
-    Table<T> *getTableDisplay() const;
-
-    void setTableDisplay(Table<T> *tableDisplay);
-
 };
 
-
-#endif //CPP_UNIVERSITY_ASSIGMENT_ABSTRACTGROUP_H
+#endif

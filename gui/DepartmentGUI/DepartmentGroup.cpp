@@ -1,11 +1,7 @@
-//
-// Created by filipz on 1/10/21.
-//
-
 #include "DepartmentGroup.h"
 #include "DepartmentWindow.h"
 #include "BusinessDisplayModel.h"
-#include "util/Util.h"
+
 DepartmentGroup::DepartmentGroup(const char *string, const char *purpose, CRUD<Department *> *crud,
                                  AbstractTableModel<Department *> *tableModel, Fl_Window *parent) : AbstractGroup(
         string, purpose, crud, tableModel, parent), AbstractNavigatorImplementation<Business*>() {
@@ -19,6 +15,10 @@ DepartmentGroup::DepartmentGroup(const char *string, const char *purpose, CRUD<D
 
     this->end();
     this->show();
+}
+
+DepartmentGroup::~DepartmentGroup() {
+
 }
 
 void DepartmentGroup::create() {
@@ -53,15 +53,6 @@ void DepartmentGroup::navigatorPrevious() {
     this->tableDisplay->model->setEntities(business->getDepartmentsConst());
     this->turnOffButtons(ALL);
     this->reRender();
-}
-
-// constructor ide
-void DepartmentGroup::createNavigator(){
-
-}
-
-void DepartmentGroup::updateCrudAndTableModel() {
-
 }
 
 void DepartmentGroup::reRender() {

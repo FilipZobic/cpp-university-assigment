@@ -1,7 +1,3 @@
-//
-// Created by filipz on 1/4/21.
-//
-
 #include "WorkerWindow.h"
 #include <regex>
 using namespace std;
@@ -203,7 +199,6 @@ void WorkerWindow::checkWorkerType(Fl_Widget *widget, void *data) {
     }
 }
 
-// ovo ide u crud worker
 string WorkerWindow::getWorkerType() {
     return this->workerType->value();
 }
@@ -228,5 +223,17 @@ bool WorkerWindow::patternCheckDrivingLicenses() {
 
     return false;
 }
-// ovo ide u crud worker
 
+WorkerWindow::~WorkerWindow() {
+    delete name;
+    delete surname;
+    delete birthDay;
+    delete workerType;
+    delete salary;
+    delete phoneNumber;
+
+    delete clerkInfo;
+
+    delete driverInfractions;
+    delete driverLicenses;
+}

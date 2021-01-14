@@ -14,16 +14,14 @@ public:
 
     void navigatorPrevious() override;
 
-    void createNavigator() override;
-
-    void updateCrudAndTableModel() override;
-
     void reRender() override;
 
 public:
     void create() override;
 
     void modify() override;
+
+    virtual ~DepartmentGroup();
 };
 
 

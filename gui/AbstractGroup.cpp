@@ -3,8 +3,6 @@
 #include <string>
 using namespace std;
 
-#include "AbstractEntityWindow.h"
-
 template<typename T>
 AbstractGroup<T>::AbstractGroup(const char *string, const char *purpose, CRUD<T> *crud, AbstractTableModel<T> *tableModel, Fl_Window *parent)
 : Fl_Group(parent->x(), parent->y(), parent->w(), parent->h(), string), crud(crud){
@@ -30,13 +28,26 @@ AbstractGroup<T>::AbstractGroup(const char *string, const char *purpose, CRUD<T>
 
     tableDisplay = new Table<T>(0, 215, 1100, 240, "", this->tableModel);
 
-    //tableModel->updateTable();
     tableDisplay->col_header();
     tableDisplay->row_header();
     tableDisplay->callback(AbstractGroup::checkButtons, this);
 
     this->show();
     this->end();
+}
+
+template<typename T>
+AbstractGroup<T>::~AbstractGroup() {
+    delete this->tableDisplay;
+
+    delete btnCreate;
+    delete btnChange;
+    delete btnDelete;
+    delete btnLoad;
+    if (back != nullptr) {
+        delete back;
+    }
+    delete purposeLabel;
 }
 
 template<typename T>
@@ -104,11 +115,6 @@ void AbstractGroup<T>::deleteEventHandler(Fl_Widget *widget, void *data) {
 }
 
 template<typename T>
-void AbstractGroup<T>::loadEventHandler(Fl_Widget *widget, void *data) {
-
-}
-
-template<typename T>
 CRUD<T> *AbstractGroup<T>::getCrud() const {
     return crud;
 }
@@ -142,20 +148,9 @@ template<typename T>
 Fl_Button *AbstractGroup<T>::addBackButton() {
     this->begin();
     this->back = new Fl_Button(5,5,90,40,"Back");
-    return this->back;
     this->end();
+    return this->back;
 }
-
-template<typename T>
-Table<T> *AbstractGroup<T>::getTableDisplay() const {
-    return tableDisplay;
-}
-
-template<typename T>
-void AbstractGroup<T>::setTableDisplay(Table<T> *tableDisplay) {
-    AbstractGroup::tableDisplay = tableDisplay;
-}
-
 
 template class AbstractGroup<Business*>;
 template class AbstractGroup<Department*>;

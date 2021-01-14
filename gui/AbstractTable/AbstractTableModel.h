@@ -1,7 +1,3 @@
-//
-// Created by filipz on 1/9/21.
-//
-
 #ifndef CPP_UNIVERSITY_ASSIGMENT_ABSTRACTTABLEMODEL_H
 #define CPP_UNIVERSITY_ASSIGMENT_ABSTRACTTABLEMODEL_H
 
@@ -20,6 +16,7 @@ protected:
 public:
 
     AbstractTableModel(int nuColumns, vector<T> *entities);
+    virtual ~AbstractTableModel();
 
     virtual string getColumnHeader(int y) = 0;
     virtual string getCellValue(int x, int y) = 0;
@@ -30,9 +27,8 @@ public:
     T at(size_t index);
 
     vector<T> *getEntities() const;
-
     void setEntities(vector<T> *entities);
 };
 
 
-#endif //CPP_UNIVERSITY_ASSIGMENT_ABSTRACTTABLEMODEL_H
+#endif

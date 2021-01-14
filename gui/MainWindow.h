@@ -27,12 +27,13 @@ public:
     MainWindow(const char *string, CRUDBusiness *crudBusiness,
                CRUDDepartment *crudDepartment, CRUDWorker *crudWorker);
 
+    virtual ~MainWindow();
+
     static void loadBusiness(Fl_Widget *widget, void *data);
-    static void loadWorker(Fl_Widget *widget, void *data);
+    static void loadDepartment(Fl_Widget *widget, void *data);
 
     struct Event{Fl_Group *hide; Fl_Group *show;};
     static void connectBackButton(Fl_Widget *widget, void *data);
 };
-
 
 #endif

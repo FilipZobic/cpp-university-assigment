@@ -8,11 +8,12 @@ public:
     BusinessGroup(const char *string, const char *purpose, CRUD<Business *> *crud,
                   AbstractTableModel<Business *> *tableModel, Fl_Window *parent);
 
+    virtual ~BusinessGroup();
+
 protected:
     void create() override;
 
     void modify() override;
 };
 
-
-#endif //CPP_UNIVERSITY_ASSIGMENT_BUSINESSGROUP_H
+#endif

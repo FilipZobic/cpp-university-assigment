@@ -11,13 +11,11 @@ AbstractNavigationDisplayModel<T>::AbstractNavigationDisplayModel(T currentEntit
 }
 
 template<typename T>
-string AbstractNavigationDisplayModel<T>::getQueueDisplayText() {
-    return to_string(currentIndex+1) + "/" + to_string(this->size());
-}
+AbstractNavigationDisplayModel<T>::~AbstractNavigationDisplayModel() {}
 
 template<typename T>
-int AbstractNavigationDisplayModel<T>::getCurrentIndex() {
-    return currentIndex;
+string AbstractNavigationDisplayModel<T>::getQueueDisplayText() {
+    return to_string(currentIndex+1) + "/" + to_string(this->size());
 }
 
 template<typename T>
@@ -35,11 +33,8 @@ bool AbstractNavigationDisplayModel<T>::canDecreaseIndex() {
     return this->currentIndex - 1 != -1;
 }
 
-#include <iostream>
-
 template<typename T>
 T AbstractNavigationDisplayModel<T>::nextEntity() {
-    cout << currentIndex << endl;
     this->currentIndex += 1;
     this->currentEntity = this->entities->at(this->currentIndex);
     return this->currentEntity;
@@ -47,12 +42,10 @@ T AbstractNavigationDisplayModel<T>::nextEntity() {
 
 template<typename T>
 T AbstractNavigationDisplayModel<T>::prevEntity() {
-    cout << currentIndex << endl;
     this->currentIndex -= 1;
     this->currentEntity = this->entities->at(this->currentIndex);
     return this->currentEntity;
 }
-
 
 template class AbstractNavigationDisplayModel<Business*>;
 template class AbstractNavigationDisplayModel<Department*>;

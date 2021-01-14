@@ -1,10 +1,5 @@
-//
-// Created by filipz on 1/10/21.
-//
-
 #ifndef CPP_UNIVERSITY_ASSIGMENT_NAVIGATIONDISPLAY_H
 #define CPP_UNIVERSITY_ASSIGMENT_NAVIGATIONDISPLAY_H
-
 
 #include <FL/Fl_Group.H>
 #include <FL/Fl_Button.H>
@@ -25,20 +20,19 @@ protected:
     Fl_Output *currentEntityNameDisplay;
     Fl_Group *detailsDisplay;
 
-//connect it via setter in main window
 public:
     NavigationDisplay(AbstractNavigationDisplayModel<T> *model);
-    void *createDetailsDisplay();
-    void checkButtons();
+    virtual ~NavigationDisplay();
+
     void reRender();
+    void *createDetailsDisplay();
+
     T nextEntity();
     T prevEntity();
 
+    void checkButtons();
     Fl_Button *getPrevBtn() const;
-
     Fl_Button *getNextBtn() const;
-
 };
 
-
-#endif //CPP_UNIVERSITY_ASSIGMENT_NAVIGATIONDISPLAY_H
+#endif

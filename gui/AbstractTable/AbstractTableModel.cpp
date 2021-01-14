@@ -35,7 +35,11 @@ void AbstractTableModel<T>::setEntities(vector<T> *entities) {
     AbstractTableModel::entities = entities;
 }
 
+template<typename T>
+AbstractTableModel<T>::~AbstractTableModel() {
+
+}
+
 template class AbstractTableModel<Business*>;
 template class AbstractTableModel<Department*>;
 template class AbstractTableModel<Worker*>;
-

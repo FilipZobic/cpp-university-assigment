@@ -1,7 +1,3 @@
-//
-// Created by filipz on 1/4/21.
-//
-
 #ifndef CPP_UNIVERSITY_ASSIGMENT_DEPARTMENTWINDOW_H
 #define CPP_UNIVERSITY_ASSIGMENT_DEPARTMENTWINDOW_H
 
@@ -12,6 +8,8 @@ class DepartmentWindow : public AbstractEntityWindow<Department*> {
 public:
     DepartmentWindow(const char *title, AbstractGroup<Department *> *eventInvoker, Type type = New,
                       Department *entity = nullptr);
+
+    virtual ~DepartmentWindow();
 
     void createEventHandler() override;
 

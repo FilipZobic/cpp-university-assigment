@@ -16,6 +16,7 @@ public:
     enum Type{New, Replace};
 
     AbstractEntityWindow(int w, int h, const char *title, AbstractGroup<T> *eventInvoker, Type type = New, T entity = nullptr);
+    virtual ~AbstractEntityWindow();
     virtual void createEventHandler() = 0;
     virtual void inputValidationCheck() = 0;
     virtual void replaceEventHandler() = 0;

@@ -15,5 +15,4 @@ private:
     string getCellValue(int x, int y) override;
 };
 
-
-#endif //CPP_UNIVERSITY_ASSIGMENT_WORKERTABLEMODEL_H
+#endif

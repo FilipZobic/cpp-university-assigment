@@ -12,8 +12,9 @@ public:
     AbstractTableModel<T> *model;
 protected:
     void draw_cell(TableContext context, int row = 0, int column = 0, int x = 0, int y = 0, int w = 0, int h = 0) override;
+
+public:
+    virtual ~Table();
 };
-
-
 
 #endif

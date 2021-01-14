@@ -6,28 +6,41 @@ template <typename T>
 NavigationDisplay<T>::NavigationDisplay(AbstractNavigationDisplayModel<T> *model) : Fl_Group(355, 0, 745, 125, "Navigator"), model(model){
     this->begin();
 
-    prevBtn = new Fl_Button(363, 27, 70, 40,"@<-");
-    prevBtn->align(FL_ALIGN_CENTER);
-//    prevBtn->callback(this->prevEntity, this);
-    nextBtn = new Fl_Button(665, 27, 70, 40,"@->");
-    nextBtn->align(FL_ALIGN_CENTER);
-//    nextBtn->callback(this->nextEntity, this);
+    this->prevBtn = new Fl_Button(363, 27, 70, 40,"@<-");
+    this->prevBtn->align(FL_ALIGN_CENTER);
 
-    // render out put funkcija koja menja vrednosti na osnovu njega
-    currentEntityNameDisplay = new Fl_Output(440, 26, 220, 40);
-    currentEntityNameDisplay->align(FL_ALIGN_TOP);
-    currentEntityNameDisplay->color();
+    this->nextBtn = new Fl_Button(665, 27, 70, 40,"@->");
+    this->nextBtn->align(FL_ALIGN_CENTER);
+
+    this->currentEntityNameDisplay = new Fl_Output(440, 26, 220, 40);
+    this->currentEntityNameDisplay->align(FL_ALIGN_TOP);
+    this->currentEntityNameDisplay->color();
 
     this->checkButtons();
-    createDetailsDisplay();
+    this->createDetailsDisplay();
     this->reRender();
 
-    currentEntityNameDisplay->labelcolor(FL_BLUE);
-    currentEntityNameDisplay->labelsize(20);
+    this->currentEntityNameDisplay->labelcolor(FL_BLUE);
+    this->currentEntityNameDisplay->labelsize(20);
 
     this->end();
-
     this->show();
+}
+
+template<typename T>
+NavigationDisplay<T>::~NavigationDisplay() {
+    delete this->model;
+    delete this->prevBtn;
+    delete this->nextBtn;
+    delete this->currentEntityNameDisplay;
+    delete this->detailsDisplay;
+}
+
+template<typename T>
+void NavigationDisplay<T>::reRender() {
+    this->currentEntityNameDisplay->value(this->model->getMainDisplayText().c_str());
+    this->currentEntityNameDisplay->copy_label(this->model->getQueueDisplayText().c_str());
+    this->model->updateDetailDisplay();
 }
 
 template<typename T>
@@ -65,25 +78,16 @@ void NavigationDisplay<T>::checkButtons() {
     }else {
         this->prevBtn->activate();
     }
-
-}
-
-template<typename T>
-void NavigationDisplay<T>::reRender() {
-
-    currentEntityNameDisplay->value(this->model->getMainDisplayText().c_str());
-    currentEntityNameDisplay->copy_label(this->model->getQueueDisplayText().c_str());
-    this->model->updateDetailDisplay();
 }
 
 template<typename T>
 Fl_Button *NavigationDisplay<T>::getPrevBtn() const {
-    return prevBtn;
+    return this->prevBtn;
 }
 
 template<typename T>
 Fl_Button *NavigationDisplay<T>::getNextBtn() const {
-    return nextBtn;
+    return this->nextBtn;
 }
 
 template class NavigationDisplay<Business*>;

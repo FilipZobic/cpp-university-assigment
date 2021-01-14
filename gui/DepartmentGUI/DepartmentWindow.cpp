@@ -13,6 +13,10 @@ DepartmentWindow::DepartmentWindow(const char *title, AbstractGroup<Department *
     this->end();
 }
 
+DepartmentWindow::~DepartmentWindow() {
+    delete name;
+}
+
 void DepartmentWindow::createEventHandler() {
     Department *Department = newEntity();
     eventInvoker->getCrud()->createEntity(Department);

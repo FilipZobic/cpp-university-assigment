@@ -30,6 +30,13 @@ AbstractEntityWindow<T>::AbstractEntityWindow(int w, int h, const char *title, A
 }
 
 template<typename T>
+AbstractEntityWindow<T>::~AbstractEntityWindow() {
+
+    delete btnCancel;
+    delete btnCreate;
+}
+
+template<typename T>
 void AbstractEntityWindow<T>::cancel(Fl_Widget *widget, void *data) {
     auto abstractEntityWindow = (AbstractEntityWindow<T>*) data;
     delete abstractEntityWindow;

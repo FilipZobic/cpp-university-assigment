@@ -1,5 +1,4 @@
 #include "BusinessWindow.h"
-#include "gui/MainWindow.h"
 
 BusinessWindow::BusinessWindow(const char *title, AbstractGroup<Business*> *eventInvoker,
                                AbstractEntityWindow<Business *>::Type type, Business *entity)
@@ -28,6 +27,14 @@ BusinessWindow::BusinessWindow(const char *title, AbstractGroup<Business*> *even
 
     this->end();
     this->show();
+}
+
+BusinessWindow::~BusinessWindow() {
+    delete name;
+    delete registrationNumber;
+    delete vat;
+    delete phoneNumber;
+    delete address;
 }
 
 void BusinessWindow::inputValidationCheck() {

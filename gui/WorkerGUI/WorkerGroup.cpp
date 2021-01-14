@@ -14,13 +14,12 @@ WorkerGroup::WorkerGroup(const char *string, const char *purpose, CRUD<Worker *>
     this->btnLoad->callback(WorkerGroup::loadWorkerCard,this);
     this->btnDelete->copy_label("FIRE");
     this->btnCreate->copy_label("HIRE");
-    // add event here for card
     this->annualLeaveBtn = new Fl_Button(745, 150, 165, 50);
     this->annualLeaveBtn->callback(WorkerGroup::annualLeaveEventHandler,this);
-    assignBoss = new Fl_Button (920, 150, 165, 50);
-    assignBoss->copy_label("SET BOSS");
-    assignBoss->callback(WorkerGroup::assignBossHandler, this);
-    annualLeaveBtn->copy_label("ANNUAL LEAVE");
+    this->assignBoss = new Fl_Button (920, 150, 165, 50);
+    this->assignBoss->copy_label("SET BOSS");
+    this->assignBoss->callback(WorkerGroup::assignBossHandler, this);
+    this->annualLeaveBtn->copy_label("ANNUAL LEAVE");
     CRUDWorker *crudWorker = (CRUDWorker*)crud;
     Department *department = crudWorker->getDepartment();
     AbstractNavigationDisplayModel<Department*> *displayModel = new DepartmentDisplayModel(department, businessDepartments);
@@ -32,6 +31,11 @@ WorkerGroup::WorkerGroup(const char *string, const char *purpose, CRUD<Worker *>
     this->end();
     this->show();
 
+}
+
+WorkerGroup::~WorkerGroup() {
+    delete annualLeaveBtn;
+    delete assignBoss;
 }
 
 
@@ -66,14 +70,6 @@ void WorkerGroup::navigatorPrevious() {
     this->tableDisplay->model->setEntities(department->getWorkers());
     this->turnOffButtons(ALL);
     this->reRender();
-}
-
-void WorkerGroup::createNavigator() {
-
-}
-
-void WorkerGroup::updateCrudAndTableModel() {
-
 }
 
 void WorkerGroup::turnOnButtons(AbstractGroup<Worker *>::SwitchType switchType) {

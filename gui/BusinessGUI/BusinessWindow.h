@@ -1,7 +1,3 @@
-//
-// Created by filipz on 1/4/21.
-//
-
 #ifndef CPP_UNIVERSITY_ASSIGMENT_BUSINESSWINDOW_H
 #define CPP_UNIVERSITY_ASSIGMENT_BUSINESSWINDOW_H
 
@@ -18,6 +14,8 @@ protected:
     Fl_Input *address;
 public:
     BusinessWindow(const char *title, AbstractGroup<Business*> *eventInvoker, Type type = New, Business *entity = nullptr);
+
+    virtual ~BusinessWindow();
 
     void createEventHandler() override;
 

@@ -1,7 +1,3 @@
-//
-// Created by filipz on 1/12/21.
-//
-
 #ifndef CPP_UNIVERSITY_ASSIGMENT_DEPARTMENTDISPLAYMODEL_H
 #define CPP_UNIVERSITY_ASSIGMENT_DEPARTMENTDISPLAYMODEL_H
 
@@ -12,6 +8,8 @@
 class DepartmentDisplayModel : public AbstractNavigationDisplayModel<Department*> {
 public:
     DepartmentDisplayModel(Department *currentEntity, vector<Department*> *entities);
+
+    virtual ~DepartmentDisplayModel();
 
 private:
     Fl_Output *boss;
@@ -26,4 +24,4 @@ private:
 };
 
 
-#endif //CPP_UNIVERSITY_ASSIGMENT_DEPARTMENTDISPLAYMODEL_H
+#endif
