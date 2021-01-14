@@ -1,7 +1,3 @@
-//
-// Created by filipz on 12/5/20.
-//
-
 #include "Business.h"
 #include "../util/Util.h"
 
@@ -164,4 +160,8 @@ const string &Business::getPhoneNumber() const {
 
 void Business::setPhoneNumber(const string &phoneNumber) {
     Business::phoneNumber = phoneNumber;
+}
+
+Business::~Business() {
+    delete this->departments;
 }

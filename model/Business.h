@@ -1,7 +1,3 @@
-//
-// Created by filipz on 12/5/20.
-//
-
 #ifndef CPP_UNIVERSITY_ASSIGMENT_BUSINESS_H
 #define CPP_UNIVERSITY_ASSIGMENT_BUSINESS_H
 
@@ -11,7 +7,6 @@
 #include "service/CsvFormatter.h"
 
 using namespace std;
-// Implements formatter // Add service // Add CRUD
 class Business : public CsvFormatter<vector<string>*> {
 private:
     string name;
@@ -26,6 +21,8 @@ public:
     Business();
 
     Business(const string &name, long registrationNumber, long vat, string phoneNumber,string address);
+
+    virtual ~Business();
 
     string Serialize() override;
 
@@ -80,4 +77,4 @@ public:
 };
 
 
-#endif //CPP_UNIVERSITY_ASSIGMENT_BUSINESS_H
+#endif

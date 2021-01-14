@@ -45,7 +45,6 @@ void Date::Parse(string &dateString) {
     int month = stoi(params[1]);
     int year = stoi(params[2]);
 
-    // If No Errors are thrown set values
     isInputValid(day, month, year);
 
     this->day = day;

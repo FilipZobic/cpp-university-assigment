@@ -1,7 +1,6 @@
 #include "Department.h"
 #include "../util/Util.h"
 #include "iostream"
-#include "Business.h"
 
 Department::Department(long id, string name, Worker *boss,vector<Worker *>* workers) : id(id), boss(boss), workers(workers), name(name) {}
 Department::Department(long id, Worker *boss,vector<Worker *>* workers) : id(id), boss(boss), workers(workers) {}
@@ -88,10 +87,6 @@ void Department::Parse(vector<string> params) {
     this->id = stol(params.at(0));
 }
 
-// check id returns worker if true
-//its in for loop where we check the service
-//easier to find boss and workers without writing more code
-
 long Department::getId() const {
     return id;
 }
@@ -176,5 +171,3 @@ void *Department::getBusiness() const {
 void Department::setBusiness(void *business) {
     this->business = business;
 }
-
-// u servicu od departmenta proveravaj kada se worker deletuje to cu raditi tako sto ubacim jos jednu funkciju gde se poziva delete worker koja poziva check all departments for worker itd

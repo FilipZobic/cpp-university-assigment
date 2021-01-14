@@ -15,5 +15,4 @@ public:
     void Parse(vector<string> *parameters) override;
 };
 
-
-#endif //CPP_UNIVERSITY_ASSIGMENT_WAREHOUSEMAN_H
+#endif

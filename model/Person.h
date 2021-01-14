@@ -44,5 +44,4 @@ public:
 
 };
 
-
-#endif //CPP_UNIVERSITY_ASSIGMENT_PERSON_H
+#endif

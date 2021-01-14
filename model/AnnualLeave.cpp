@@ -8,7 +8,7 @@ string AnnualLeave::Serialize() {
         toReturn+= "|" + start.Serialize() + "|" + end.Serialize();
     }
     return toReturn;
-}/*we set currentDays to 0 on construction we use setter to setter that recives 2 dates then we get calculation in parser the last value we set is days*/
+}
 
 void AnnualLeave::Parse(string &dateString) {
     vector<string> params;

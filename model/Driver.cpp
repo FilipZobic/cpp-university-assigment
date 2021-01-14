@@ -1,7 +1,3 @@
-//
-// Created by filipz on 10/25/20.
-//
-
 #include "Driver.h"
 #include "../util/Util.h"
 Driver::Driver():Worker() {}
@@ -50,7 +46,7 @@ string Driver::drivingCategoriesToString() {
         }
         categories.erase(categories.size()-1,categories.size());
     } else{
-        categories += ""; //check if empty when parsing the first vector can remove this but let it be here for now
+        categories += "";
     }
     return categories;
 }

@@ -48,9 +48,8 @@ void Worker::Parse(vector<string> *parameters) {
     this->salary = stod(parameters->at(1));
     checkSalary();
     this->mobileNumber = parameters->at(2);
-    this->annualLeave = new AnnualLeave(); //we should delete old one before we create a new one or replace it
+    this->annualLeave = new AnnualLeave();
     annualLeave->Parse(parameters->at(3));
-    // set annualLeave here
     parameters->erase(parameters->begin(),parameters->cbegin()+4);
 };
 
@@ -59,11 +58,6 @@ void Worker::checkSalary() const{
 }
 
 Worker::Worker():Person() {}
-
-void Worker::addOrReplaceAnnualLeave(Date &dateStart,Date &dateEnd) const {
-    // prekopiraj vrednosti sa setterima i getterima
-    this->annualLeave->setCurrentDays(dateStart,dateEnd);
-}
 
 AnnualLeave *Worker::getAnnualLeave() const {
     return annualLeave;
@@ -90,7 +84,4 @@ void Worker::copyAnnualLeave(AnnualLeave *annualLeave) {
     this->annualLeave = new AnnualLeave(annualLeave);
 }
 
-string Worker::getDisplayNumber() {
-
-}
 

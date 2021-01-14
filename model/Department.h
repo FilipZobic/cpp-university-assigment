@@ -19,9 +19,7 @@ public:
     enum Type {Warehouseman, Clerk, Driver};
     Department();
     Department(long id);
-
     Department(const string &name);
-
     Department(long id,vector<Worker *> *workers);
     Department(long id, Worker *boss,vector<Worker *> *workers);
     Department(long id, string name, Worker *boss,vector<Worker *>* workers);

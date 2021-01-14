@@ -1,7 +1,3 @@
-//
-// Created by filipz on 10/25/20.
-//
-
 #ifndef CPP_UNIVERSITY_ASSIGMENT_CLERK_H
 #define CPP_UNIVERSITY_ASSIGMENT_CLERK_H
 
@@ -24,5 +20,4 @@ public:
     void setCashRegisterInfo(const string &cashRegisterInfo);
 };
 
-
-#endif //CPP_UNIVERSITY_ASSIGMENT_CLERK_H
+#endif

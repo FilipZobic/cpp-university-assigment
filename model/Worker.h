@@ -42,8 +42,6 @@ public:
 
     void checkSalary() const;
 
-    void addOrReplaceAnnualLeave(Date &dateStart,Date &dateEnd) const;
-
     AnnualLeave *getAnnualLeave() const;
 
     void setAnnualLeave(AnnualLeave *annualLeave);
@@ -51,9 +49,6 @@ public:
     string getAnnualLeaveValue(AnnualLeave::LeaveDetails leaveDetails);
 
     void copyAnnualLeave(AnnualLeave *annualLeave);
-
-    string getDisplayNumber();
 };
 
-
-#endif //CPP_UNIVERSITY_ASSIGMENT_WORKER_H
+#endif

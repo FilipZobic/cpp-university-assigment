@@ -15,17 +15,6 @@ private:
 public:
 
     enum LeaveDetails{Start, End};
-    /*
-     * start must be higher then end
-     * when setting values always call getSubtraction
-     * current amount will always be set to 0
-     * when serialization check if 0 then just write 0 as value
-     * when parsing check if 0 then just set current amountW
-     * when serialization if not just 0 then write dates also
-     * when parsing if not just 0 then parse and set dates as well
-     * minimum year is 2010
-     * on calculate days send year of firstParamForBoth
-     * */
 
     void setCurrentDays(Date &start, Date &end);
 
