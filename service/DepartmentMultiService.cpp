@@ -7,7 +7,6 @@
 DepartmentMultiService::DepartmentMultiService(const string &filename, vector<Department*> *entities, WorkerService *serviceDependency) : MultiService(filename, entities,serviceDependency){
     parseAllEntities();
 }
-// change department to accept only one string or even long
 void DepartmentMultiService::parseAllEntities() {
     vector<string> lines = readFromFile();
     unordered_set <long> idSet;
@@ -24,7 +23,6 @@ void DepartmentMultiService::parseAllEntities() {
 
         cuaUtil::parseStringIntoVector(workerIdsString,workerIds,",");
 
-        //find boss //find workers set them all here
         Department* entity;
         this->parseEntity(&entity,paramsForObject);
 
@@ -45,7 +43,7 @@ void DepartmentMultiService::parseAllEntities() {
                 }
             }
         }
-        entities->push_back(entity); // we can add operator to do push_back
+        entities->push_back(entity);
     }
     if (serviceDependency->getEntities()->size() != idSet.size()){
         throw logic_error("There are workers that exist without a Department"); // can be template
@@ -56,5 +54,5 @@ void DepartmentMultiService::parseEntity(Department **entity, vector<string> &pa
 
     (*entity) = new Department;
     (*entity)->Parse(paramsForObject);
-} //replace cu mozda morati redefinisati za svaki da sa novom instancom ne presnimi ga neko samo polja da zameni jer adrese se mozda zeznu
+}
 

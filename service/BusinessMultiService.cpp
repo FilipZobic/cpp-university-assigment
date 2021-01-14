@@ -33,7 +33,7 @@ void BusinessMultiService::parseAllEntities() {
             }
         }
 
-        entities->push_back(entity); // moze operator funckija koji isto proverava instancu i dodaje ga na kraju
+        entities->push_back(entity);
     }
     if (serviceDependency->getEntities()->size() != idSet.size()){
         throw logic_error("There are departments that exist without a Business"); // can be template

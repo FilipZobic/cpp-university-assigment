@@ -21,4 +21,4 @@ public:
 };
 
 
-#endif //CPP_UNIVERSITY_ASSIGMENT_DEPARTMENTMULTISERVICE_H
+#endif

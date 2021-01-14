@@ -50,7 +50,3 @@ bool cuaUtil::patternPhoneNumberCheck(string number) {
 
     return false;
 }
-
-
-
-//template cuaUtil::findIndex<Worker*>;

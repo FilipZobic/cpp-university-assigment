@@ -2,8 +2,6 @@
 #include <fstream>
 #include <stdexcept>
 #include <model/Business.h>
-#include "../util/Util.h"
-#include "../model/Department.h"
 
 template <typename T>
 Service<T>::Service(const string &filename,vector<T>* entities) : filename(filename),entities(entities),lastUsedId(0),amountOfItems(0) {
@@ -47,10 +45,7 @@ void Service<T>::openFile(Y &file){
 
 }
 
-// funkcija koja ucitava ta dva parametra
-//vrati vector stringova linije
-
-template <typename T> // protected mozda
+template <typename T>
 vector<string> Service<T>::readFromFile(){ // path to file change
 
     //Opening
@@ -143,7 +138,7 @@ void Service<T>::clearMemory(const long id) {
 
     this->writeToFile();
 }
-// koristiti interfejs koji ima metod getId koji vraca njegov unique id to stavimo u csv formator npr override samo
+
 template<typename T>
 long Service<T>::findIndex(long id) const {
     long index = cuaUtil::findIndex<T>(id,this->entities);

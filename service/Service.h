@@ -63,5 +63,4 @@ public:
     }
 };
 
-
-#endif //CPP_UNIVERSITY_ASSIGMENT_SERVICE_H
+#endif

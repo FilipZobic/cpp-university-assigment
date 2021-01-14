@@ -1,7 +1,6 @@
 #ifndef CPP_UNIVERSITY_ASSIGMENT_BUSINESSMULTISERVICE_H
 #define CPP_UNIVERSITY_ASSIGMENT_BUSINESSMULTISERVICE_H
 
-
 #include <model/Business.h>
 #include "MultiService.h"
 #include "DepartmentMultiService.h"
@@ -16,5 +15,4 @@ public:
 
 };
 
-
-#endif //CPP_UNIVERSITY_ASSIGMENT_BUSINESSMULTISERVICE_H
+#endif
