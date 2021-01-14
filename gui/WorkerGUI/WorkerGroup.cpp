@@ -3,6 +3,7 @@
 #include "DepartmentDisplayModel.h"
 #include "WorkerWindow.h"
 #include "AnnualLeaveWindow.h"
+#include "WorkerCard.h"
 
 WorkerGroup::WorkerGroup(const char *string, const char *purpose, CRUD<Worker *> *crud,
                          AbstractTableModel<Worker *> *tableModel, Fl_Window *parent, vector<Department*>* businessDepartments) : AbstractGroup(string, purpose,
@@ -10,6 +11,7 @@ WorkerGroup::WorkerGroup(const char *string, const char *purpose, CRUD<Worker *>
                                                                                                           parent) {
     this->begin();
     this->btnLoad->copy_label("SHOW CARD");
+    this->btnLoad->callback(WorkerGroup::loadWorkerCard,this);
     this->btnDelete->copy_label("FIRE");
     this->btnCreate->copy_label("HIRE");
     // add event here for card
@@ -50,8 +52,8 @@ void WorkerGroup::navigatorNext() {
     CRUDWorker *crudWorker = (CRUDWorker*)this->crud;
 
     crudWorker->setDepartment(department);
-    this->tableDisplay->model->setEntities(department->getWorkers());
     this->turnOffButtons(ALL);
+    this->tableDisplay->model->setEntities(department->getWorkers());
     this->reRender();
 }
 
@@ -107,4 +109,13 @@ void WorkerGroup::assignBossHandler(Fl_Widget *widget, void *data) {
     CRUDWorker *crudWorker = (CRUDWorker*)workerWindow->crud;
     crudWorker->setBoss(worker);
     workerWindow->reRender();
+}
+
+void WorkerGroup::loadWorkerCard(Fl_Widget *widget, void *data) {
+    WorkerGroup *workerWindow = (WorkerGroup*)data;
+    CRUDWorker *crudWorker = (CRUDWorker*)workerWindow->crud;
+    TableSelection region = workerWindow->getSelection();
+    Worker *worker = workerWindow->tableModel->at(region.startRow);
+    Business *business = (Business*)crudWorker->getDepartment()->getBusiness();
+    WorkerCard *window = new WorkerCard(business,worker);
 }

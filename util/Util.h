@@ -37,6 +37,8 @@ namespace cuaUtil {
 
     string roundDouble(double number, std::size_t pos = 2);
 
+    bool patternPhoneNumberCheck(string number);
+
 }
 
 

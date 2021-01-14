@@ -41,8 +41,6 @@ public:
     string getWorkerType();
 
     bool patternCheckDrivingLicenses();
-
-    bool patternPhoneNumberCheck();
 };
 
 

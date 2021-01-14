@@ -67,12 +67,9 @@ void AbstractGroup<T>::checkButtons(Fl_Widget *widget, void *data) {
     mainWindow->tableDisplay->get_selection(startRow, colLeft, endRow, colRight);
 
     mainWindow->turnOffButtons();
-
-    if (startRow != -1){
+    if (startRow != -1 && colLeft == colRight ){
         if( startRow == endRow) {
             mainWindow->turnOnButtons();
-        }else {
-            mainWindow->turnOnButtons(ONE);
         }
     }
 }

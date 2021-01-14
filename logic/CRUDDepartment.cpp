@@ -11,6 +11,7 @@ CRUDDepartment::CRUDDepartment
 CRUD(departmentMultiService),workerService(workerService),businessMultiService(businessMultiService){}
 
 void CRUDDepartment::replaceEntity(Department *entity) { // just replace with setter and getters old and new
+    entity->setBusiness(this->business);
     if (this->business == nullptr){
         throw logic_error("Business is null");
     }
@@ -51,6 +52,7 @@ void CRUDDepartment::removeEntity(const long depId) {
 
 // Done
 void CRUDDepartment::createEntity(Department *const department) {
+    department->setBusiness(this->business);
     if (this->business == nullptr){
         throw logic_error("Business is null");
     }

@@ -74,7 +74,7 @@ void WorkerWindow::inputValidationCheck() {
         throw logic_error("Salary can't be lower or equal to 0");
     }
 
-    if (this->patternPhoneNumberCheck()){
+    if (cuaUtil::patternPhoneNumberCheck(this->phoneNumber->value())){
         throw logic_error("Number min 7 max 15 numbers can also have leading +");
     }
 
@@ -230,21 +230,3 @@ bool WorkerWindow::patternCheckDrivingLicenses() {
 }
 // ovo ide u crud worker
 
-bool WorkerWindow::patternPhoneNumberCheck() {
-    string number = this->phoneNumber->value();
-    if (number.empty()){
-        return true;
-    }
-    if (regex_match(number,regex("\\[a-Z]"))){
-        return true;
-    }
-
-    regex pattern("\\s*|\\/*\\-*");
-    number = regex_replace(number,pattern,"");
-
-    if (!regex_match(number,regex("\\+{0,1}[0-9]{7,15}"))){
-        return true;
-    }
-
-    return false;
-}

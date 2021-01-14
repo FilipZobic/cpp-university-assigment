@@ -19,10 +19,13 @@ private:
     long vat;
     long programId;
     vector<struct Department *> *departments;
+
+    string address;
+    string phoneNumber;
 public:
     Business();
 
-    Business(const string &name, long registrationNumber, long vat);
+    Business(const string &name, long registrationNumber, long vat, string phoneNumber,string address);
 
     string Serialize() override;
 
@@ -66,6 +69,14 @@ public:
     int getNumberOfSpecificWorker(Department::Type type);
 
     double calculateSpending() const;
+
+    const string &getAddress() const;
+
+    void setAddress(const string &address);
+
+    const string &getPhoneNumber() const;
+
+    void setPhoneNumber(const string &phoneNumber);
 };
 
 

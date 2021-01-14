@@ -35,6 +35,8 @@ public:
     void reRender() override;
 
     static void assignBossHandler(Fl_Widget *widget, void* data);
+
+    static void loadWorkerCard(Fl_Widget *widget, void* data);
 };
 
 #endif

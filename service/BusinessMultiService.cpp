@@ -27,6 +27,7 @@ void BusinessMultiService::parseAllEntities() {
                 if (id == dep->getId()){
                     idSet.insert(id);
                     *entity << dep;
+                    dep->setBusiness(entity);
                     break;
                 }
             }

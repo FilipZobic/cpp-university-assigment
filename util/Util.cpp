@@ -33,6 +33,24 @@ string cuaUtil::roundDouble(double number, std::size_t pos) {
 
 }
 
+bool cuaUtil::patternPhoneNumberCheck(string number) {
+    if (number.empty()){
+        return true;
+    }
+    if (regex_match(number,regex("\\[a-Z]"))){
+        return true;
+    }
+
+    regex pattern("\\s*|\\/*\\-*");
+    number = regex_replace(number,pattern,"");
+
+    if (!regex_match(number,regex("\\+{0,1}[0-9]{7,15}"))){
+        return true;
+    }
+
+    return false;
+}
+
 
 
 //template cuaUtil::findIndex<Worker*>;

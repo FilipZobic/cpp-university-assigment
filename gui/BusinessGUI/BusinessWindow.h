@@ -14,6 +14,8 @@ protected:
     Fl_Input *name;
     Fl_Int_Input *registrationNumber;
     Fl_Int_Input *vat;
+    Fl_Input *phoneNumber;
+    Fl_Input *address;
 public:
     BusinessWindow(const char *title, AbstractGroup<Business*> *eventInvoker, Type type = New, Business *entity = nullptr);
 

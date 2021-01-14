@@ -4,6 +4,7 @@
 
 #include "DepartmentDisplayModel.h"
 #include "util/Util.h"
+#include "model/Business.h"
 DepartmentDisplayModel::DepartmentDisplayModel(Department *currentEntity, vector<Department*> *entities)
         : AbstractNavigationDisplayModel(currentEntity, entities) {
 }
@@ -28,7 +29,8 @@ Fl_Group *DepartmentDisplayModel::createDetailsDisplay() {
 void DepartmentDisplayModel::updateDetailDisplay() {
     this->boss->value(this->currentEntity->getBossName().c_str());
     this->spending->value(cuaUtil::roundDouble(-this->currentEntity->getSpending()).c_str());
-    businessName->value("Something");
+    Business *business = (Business*)this->currentEntity->getBusiness();
+    businessName->value(business->getName().c_str());
 }
 
 string DepartmentDisplayModel::getMainDisplayText() {

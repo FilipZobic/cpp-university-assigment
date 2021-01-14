@@ -7,8 +7,9 @@
 
 Business::Business():departments(new vector<struct Department *>) {}
 
-Business::Business(const string &name, long registrationNumber, long vat)
-        : name(name), registrationNumber(registrationNumber), vat(vat),departments(new vector<struct Department *>) {}
+Business::Business(const string &name, long registrationNumber, long vat, string phoneNumber, string address)
+        : name(name), registrationNumber(registrationNumber), vat(vat),departments(new vector<struct Department *>)
+                ,phoneNumber(phoneNumber),address(address){}
 
 void Business::operator<<(Department *department) {
 
@@ -29,7 +30,8 @@ string Business::Serialize() {
         departmentsString += "-1";
     }
 
-    return this->name + sep + to_string(this->registrationNumber) + sep + to_string(this->vat) + sep + departmentsString + sep + to_string(programId);
+    return this->name + sep + to_string(this->registrationNumber) + sep + to_string(this->vat)
+    + sep + departmentsString + sep + to_string(programId) + sep + this->phoneNumber + sep + address;
 }
 
 void Business::Parse(vector<string> *parameters) {
@@ -37,7 +39,8 @@ void Business::Parse(vector<string> *parameters) {
     this->registrationNumber = stol(parameters->at(1));
     this->vat = stol(parameters->at(2));
     this->programId = stol(parameters->at(3));
-
+    this->phoneNumber = parameters->at(4);
+    this->address = parameters->at(5);
 }
 
 vector<long> Business::removeDepartment(const long depId) {
@@ -61,6 +64,8 @@ void Business::replace(Business *newBusiness) {
     this->name = newBusiness->getName();
     this->registrationNumber = newBusiness->getId();
     this->vat = newBusiness->getVat();
+    this->address = newBusiness->getAddress();
+    this->phoneNumber = newBusiness->getPhoneNumber();
 }
 
 const vector<Department *>* Business::getDepartments() const { // pogeldaj gde se koristi
@@ -143,4 +148,20 @@ double Business::calculateSpending() const {
         sum += department->getSpending();
     }
     return sum;
+}
+
+const string &Business::getAddress() const {
+    return address;
+}
+
+void Business::setAddress(const string &address) {
+    Business::address = address;
+}
+
+const string &Business::getPhoneNumber() const {
+    return phoneNumber;
+}
+
+void Business::setPhoneNumber(const string &phoneNumber) {
+    Business::phoneNumber = phoneNumber;
 }

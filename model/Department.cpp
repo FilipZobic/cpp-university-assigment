@@ -1,6 +1,7 @@
 #include "Department.h"
 #include "../util/Util.h"
 #include "iostream"
+#include "Business.h"
 
 Department::Department(long id, string name, Worker *boss,vector<Worker *>* workers) : id(id), boss(boss), workers(workers), name(name) {}
 Department::Department(long id, Worker *boss,vector<Worker *>* workers) : id(id), boss(boss), workers(workers) {}
@@ -168,6 +169,12 @@ double Department::getSpending() {
     return sum;
 }
 
+void *Department::getBusiness() const {
+    return business;
+}
 
+void Department::setBusiness(void *business) {
+    this->business = business;
+}
 
 // u servicu od departmenta proveravaj kada se worker deletuje to cu raditi tako sto ubacim jos jednu funkciju gde se poziva delete worker koja poziva check all departments for worker itd

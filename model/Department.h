@@ -13,6 +13,8 @@ private: //add name to department then fix service then parse ser then crude Par
     string name;
     Worker* boss;
     vector<Worker*>* workers;
+    void *business;
+
 public:
     enum Type {Warehouseman, Clerk, Driver};
     Department();
@@ -59,6 +61,9 @@ public:
 
     double getSpending();
 
+    void *getBusiness() const;
+
+    void setBusiness(void *business);
 };
 
 

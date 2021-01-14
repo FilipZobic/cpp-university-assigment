@@ -19,7 +19,6 @@ void CRUDBusiness::createEntity(Business *const business) {
     this->service->writeToFile();
 }
 
-// Namesti da moze da se menja id i neka radi proveru da li neki drugi poseduje taj id
 void CRUDBusiness::replaceEntity(Business *newBusiness) {
 
     bool canReplace = false;
@@ -34,22 +33,16 @@ void CRUDBusiness::replaceEntity(Business *newBusiness) {
 
     if(!canReplace) throw logic_error ("Nothing to replace");
 
-    long old_registration_number = newBusiness->getId();
-    Business *registrationNumberBusiness;
     auto index = this->businessIdHashSet.find(newBusiness->getId());
-    if (businessIdHashSet.count(old_registration_number)){
-        registrationNumberBusiness = this->businessIdHashSet.at(index->first);
+
+    if (index != this->businessIdHashSet.end()){
+        if (oldBusiness != this->businessIdHashSet.find(newBusiness->getId())->second){
+            throw logic_error ("A business already has that registration number");
+        }
     }
-
-
-    
-    if (index != this->businessIdHashSet.end() && registrationNumberBusiness != oldBusiness){
-        throw logic_error ("A business already has that registration number");
-    }
-
     this->businessIdHashSet.erase(businessIdHashSet.find(oldBusiness->getId()));
-    this->businessIdHashSet[oldBusiness->getId()] = oldBusiness;
     oldBusiness->replace(newBusiness);
+    this->businessIdHashSet[oldBusiness->getId()] = oldBusiness;
     delete newBusiness;
     this->service->writeToFile();
 }
