@@ -66,6 +66,7 @@ void BusinessWindow::inputValidationCheck() {
         throw logic_error("First 8 digits of VAT must be the same as registration number");
     }
 
+
     string address = this->address->value();
     if (address.size() <= 10) {
         throw logic_error("Address must contain minimum 10 chars");
